@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 console.log("DOM fully loaded and parsed!");
 
 // hidden elements
-$("#title").hide();
+$("#title, #startOptionsGame").hide();
 
 //intro
 //inscription
@@ -21,4 +21,14 @@ let hideTitle = () => {
   $("#title").fadeOut(2000);
 }
 setTimeout(hideTitle, 12000);
+
+//Start of game - option choice
+let startOptionsGame = () => {
+  $("#startOptionsGame").fadeIn(2000);
+  $("body").css("backgroundColor", "beige");
+}
+
+setTimeout(startOptionsGame, 14500);
+
+
 });

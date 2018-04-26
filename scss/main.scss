@@ -12,7 +12,7 @@ html,body{
 //grid-container
 .grid-container{
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -67,4 +67,19 @@ html,body{
   h6{
       font-size: 200%;
   }
+}
+
+//styles for Start of game - option choice
+#startOptionsGame{
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnNewGame{
+  width: 20%;
+  height: 5%;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  font-size: 150%;
 }
