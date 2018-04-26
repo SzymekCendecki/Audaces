@@ -72,14 +72,49 @@ html,body{
 //styles for Start of game - option choice
 #startOptionsGame{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-.btnNewGame{
+#hello{
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 150%;
+  text-shadow: 2px 1px white;
+
+  p:nth-child(2){
+    padding-bottom: 15px;
+  }
+}
+#startOptionsGame{
+  padding-top: 15px;
+}
+
+@mixin btnsMenu{
   width: 20%;
   height: 5%;
-  background-color: green;
   color: white;
   font-weight: bold;
   font-size: 150%;
+  padding: 1% 0 1% 0;
+  border-radius: 15%;
+  box-shadow: 0 9px gray;
+}
+
+.btnInfo{ @include btnsMenu(); background-color: #FF8C00;}
+.btnLicence{@include btnsMenu(); background-color: #8A2BE2;}
+.btnTutorial{@include btnsMenu(); background-color: #BDB76B;}
+.btnNewGame{@include btnsMenu(); background-color: green;}
+
+.btnInfo:hover, .btnLicence:hover, .btnTutorial:hover, .btnNewGame:hover{
+  background-color: #87CEFA;
+  color: navy;
+}
+
+.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active{
+    animation-name: changeBorder;
+    animation-duration: 0.2s;
+}
+
+@keyframes changeBorder {
+    0%   {border-radius: 15%;}
+    100% {border-radius: 25px;}
 }
