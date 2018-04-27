@@ -29,5 +29,16 @@ let startOptionsGame = () => {
 }
 setTimeout(startOptionsGame, 14500);
 
+var mainUrl = "http://localhost:3000";
+
+$(".btnInfo").on("click", function(){
+  $.ajax({
+  url: mainUrl + "/cars"
+}).done(function(response){
+    console.log(response[0].name);
+  }).fail(function(error){
+    console.log("something going wrong. Check your code.");
+  });
+});
 
 });
