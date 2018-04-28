@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 console.log("DOM fully loaded and parsed!");
 
 // hidden elements
@@ -29,38 +29,45 @@ let startOptionsGame = () => {
 }
 setTimeout(startOptionsGame, 14500);
 
-var mainUrl = "http://localhost:3000";
+var url = "http://localhost:3000";
 
+//info button
 $(".btnInfo").on("click", function(){
   $.ajax({
-  url: mainUrl + "/menu"
-}).done(function(response){
-  $("#descriptionMenu").text(response[0].btnInfo);
+    url: url + "/menu",
+    type: "json",
+    method: "GET"
+  }).done(function(response){
+    $("#descriptionMenu").text(response[0].btnInfo).addClass("descriptionMenu");
   }).fail(function(error){
-    console.log("something going wrong. Check your code.");
-  });
+    console.log("Something going wrong with Your code");
+   });
 });
 
+//licence button
 $(".btnLicence").on("click", function(){
   $.ajax({
-  url: mainUrl + "/menu"
-}).done(function(response){
-  $("#descriptionMenu").text(response[0].btnLicence);
+    url: url + "/menu",
+    type: "json",
+    method: "GET"
+  }).done(function(response){
+    $("#descriptionMenu").text(response[0].btnLicence).addClass("descriptionMenu");
   }).fail(function(error){
-    console.log("something going wrong. Check your code.");
-  });
+    console.log("Something going wrong with Your code");
+   });
 });
 
+//tutorial button
 $(".btnTutorial").on("click", function(){
   $.ajax({
-  url: mainUrl + "/menu"
-}).done(function(response){
-  $("#descriptionMenu").text(response[0].btnTutorial);
+    url: url + "/menu",
+    type: "json",
+    method: "GET"
+  }).done(function(response){
+    $("#descriptionMenu").text(response[0].btnTutorial).addClass("descriptionMenu");
   }).fail(function(error){
-    console.log("something going wrong. Check your code.");
-  });
+    console.log("Something going wrong with Your code");
+   });
 });
-
-
 
 });

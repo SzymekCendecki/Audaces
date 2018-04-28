@@ -79,19 +79,19 @@ html,body{
   font-family: 'Berkshire Swash', cursive;
   font-size: 150%;
   text-shadow: 2px 1px white;
-
-  p:nth-child(2){
-    padding-bottom: 15px;
-  }
+  border-bottom: 1px solid black;
+  text-indent: 3%;
+  padding-bottom: 2%;
 }
 #startOptionsGame{
-  padding-top: 15px;
+  padding: 15px 0 25px 0;
+  border-bottom: 1px solid black;
 }
 
+//main mixin for menu buttons
 @mixin btnsMenu{
   width: 20%;
   height: 5%;
-  color: white;
   font-weight: bold;
   font-size: 150%;
   padding: 1% 0 1% 0;
@@ -99,14 +99,14 @@ html,body{
   box-shadow: 0 9px gray;
 }
 
-.btnInfo{ @include btnsMenu(); background-color: #FF8C00;}
-.btnLicence{@include btnsMenu(); background-color: #8A2BE2;}
-.btnTutorial{@include btnsMenu(); background-color: #BDB76B;}
-.btnNewGame{@include btnsMenu(); background-color: green;}
+//styles for menu buttons
+.btnInfo{ @include btnsMenu(); background: linear-gradient(#FFF, #FF8C00);}
+.btnLicence{@include btnsMenu(); background: linear-gradient(#FFF, #8A2BE2);}
+.btnTutorial{@include btnsMenu(); background: linear-gradient(#FFF, #BDB76B);}
+.btnNewGame{@include btnsMenu(); background: linear-gradient(#FFF, green);}
 
 .btnInfo:hover, .btnLicence:hover, .btnTutorial:hover, .btnNewGame:hover{
-  background-color: #87CEFA;
-  color: navy;
+  color: #8B4513;
 }
 
 .btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active{
@@ -114,7 +114,14 @@ html,body{
     animation-duration: 0.2s;
 }
 
-@keyframes changeBorder {
-    0%   {border-radius: 15%;}
-    100% {border-radius: 25px;}
+//anim for menu buttons
+@keyframes changeBorder { 0%   {border-radius: 15%;} 100% {border-radius: 25px;} }
+
+//styles for description Menu
+.descriptionMenu{
+  text-indent: 3%;
+  padding-top: 2%;
+  text-shadow: 2px 1px white;
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 120%;
 }

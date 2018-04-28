@@ -1,9 +1,11 @@
 {
   "menu": [
       {
-        "btnInfo": "Info",
-        "btnLicence": "Licencja",
-        "btnTutorial": "Tutorial"
+        "btnInfo": "Ta wersja gry została stworzona jako projekt końcowy kursu front'endowego, a także jako modernizacja tej samej gry sprzed kursu. Gra ma także na celu przetestowanie mechaniki 'papierowej' wersji systemu gry Audaces. Projekt będzie rozwijalny także po skończeniu kursu. Wszystkie wersje tej gry zostały wydane przez niezależne studio Niewierne Psy. Gra powstała dzięki użytym technologiom: HTML5, Ajax, SASS(css), jQuery, EcmaScript 6. Fonty pobrane z: fonts.google.com/.",
+
+        "btnLicence": "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (oraz wszystkich jego wersji).POSIADAJĄC APLIKACJĘ AKCEPTUJESZ PONIŻSZE POSTANOWIENIA. Autor informuje, iż zawarte treści w applikacji mogą być niestosowne dla osób niepełnoletnich, o innym światopoglądzie lub wyznawanej religii. Użytkownik używa aplikację na własne ryzyko. Twórca tej apliakcji informuje, iż aplikacja ta stworzona została w celach hobbystycznych oraz w celu nauki programowania. Aplikacja ta może zawierać błędy, które niekonieniecznie zostaną poprawione. Autor nie udziela żadnych gwarancji, obietnic oraz zapewnień na tą aplikację (i jej wersje) i nie odpowiada za błędne działanie lub użytkowanie programu. Autor aplikacji nie bierze na siebie żadnych reklamacji w sprawie wadliwego działania programu oraz nie poczuwa się do zadość uczynienia za spowodowane szkody. Prawa autorskie należą do Szymona Cendeckiego. AUDACES jest rozprowadzany na zasadzie FREEWARE czyli: użytkownik dostaję aplikację za darmo, nie może w żaden sposób zmieniać aplikacji, może wykorzystywać aplikację na własny użytek, zabrania się wykorzystywać aplikację w celach komercyjnych, zabrania się ujawniania kodów źródłowych.",
+
+        "btnTutorial": "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial pojawi się pod nimi odpowiednia informacj. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł wylosować postać lub ją stworzyć. Gdy będzie chciał ją stworzyć samemu, przejdzie do kreatora, który będzie podpowiadał możliwości. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony zasadniczo na dwie części. Górna, miejsza, będzie zawierała przyciski, dzięki którym będzie można mieć podgląd do charakterystyk swojego protagonisty, ekwipunku zadań do wykonania oraz pomocy. Dolna część to część, na której będzie się odgrywała cała historia gry. Na niej to gracz będzie mógł dokonywać interakcji."
       }
     ]
 }
