@@ -33,12 +33,34 @@ var mainUrl = "http://localhost:3000";
 
 $(".btnInfo").on("click", function(){
   $.ajax({
-  url: mainUrl + "/cars"
+  url: mainUrl + "/menu"
 }).done(function(response){
-    console.log(response[0].name);
+  $("#descriptionMenu").text(response[0].btnInfo);
   }).fail(function(error){
     console.log("something going wrong. Check your code.");
   });
 });
+
+$(".btnLicence").on("click", function(){
+  $.ajax({
+  url: mainUrl + "/menu"
+}).done(function(response){
+  $("#descriptionMenu").text(response[0].btnLicence);
+  }).fail(function(error){
+    console.log("something going wrong. Check your code.");
+  });
+});
+
+$(".btnTutorial").on("click", function(){
+  $.ajax({
+  url: mainUrl + "/menu"
+}).done(function(response){
+  $("#descriptionMenu").text(response[0].btnTutorial);
+  }).fail(function(error){
+    console.log("something going wrong. Check your code.");
+  });
+});
+
+
 
 });

@@ -1,9 +1,9 @@
 {
-  "cars": [
+  "menu": [
       {
-        "id": 1,
-        "name": "Gallardo",
-        "brand": "Lamborghini"
+        "btnInfo": "Info",
+        "btnLicence": "Licencja",
+        "btnTutorial": "Tutorial"
       }
     ]
 }
