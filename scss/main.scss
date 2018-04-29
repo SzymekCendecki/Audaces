@@ -59,21 +59,12 @@ html,body{
   @include inscriptions();
   color: 	lightseagreen;
 
-  h2{
-      font-size: 450%;
-      padding-top: 15%;
-  }
-
-  h6{
-      font-size: 200%;
-  }
+  h2{ font-size: 450%; padding-top: 15%; }
+  h6{ font-size: 200%; }
 }
 
 //styles for Start of game - option choice
-#startOptionsGame{
-  display: flex;
-  justify-content: space-between;
-}
+#startOptionsGame{ display: flex; justify-content: space-between; }
 
 #hello{
   font-family: 'Berkshire Swash', cursive;
@@ -83,10 +74,7 @@ html,body{
   text-indent: 3%;
   padding-bottom: 2%;
 }
-#startOptionsGame{
-  padding: 15px 0 25px 0;
-  border-bottom: 1px solid black;
-}
+#startOptionsGame{ padding: 15px 0 25px 0; border-bottom: 1px solid black; }
 
 //main mixin for menu buttons
 @mixin btnsMenu{
@@ -106,13 +94,10 @@ html,body{
 .btnNewGame{@include btnsMenu(); background: linear-gradient(#FFF, green);}
 
 .btnInfo:hover, .btnLicence:hover, .btnTutorial:hover, .btnNewGame:hover{
-  color: #8B4513;
-}
+  color: #8B4513; }
 
 .btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active{
-    animation-name: changeBorder;
-    animation-duration: 0.2s;
-}
+    animation-name: changeBorder; animation-duration: 0.2s; }
 
 //anim for menu buttons
 @keyframes changeBorder { 0%   {border-radius: 15%;} 100% {border-radius: 25px;} }
@@ -125,3 +110,31 @@ html,body{
   font-family: 'Berkshire Swash', cursive;
   font-size: 120%;
 }
+
+//styles for choosen buttons
+#chooseBtns{ display: flex; justify-content: space-around; }
+#randomHero{
+  @include btnsMenu();
+  box-shadow: 0 9px #2F4F4F;
+  background: linear-gradient(#8FBC8F, black);
+  color: white;
+  margin-top: 5%;
+}
+
+.randomHeroDescription{
+  z-index: 2;
+  margin-left: 11%;
+  font-family: 'Berkshire Swash', cursive;
+  position: absolute;
+}
+
+#createHero{
+  @include btnsMenu();
+  box-shadow: 0 9px #4B0082;
+  background: linear-gradient(white, #4B0082);
+  color: white;
+  margin-top: 5%;
+ }
+#randomHero:hover, #createHero:hover{ animation-name: biggerBtn; animation-duration: 1.75s; }
+
+@keyframes biggerBtn{ 0%{} 100%{width: 25%;}}
