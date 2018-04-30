@@ -3,10 +3,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 
-/**
-*SASS
-*/
-
+/* SASS */
 gulp.task('sass', function(){
 	return gulp.src('scss/main.scss')
 		.pipe(sourcemaps.init())
@@ -19,10 +16,7 @@ gulp.task('sass', function(){
 		.pipe(gulp.dest('css'))
 });
 
-/**
-* Watcher
-*/
-
+/* Watcher */
 gulp.task('watch', function(){
 	gulp.watch('scss/**/*.scss', ['sass'])
 });
