@@ -190,6 +190,20 @@ document.addEventListener("DOMContentLoaded", function () {
             moveRight();
         });
     });
+
+    $("#chooseRace input").on("click", function () {
+        var zmienna = $('input:radio[name=race]:checked').val();
+
+        if (zmienna === "human") {
+            $("#raceDecription").text("człowiek");
+        } else if (zmienna === "elv") {
+            $("#raceDecription").text("elf");
+        } else if (zmienna === "dwarf") {
+            $("#raceDecription").text("krasnolud");
+        } else if (zmienna === "orc") {
+            $("#raceDecription").text("ork");
+        }
+    });
 });
 
 /***/ })
