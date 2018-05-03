@@ -59,12 +59,13 @@
 							<button class="control_next">następny</button>
 						</div>
 							<ul>
+								<!--first slide choose race -->
 								<li>
 									<p class="style1">Wybór rasy</p>
 									<form id="chooseRace">
 											<div>
 												<input type="radio" value="human" name="race" id="human">
-												<label for="human">czowiek</label>
+												<label for="human">człowiek</label>
 											</div>
 
 											<div>
@@ -88,12 +89,83 @@
 										</form>
 									</li>
 
-								<li><div>Wybór profesji</div></li>
-								<li><div>Wybór cech</div></li>
+								<!-- second slide choose occupation -->
+								<li>
+									<p class="style1">Wybór profesji</p>
+									<form id="chooseOccupation">
+											<div>
+												<input type="radio" value="warrior" name="occupation" id="warrior">
+												<label for="warrior">wojownik</label>
+											</div>
+
+											<div>
+												<input type="radio" value="bandit" name="occupation" id="bandit">
+												<label for="bandit">złoczyńca</label>
+											</div>
+
+											<div>
+												<input type="radio" value="wizard" name="occupation" id="wizard">
+												<label for="wizard">czarodziej</label>
+											</div>
+
+											<div id="chooseOccupationDescription">
+												<p id="occupationDecriptionTitle">Opis profesji</p>
+												<p id="occupationDecription"></p>
+											</div>
+										</form>
+
+								</li>
+								
+								<!-- third slide choose features -->
+								<li>
+									<p class="style1">Wybór cech</p>
+									<div>
+										<p id="randomPointsTitle">Wylosuj ilość punktów cech</p>
+									</div>
+									
+									<div id="features">
+											<div>
+												<button id="force">Siła</button>
+												<p id="forcePoints"></p>
+											</div>
+											
+											<div>
+												<button id="strenght">Wytrzymałość</button>
+												<p id="strenghtPoints"></p>
+											</div>
+
+											<div>
+												<button id="skill">Zręczność</button>
+												<p id="skillPoints"></p>
+											</div>
+											
+											<div>
+												<button id="intellectuals">Inteligencja</button>
+												<p id="intellectualsPoints"></p>
+											</div>
+
+												<div>
+												<button id="charisma">Charyzma</button>
+												<p id="charismaPoints"></p>
+											</div>
+											
+											<div id="featuresDescription"></div>
+											
+											<div id="alerts"></div>
+										</div>
+								</li>
+								
+								
+								
+								
 								<li><div>Wybór cech cz. 2</div></li>
 								<li><div>Wybór ekwipunku</div></li>
 								<li><div>Wybór umiejętności</div></li>
-								<li><div>Informacja zbiorcza</div></li>
+								<li>
+									<p>Informacja zbiorcza</p>
+									<p id="infoRace"></p>
+									<p id="infoOccupation"></p>
+								</li>
 							</ul>
 					</div>
 

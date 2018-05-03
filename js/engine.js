@@ -191,19 +191,143 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    //first slide choose race
     $("#chooseRace input").on("click", function () {
-        var zmienna = $('input:radio[name=race]:checked').val();
+        var inputRaceChecked = $('input:radio[name=race]:checked').val();
 
-        if (zmienna === "human") {
-            $("#raceDecription").text("człowiek");
-        } else if (zmienna === "elv") {
-            $("#raceDecription").text("elf");
-        } else if (zmienna === "dwarf") {
-            $("#raceDecription").text("krasnolud");
-        } else if (zmienna === "orc") {
-            $("#raceDecription").text("ork");
+        var human = "Człowiek jedna z najbardziej licznych ras (ustępują jedynie goblinom). Są wszechstronni i wszędobylscy, dlatego też można spotkać ich na wszystkich kontynentach, parających się różnymi profesjami. Podstawowe cechy: wzrost: 150 - 210cm, waga: 40 - 120kg, kolor oczu: najczęściej piwne, szare, brązowe, kolor skóry: od białego do czarnego (wraz z odcieniami), żółta, czerwona, kolor włosów: każdy, wiek: do 100 lat, profesja: każda.";
+
+        var elv = "Elfy to bardzo uzdolnieni czarodzieje. Pomimo olbrzymich umiejętności magicznych, są równie biegli w posługiwaniu się łukiem. Są długowieczni, przez co omyłkowo uznawani są za nieśmiertelnych. Podstawowe cechy: wzrost: 180 - 210cm, waga: 40 - 90kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 1500 lat, profesja: każda, z predyspozycjami do bycia czarodziejem.";
+
+        var dwarf = "Przez swoje specyficzne podejście do rzeczywistości, postrzegani są jako najardziej chamowata rasa świata. Jednakże są wyśmienitymi kowalami, górnikami i wojownikami. Bardzo uczuleni na punkcie krasnoludzkich kobiet, honoru oraz swoich bród. Podstawowe cechy: wzrost: 100 - 145cm, waga: 70 - 100kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 500 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.";
+
+        var orc = "Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.";
+
+        switch (inputRaceChecked) {
+            case "human":
+                $("#raceDecription").text(human);
+                $("#infoRace").text("człowiek");
+                break;
+
+            case "elv":
+                $("#raceDecription").text(elv);
+                $("#infoRace").text("elf");
+                break;
+
+            case "dwarf":
+                $("#raceDecription").text(dwarf);
+                $("#infoRace").text("krasnolud");
+                break;
+
+            case "orc":
+                $("#raceDecription").text(orc);
+                $("#infoRace").text("ork");
+                break;
         }
     });
+
+    //second slide choose occupation
+    $("#chooseOccupation input").on("click", function () {
+        var inputOccupationChecked = $('input:radio[name=occupation]:checked').val();
+
+        var warrior = "Wojownicy to specjaliści we władaniu każdą bronią białą bronią. Są podstawą wszystkich armii świata, ale także mogą podróżwać samotni lub w niewielkich grupach. Wielu idących drogą wojownika zdobyło sławę w bitwach czy pogromcy smoków. Będąc wojownikiem zwiedzisz świat.";
+
+        var bandit = "Trucizny. Pułapki. Skrytobójstwo. To wszystko i wiele innych rzeczy zapewni Tobie droga złoczyńcy. Już w każdym mniejszym miasteczku, są odpowiednie organizacje, które wyszkolą Cię na nieustraszonego rzezimieszka.";
+
+        var wizard = "Czarodziej to brzmi dumnie. Po wielu latach spędzonych na nauce. Będzie wzbudzał szacunek swoją tylko osobą, a wrogowie będą uciekać w panice przed Twoimi kulami ognia.";
+
+        switch (inputOccupationChecked) {
+            case "warrior":
+                $("#occupationDecription").text(warrior);
+                $("#infoOccupation").text("wojownik");
+                break;
+
+            case "bandit":
+                $("#occupationDecription").text(bandit);
+                $("#infoOccupation").text("złoczyńca");
+                break;
+
+            case "wizard":
+                $("#occupationDecription").text(wizard);
+                $("#infoOccupation").text("czarodziej");
+                break;
+        }
+    });
+
+    //third slide choose features 
+    //force
+    $("#force").on("click", function () {
+        var randomForcePoints = Math.round(Math.random() * 50);
+        $("#forcePoints").text(randomForcePoints);
+    });
+
+    $("#force").on("mouseenter", function () {
+        $("#featuresDescription").text("SIŁA - określa ile postać może udźwignąć, podnieść, jak daleko rzucić itd. Ważna dla wojowników.");
+    });
+    $("#force").on("mouseleave", function () {
+        $("#featuresDescription").text("");
+    });
+
+    //strenght
+    $("#strenght").on("click", function () {
+        var randomStrenghtPoints = Math.round(Math.random() * 50);
+        $("#strenghtPoints").text(randomStrenghtPoints);
+    });
+    $("#strenght").on("mouseenter", function () {
+        $("#featuresDescription").text("WYTRZYMAŁOŚĆ - określa ile postać może odnieść ran, jej odporność na choroby  lub trucizny. Ważna dla wojowników.");
+    });
+    $("#strenght").on("mouseleave", function () {
+        $("#featuresDescription").text("");
+    });
+
+    //zręczność
+    $("#skill").on("click", function () {
+        var randomSkillPoints = Math.round(Math.random() * 50);
+        $("#skillPoints").text(randomSkillPoints);
+    });
+    $("#skill").on("mouseenter", function () {
+        $("#featuresDescription").text("ZRĘCZNOŚĆ - określa sprawność ruchową postaci. Ważna dla złoczyńców.");
+    });
+    $("#skill").on("mouseleave", function () {
+        $("#featuresDescription").text("");
+    });
+
+    //intellectuals
+    $("#intellectuals").on("click", function () {
+        var randomIntellectualsPoints = Math.round(Math.random() * 50);
+        $("#intellectualsPoints").text(randomIntellectualsPoints);
+    });
+    $("#intellectuals").on("mouseenter", function () {
+        $("#featuresDescription").text("INTELIGENCJA - określa sprawność umysłową postaci, czyli jak zapamiętuje, kojarzy fakty itd.");
+    });
+    $("#intellectuals").on("mouseleave", function () {
+        $("#featuresDescription").text("");
+    });
+
+    //charisma
+    $("#charisma").on("click", function () {
+        var randomCharismaPoints = Math.round(Math.random() * 50);
+        $("#charismaPoints").text(randomCharismaPoints);
+    });
+    $("#charisma").on("mouseenter", function () {
+        $("#featuresDescription").text("CHARYZMA - określa sposób w jaki postać jest odbierana przez innych. Dzięki charyzmie, postać może np. przekonać rozmówcę do swoich racji. Ważna dla złoczyńcy i czarodziejów.");
+    });
+    $("#charisma").on("mouseleave", function () {
+        $("#featuresDescription").text("");
+    });
+
+    var bonusesArray = [-5, -3, -2, 4, 5, 10];
+    //współczynniki z profesji
+    //wojownik siła +5, wytrzymałość +5
+    //złoczyńca zręczność +10
+    //mag charyzma +5, inteligencja +5
+
+    //współczynniki z rasy
+    //człowiek zero dla wszystkich cech
+    //elf siła -5, wytrzymałość -5, inteligencja +5, charyzma +5
+    //krasnolud siła +4, wytrzymałość +4, zręczność -2,  charyzma -3
+    //ork siła +5, wytrzymałość +5, inteligencja -5, charyzma -5
+
 });
 
 /***/ })
