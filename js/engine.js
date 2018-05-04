@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //basic items - start of game
     //weapons = 15
-    var weaponArray = ["sztylet", "daga", "mizerykordia", "krótki miecz", "szabla", "miecz długi", "miecz półtoraręczny", "miecz dwuręczny", "espadon", "włócznia", "pika", "halabarda", "proca", "łuk", "kusza"];
+    var weaponArray = ["sztylet", "daga", "mizerykordia", "drewniana pałka", "krótki miecz", "szabla", "miecz długi", "morgensztern", "miecz półtoraręczny", "miecz dwuręczny", "espadon", "włócznia", "pika", "halabarda", "proca", "łuk", "kusza"];
 
     //armors = 7
     var armorsArray = ["przeszywanica", "zbroja skórzana", "zbroja ćwiekowana", "zbroja paskowa", "kolczuga", "zbroja pópłytowa", "zbroja płytowa"];
@@ -143,13 +143,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //equipment and skills
     //equipment = 19
-    var equipment = ["hubka i krzesiwo", "mieszek", "pas skórzany", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergamin 1szt.", "zwykłe ubranie", "płaszcz", "fikuśny kapelusz", "łapcie z łyka", "kosz wiklinowy", "plecak", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka"];
+    var equipment = ["hubka i krzesiwo", "mieszek", "pas skórzany", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergaminy 5szt.", "zwykłe ubranie", "płaszcz", "fikuśny kapelusz", "łapcie z łyka", "kosz wiklinowy", "plecak", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m"];
 
     //skills 10
-    var skills = ["survival", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", //worrior
-    "powożenie zaprzęgiem", "przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobatyka", //bandit
-    "pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów" //wizard
-    ];
+    var skillsWarrior = ["sztuka przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
+
+    var skillsBandit = ["przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobatyka", "tworzenie pułpek", "skradanie się", "kradzież kieszonkowa", "uniki", "drewniana pałka", "sztylet", "krótki miecz", "blefowanie"];
+
+    var skillWizard = ["pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów", "tworzenie eliksirów", "tworzenie mag. przedmiotów", "tworzenie maści", "astrologia", "tworzenie mag. runów", "zielarstwo"];
 
     //slider
     $(".btnNewGame").on("click", function () {
@@ -259,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#force").on("click", function () {
         var randomForcePoints = Math.round(Math.random() * 50);
         $("#forcePoints").text(randomForcePoints);
+        $("#infoForce").text(randomForcePoints);
     });
 
     $("#force").on("mouseenter", function () {
@@ -272,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#strenght").on("click", function () {
         var randomStrenghtPoints = Math.round(Math.random() * 50);
         $("#strenghtPoints").text(randomStrenghtPoints);
+        $("#infoStrenght").text(randomStrenghtPoints);
     });
     $("#strenght").on("mouseenter", function () {
         $("#featuresDescription").text("WYTRZYMAŁOŚĆ - określa ile postać może odnieść ran, jej odporność na choroby  lub trucizny. Ważna dla wojowników.");
@@ -280,10 +283,11 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#featuresDescription").text("");
     });
 
-    //zręczność
+    //skill
     $("#skill").on("click", function () {
         var randomSkillPoints = Math.round(Math.random() * 50);
         $("#skillPoints").text(randomSkillPoints);
+        $("#infoSkill").text(randomSkillPoints);
     });
     $("#skill").on("mouseenter", function () {
         $("#featuresDescription").text("ZRĘCZNOŚĆ - określa sprawność ruchową postaci. Ważna dla złoczyńców.");
@@ -296,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#intellectuals").on("click", function () {
         var randomIntellectualsPoints = Math.round(Math.random() * 50);
         $("#intellectualsPoints").text(randomIntellectualsPoints);
+        $("#infoIntellectuals").text(randomIntelectuallsPoints);
     });
     $("#intellectuals").on("mouseenter", function () {
         $("#featuresDescription").text("INTELIGENCJA - określa sprawność umysłową postaci, czyli jak zapamiętuje, kojarzy fakty itd.");
@@ -308,12 +313,23 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#charisma").on("click", function () {
         var randomCharismaPoints = Math.round(Math.random() * 50);
         $("#charismaPoints").text(randomCharismaPoints);
+        $("#infoCharisma").text(randomCharismaPoints);
     });
     $("#charisma").on("mouseenter", function () {
         $("#featuresDescription").text("CHARYZMA - określa sposób w jaki postać jest odbierana przez innych. Dzięki charyzmie, postać może np. przekonać rozmówcę do swoich racji. Ważna dla złoczyńcy i czarodziejów.");
     });
     $("#charisma").on("mouseleave", function () {
         $("#featuresDescription").text("");
+    });
+
+    //fifth slide choose equipment
+    $("#chooseEquipment input").on("click", function () {
+        var equipmentArray = [];
+        $.each($("input[name='weapon']:checked"), function () {
+            equipmentArray.push($(this).val());
+        });
+
+        console.log("sprzęt: " + equipmentArray.join(", "));
     });
 
     var bonusesArray = [-5, -3, -2, 4, 5, 10];

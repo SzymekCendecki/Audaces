@@ -54,7 +54,7 @@ let professions = ["wojownik", "czarodziej", "złoczyńca"];
 
 //basic items - start of game
 //weapons = 15
-let weaponArray = ["sztylet", "daga", "mizerykordia", "krótki miecz", "szabla", "miecz długi", "miecz półtoraręczny", "miecz dwuręczny", "espadon", "włócznia", "pika", "halabarda", "proca", "łuk", "kusza"];
+let weaponArray = ["sztylet", "daga", "mizerykordia", "drewniana pałka", "krótki miecz", "szabla", "miecz długi", "morgensztern", "miecz półtoraręczny", "miecz dwuręczny", "espadon", "włócznia", "pika", "halabarda", "proca", "łuk", "kusza"];
 
 //armors = 7
 let armorsArray = ["przeszywanica", "zbroja skórzana", "zbroja ćwiekowana", "zbroja paskowa", "kolczuga", "zbroja pópłytowa", "zbroja płytowa"];
@@ -64,13 +64,14 @@ let shieldsArray = ["puklerz", "mała drewniana", "mała metalowa", "duża drewn
 
 //equipment and skills
 //equipment = 19
-let equipment = ["hubka i krzesiwo", "mieszek", "pas skórzany", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergamin 1szt.", "zwykłe ubranie", "płaszcz", "fikuśny kapelusz", "łapcie z łyka", "kosz wiklinowy", "plecak", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka"];
+let equipment = ["hubka i krzesiwo", "mieszek", "pas skórzany", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergaminy 5szt.", "zwykłe ubranie", "płaszcz", "fikuśny kapelusz", "łapcie z łyka", "kosz wiklinowy", "plecak", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m"];
 
 //skills 10
-let skills = ["survival", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", //worrior
-"powożenie zaprzęgiem", "przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobatyka", //bandit
-"pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów" //wizard
-];
+let skillsWarrior = ["sztuka przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
+
+let skillsBandit = ["przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobatyka", "tworzenie pułpek", "skradanie się", "kradzież kieszonkowa", "uniki", "drewniana pałka", "sztylet", "krótki miecz", "blefowanie"]; 
+
+let skillWizard = ["pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów", "tworzenie eliksirów", "tworzenie mag. przedmiotów", "tworzenie maści", "astrologia", "tworzenie mag. runów", "zielarstwo"];
 
 //slider
 $(".btnNewGame").on("click", () => {
@@ -180,6 +181,7 @@ switch (inputOccupationChecked) {
 $("#force").on("click", () => {
 	let randomForcePoints = Math.round(Math.random()*50);
 	$("#forcePoints").text(randomForcePoints);
+	$("#infoForce").text(randomForcePoints);
 });
 
 $("#force").on("mouseenter", () =>{ $("#featuresDescription").text("SIŁA - określa ile postać może udźwignąć, podnieść, jak daleko rzucić itd. Ważna dla wojowników.");
@@ -190,16 +192,18 @@ $("#force").on("mouseleave", () =>{	$("#featuresDescription").text("");});
 $("#strenght").on("click", () => {
 	let randomStrenghtPoints = Math.round(Math.random()*50);
 	$("#strenghtPoints").text(randomStrenghtPoints);
+	$("#infoStrenght").text(randomStrenghtPoints);
 });
 $("#strenght").on("mouseenter", () =>{ $("#featuresDescription").text("WYTRZYMAŁOŚĆ - określa ile postać może odnieść ran, jej odporność na choroby  lub trucizny. Ważna dla wojowników.");
 });
 $("#strenght").on("mouseleave", () =>{	$("#featuresDescription").text("");});
 
 
-//zręczność
+//skill
 $("#skill").on("click", () => {
 	let randomSkillPoints = Math.round(Math.random()*50);
 	$("#skillPoints").text(randomSkillPoints);
+	$("#infoSkill").text(randomSkillPoints);
 });
 $("#skill").on("mouseenter", () =>{ $("#featuresDescription").text("ZRĘCZNOŚĆ - określa sprawność ruchową postaci. Ważna dla złoczyńców.");
 });
@@ -210,6 +214,7 @@ $("#skill").on("mouseleave", () =>{	$("#featuresDescription").text("");});
 $("#intellectuals").on("click", () => {
 	let randomIntellectualsPoints = Math.round(Math.random()*50);
 	$("#intellectualsPoints").text(randomIntellectualsPoints);
+	$("#infoIntellectuals").text(randomIntelectuallsPoints);
 });
 $("#intellectuals").on("mouseenter", () =>{ $("#featuresDescription").text("INTELIGENCJA - określa sprawność umysłową postaci, czyli jak zapamiętuje, kojarzy fakty itd.");
 });
@@ -219,6 +224,7 @@ $("#intellectuals").on("mouseleave", () =>{	$("#featuresDescription").text("");}
 $("#charisma").on("click", () => {
 	let randomCharismaPoints = Math.round(Math.random()*50);
 	$("#charismaPoints").text(randomCharismaPoints);
+	$("#infoCharisma").text(randomCharismaPoints);
 });
 $("#charisma").on("mouseenter", () =>{ $("#featuresDescription").text("CHARYZMA - określa sposób w jaki postać jest odbierana przez innych. Dzięki charyzmie, postać może np. przekonać rozmówcę do swoich racji. Ważna dla złoczyńcy i czarodziejów.");
 });
@@ -226,6 +232,15 @@ $("#charisma").on("mouseleave", () =>{	$("#featuresDescription").text("");});
 
 
 
+//fifth slide choose equipment
+$("#chooseEquipment input").on("click", function(){
+	let equipmentArray = [];
+  $.each($("input[name='weapon']:checked"), function(){            
+                equipmentArray.push($(this).val());
+            });
+
+console.log("sprzęt: " + equipmentArray.join(", "));
+});
 
 let bonusesArray = [-5, -3, -2, 4, 5, 10];
 //współczynniki z profesji
