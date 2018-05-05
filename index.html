@@ -115,20 +115,20 @@
 										</form>
 
 								</li>
-								
+
 								<!-- third slide choose features part 1-->
 								<li>
 									<p class="style1">Wybór cech</p>
 									<div>
 										<p id="randomPointsTitle">Wylosuj ilość punktów cech</p>
 									</div>
-									
+
 									<div id="features">
 											<div>
 												<button id="force">Siła</button>
 												<p id="forcePoints"></p>
 											</div>
-											
+
 											<div>
 												<button id="strenght">Wytrzymałość</button>
 												<p id="strenghtPoints"></p>
@@ -138,7 +138,7 @@
 												<button id="skill">Zręczność</button>
 												<p id="skillPoints"></p>
 											</div>
-											
+
 											<div>
 												<button id="intellectuals">Inteligencja</button>
 												<p id="intellectualsPoints"></p>
@@ -148,60 +148,60 @@
 												<button id="charisma">Charyzma</button>
 												<p id="charismaPoints"></p>
 											</div>
-											
+
 											<div id="featuresDescription"></div>
-											
+
 											<div id="alerts"></div>
 										</div>
 								</li>
-								
-								
+
+
 								<!-- fourth slide choose features part 2-->
 								<li>
 									<div>Wybór cech cz. 2</div>
 									<form>
 										<fieldset class="sex">
 											<legend>Płeć</legend>
-											<label><input type="radio" name="sex">kobieta</label>
-											<label><input type="radio" name="sex">mężczyzna</label>
-											<label><input type="radio" name="sex">inna</label>
+											<label><input type="radio" value="female" name="sex">kobieta</label>
+											<label><input type="radio" value="male" name="sex">mężczyzna</label>
+											<label><input type="radio" value="other" name="sex">inna</label>
 										</fieldset>
-										
-										<fieldset>
+
+										<fieldset class="hairColor">
 											<legend>kolor włosów</legend>
-											<label><input type="radio" name="hairColor">blond</label>
-											<label><input type="radio" name="hairColor">rude</label>
-											<label><input type="radio" name="hairColor">czarne</label>
-											<label><input type="radio" name="hairColor">farbowane</label>
+											<label><input type="radio" value="blond" name="hairColor">blond</label>
+											<label><input type="radio" value="rude" name="hairColor">rude</label>
+											<label><input type="radio" value="czarne" name="hairColor">czarne</label>
+											<label><input type="radio" value="farbowane" name="hairColor">farbowane</label>
 										</fieldset>
-										
-										<fieldset>
+
+										<fieldset class="eyesColor">
 											<legend>kolor oczu</legend>
-											<label><input type="radio" name="eyesColor">piwne</label>
-											<label><input type="radio" name="eyesColor">szare</label>
-											<label><input type="radio" name="eyesColor">brązowe</label>
-											<label><input type="radio" name="eyesColor">niebieskie</label>
+											<label><input type="radio" value="piwne" name="eyesColor">piwne</label>
+											<label><input type="radio" value="szare" name="eyesColor">szare</label>
+											<label><input type="radio" value="brązowe" name="eyesColor">brązowe</label>
+											<label><input type="radio" value="niebieskie" name="eyesColor">niebieskie</label>
 										</fieldset>
-										
-										<fieldset>
+
+										<fieldset class="weight">
 											<legend>waga</legend>
-											<label><input type="radio" name="weight">bardzo mała</label>
-											<label><input type="radio" name="weight">normalna</label>
-											<label><input type="radio" name="weight">zbyt duża</label>
+											<label><input type="radio" value="niedowaga" name="weight">niedowaga</label>
+											<label><input type="radio" value="normalna" name="weight">normalna</label>
+											<label><input type="radio" value="nadwaga" name="weight">zbyt duża</label>
 										</fieldset>
-										
-										<fieldset>
+
+										<fieldset class="height">
 											<legend>wzrost</legend>
-											<label><input type="radio" name="height">niski</label>
-											<label><input type="radio" name="height">średni</label>
-											<label><input type="radio" name="height">wysoki</label>
+											<label><input type="radio" value="niski" name="height">niski</label>
+											<label><input type="radio" value="średni" name="height">średni</label>
+											<label><input type="radio" value="wysoki" name="height">wysoki</label>
 										</fieldset>
-										
 									</form>
+									<div id="featPart2Description"></div>
 								</li>
-								
-								
-								<!-- fifth slide equipment -->			
+
+
+								<!-- fifth slide equipment -->
 								<li>
 									<div>Wybór ekwipunku</div>
 									<form id="chooseEquipment">
@@ -215,21 +215,21 @@
 											<label><input type="checkbox" name="weapon">proca</label>
 											<label><input type="checkbox" name="weapon">łuk</label>
 										</fieldset>
-										
+
 										<fieldset>
 											<legend>zbroja</legend>
 											<label><input type="checkbox" name="armor">przeszywanica</label>
 											<label><input type="checkbox" name="armor">zbroja skórzana</label>
 											<label><input type="checkbox" name="armor">zbroja ćwiekowana</label>
 										</fieldset>
-										
+
 										<fieldset>
 											<legend>tarcza</legend>
 											<label><input type="checkbox" name="shield">puklerz</label>
 											<label><input type="checkbox" name="shield">mała drewniana</label>
 											<label><input type="checkbox" name="shield">mała metalowa</label>
 										</fieldset>
-										
+
 										<fieldset>
 											<legend>różne</legend>
 											<label><input type="checkbox" name="item">hubka i krzesiwo</label>
@@ -237,30 +237,30 @@
 											<label><input type="checkbox" name="item">pas skórzany</label>
 											<label><input type="checkbox" name="item">igły i nici</label>
 											<label><input type="checkbox" name="item">tuba na pergaminy</label>
-											
+
 											<label><input type="checkbox" name="item">pęk piór do pisania</label>
 											<label><input type="checkbox" name="item">pergaminy 5szt</label>
 											<label><input type="checkbox" name="item">zwykłe ubranie</label>
 											<label><input type="checkbox" name="item">płaszcz</label>
 											<label><input type="checkbox" name="item">fikuśny kapelusz</label>
-											
+
 											<label><input type="checkbox" name="item">torba podróżna</label>
 											<label><input type="checkbox" name="item">sakwa</label>
 											<label><input type="checkbox" name="item">koc</label>
 											<label><input type="checkbox" name="item">namiot</label>
 											<label><input type="checkbox" name="item">drewniana miska</label>
-											
+
 											<label><input type="checkbox" name="item">drewniana łyżka</label>
 											<label><input type="checkbox" name="item">pochodnia</label>
 											<label><input type="checkbox" name="item">mała metalowa</label>
 											<label><input type="checkbox" name="item">lampa oliwna</label>
 											<label><input type="checkbox" name="item">kaganek</label>
-											
+
 											<label><input type="checkbox" name="item">lina 5m</label>
 										</fieldset>
 									</form>
 								</li>
-								
+
 								<!-- sixth -->
 								<li>
 									<div>Wybór umiejętności</div>
@@ -280,7 +280,7 @@
 											<label><input type="checkbox" name="skill">mała tarcza drewniana</label>
 											<label><input type="checkbox" name="skill">mała tarza metalowa</label>
 										</fieldset>
-										
+
 										<fieldset>
 											<legend>Umiejętości złoczyńczy</legend>
 											<label><input type="checkbox" name="skill">przygotowanie trucin</label>
@@ -296,7 +296,7 @@
 											<label><input type="checkbox" name="skill">krótki miecz</label>
 											<label><input type="checkbox" name="skill">blefowanie</label>
 										</fieldset>
-										
+
 										<fieldset>
 											<legend>Umiejętości czarodzieja</legend>
 											<label><input type="checkbox" name="skill">pisanie i czytanie</label>
@@ -312,7 +312,7 @@
 											<label><input type="checkbox" name="skill">zielarstwo</label>
 										</fieldset>
 									</li>
-								
+
 								<li>
 									<p>Informacja zbiorcza</p>
 									<p id="infoRace"></p>
@@ -322,6 +322,11 @@
 									<p id="infoSkill"></p>
 									<p id="infoIntellectuals"></p>
 									<p id="infoCharisma"></p>
+									<p id="infoSex"></p>
+									<p id="infoHairColor"></p>
+									<p id="infoEyesColor"></p>
+									<p id="infoWeight"></p>
+									<p id="infoHeight"></p>
 								</li>
 							</ul>
 					</div>
