@@ -1,22 +1,30 @@
 //fourth slide choose features part 2
 //sex
+
+// mainFeaturesPart2  = [sex, hairColor, eyesColor, weight, height]
+
+let mainFeaturesPart2 = [];
+
 module.exports.sexCheck = function(){
     let inputSexChecked = $('input:radio[name=sex]:checked').val();
 
     switch (inputSexChecked) {
         case "female":
           $("#featPart2Description").text("Kobieta - żeńska wersja, każdej rasy.");
-          $("#infoSex").text("kobieta");
+          mainFeaturesPart2.splice(0, 1, "kobieta");
+          module.exports.sex = mainFeaturesPart2[0];
        break;
 
         case "male":
           $("#featPart2Description").text("Mężczyzna - męska wersja, każdej rasy.");
-          $("#infoSex").text("mężczyzna");
+          mainFeaturesPart2.splice(0, 1, "mężczyzna");
+          module.exports.sex = mainFeaturesPart2[0];
         break;
 
         case "other":
           $("#featPart2Description").text("Inna - Bogowie nudzili się i wymyślili krzyżówkę chłopa z babą.");
-          $("#infoSex").text("mężczyzna");
+          mainFeaturesPart2.splice(0, 1, "inna");
+          module.exports.sex = mainFeaturesPart2[0];
         break;
      }
 }
@@ -28,22 +36,26 @@ module.exports.hairColorCheck = function(){
     switch (inputHairColorChecked) {
         case "blond":
           $("#featPart2Description").text("Jasne włosy");
-          $("#infoHairColor").text("Blond");
+          mainFeaturesPart2.splice(1, 1, "blond");
+          module.exports.hair = mainFeaturesPart2[1];
        break;
 
         case "rude":
           $("#featPart2Description").text("Rude jak rdza.");
-          $("#infoHairColor").text("Rude");
+          mainFeaturesPart2.splice(1, 1, "rude");
+          module.exports.hair = mainFeaturesPart2[1];
         break;
 
         case "czarne":
           $("#featPart2Description").text("Czarniejsze niż smoła");
-          $("#infoHairColor").text("czarne");
+          mainFeaturesPart2.splice(1, 1, "czarne");
+          module.exports.hair = mainFeaturesPart2[1];
         break;
 
         case "farbowane":
           $("#featPart2Description").text("Takie fikuśne, różno kolorowe");
-          $("#infoHairColor").text("farbowane");
+          mainFeaturesPart2.splice(1, 1, "farbowane");
+          module.exports.hair = mainFeaturesPart2[1];
         break;
      }
 }
@@ -55,22 +67,26 @@ module.exports.eyesColorCheck = function(){
     switch (inputEyesColorChecked) {
         case "piwne":
           $("#featPart2Description").text("Piwne.");
-          $("#infoEyesColor").text("piwne");
+          mainFeaturesPart2.splice(2, 1, "piwne");
+          module.exports.eyes = mainFeaturesPart2[2];
        break;
 
         case "szare":
           $("#featPart2Description").text("Szare.");
-          $("#infoEyesColor").text("szare");
+          mainFeaturesPart2.splice(2, 1, "szare");
+          module.exports.eye = mainFeaturesPart2[2];
         break;
 
         case "brązowe":
           $("#featPart2Description").text("Brązowe");
-          $("#infoEyesColor").text("Brązowe");
+          mainFeaturesPart2.splice(2, 1, "brązowe");
+          module.exports.eyes = mainFeaturesPart2[2];
         break;
 
         case "niebieskie":
           $("#featPart2Description").text("niebieskie");
-          $("#infoEyesColor").text("niebieskie");
+          mainFeaturesPart2.splice(2, 1, "niebieskie");
+          module.exports.eyes = mainFeaturesPart2[2];
         break;
      }
 }
@@ -82,17 +98,20 @@ module.exports.weightCheck = function(){
     switch (inputWeightChecked) {
         case "niedowaga":
           $("#featPart2Description").text("niedowaga");
-          $("#infoWeight").text("niedowaga");
+          mainFeaturesPart2.splice(3, 1, "niedowaga");
+          module.exports.weight = mainFeaturesPart2[3];
        break;
 
         case "normalna":
           $("#featPart2Description").text("normalna");
-          $("#infoWeight").text("normalna");
+          mainFeaturesPart2.splice(3, 1, "normalna");
+          module.exports.weight = mainFeaturesPart2[3];
         break;
 
         case "nadwaga":
           $("#featPart2Description").text("nadwaga");
-          $("#infoWeight").text("nadwaga");
+          mainFeaturesPart2.splice(3, 1, "nadwaga");
+          module.exports.weight = mainFeaturesPart2[3];
         break;
      }
 }
@@ -104,17 +123,20 @@ module.exports.heightCheck = function(){
     switch (inputHeightChecked) {
         case "niski":
           $("#featPart2Description").text("niski");
-          $("#infoHeight").text("niski");
+          mainFeaturesPart2.splice(4, 1, "inna");
+          module.exports.height = mainFeaturesPart2[4];
        break;
 
         case "średni":
           $("#featPart2Description").text("średni");
-          $("#infoHeight").text("średni");
+          mainFeaturesPart2.splice(4, 1, "inna");
+          module.exports.height = mainFeaturesPart2[4];
         break;
 
         case "wysoki":
           $("#featPart2Description").text("wysoki");
-          $("#infoHeight").text("wysoki");
+          mainFeaturesPart2.splice(4, 1, "inna");
+          module.exports.height = mainFeaturesPart2[4];
         break;
      }
 }

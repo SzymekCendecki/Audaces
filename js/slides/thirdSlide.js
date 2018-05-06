@@ -2,7 +2,7 @@
 module.exports.forcePoints = function(){
   let randomForcePoints = Math.round(Math.random()*50);
   $("#forcePoints").text(randomForcePoints);
-  $("#infoForce").text(randomForcePoints);
+  module.exports.forcePoint = randomForcePoints;
 }
 
 module.exports.forceTooltip = function(){
@@ -19,7 +19,7 @@ module.exports.forceTooltip = function(){
 module.exports.strenghtPoints = function(){
   let randomStrenghtPoints = Math.round(Math.random()*50);
 	$("#strenghtPoints").text(randomStrenghtPoints);
-	$("#infoStrenght").text(randomStrenghtPoints);
+	  module.exports.strenghtPoint = randomStrenghtPoints;
 }
 
 module.exports.strenghtTooltip = function(){
@@ -36,7 +36,7 @@ module.exports.strenghtTooltip = function(){
 module.exports.skillPoints = function(){
     let randomSkillPoints = Math.round(Math.random()*50);
     $("#skillPoints").text(randomSkillPoints);
-    $("#infoSkill").text(randomSkillPoints);
+    module.exports.skillPoint = randomSkillPoints;
 }
 
 module.exports.skillTooltip = function(){
@@ -51,7 +51,7 @@ module.exports.skillTooltip = function(){
 module.exports.intellectualsPoints = function(){
 	let randomIntellectualsPoints = Math.round(Math.random()*50);
 	$("#intellectualsPoints").text(randomIntellectualsPoints);
-	$("#infoIntellectuals").text(randomIntellectualsPoints);
+	  module.exports.intellectualsPoint = randomIntellectualsPoints;
 }
 
 module.exports.intellectualsTooltip = function (){
@@ -65,7 +65,7 @@ $("#intellectuals").on("mouseleave", () =>{	$("#featuresDescription").text("");}
 module.exports.charismaPoints = function(){
 	let randomCharismaPoints = Math.round(Math.random()*50);
 	$("#charismaPoints").text(randomCharismaPoints);
-	$("#infoCharisma").text(randomCharismaPoints);
+	  module.exports.charismaPoint = randomCharismaPoints;
 }
 
 module.exports.charismaTooltip = function(){

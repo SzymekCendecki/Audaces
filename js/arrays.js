@@ -25,3 +25,32 @@ let skillsWarrior = ["sztuka przetrwania", "dyscyplina", "dowodzenie", "uderzeni
 let skillsBandit = ["przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobatyka", "tworzenie pułpek", "skradanie się", "kradzież kieszonkowa", "uniki", "drewniana pałka", "sztylet", "krótki miecz", "blefowanie"];
 
 let skillWizard = ["pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów", "tworzenie eliksirów", "tworzenie mag. przedmiotów", "tworzenie maści", "astrologia", "tworzenie mag. runów", "zielarstwo"];
+
+let bonusesArray = [-5, -3, -2, 0, 4, 5, 10];
+module.exports.show = function(){
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+console.log(humanFeatures);
+
+//współczynniki z profesji
+//wojownik siła +5, wytrzymałość +5
+//złoczyńca zręczność +10
+//mag charyzma +5, inteligencja +5
+
+//współczynniki z rasy
+//człowiek zero dla wszystkich cech
+//elf siła -5, wytrzymałość -5, inteligencja +5, charyzma +5
+//krasnolud siła +4, wytrzymałość +4, zręczność -2,  charyzma -3
+//ork siła +5, wytrzymałość +5, inteligencja -5, charyzma -5//all choose inforamtion
+
+//<p id="infoForce"></p>
+//<p id="infoStrenght"></p>
+//<p id="infoSkill"></p>
+//<p id="infoIntellectuals"></p>
+//<p id="infoCharisma"></p>
+
+
+}

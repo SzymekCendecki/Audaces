@@ -85,6 +85,9 @@ var firstSlide = __webpack_require__(6);
 var secondSlide = __webpack_require__(7);
 var thirdSlide = __webpack_require__(8);
 var fourthSlide = __webpack_require__(9);
+var fifthSlide = __webpack_require__(10);
+var sixthSlide = __webpack_require__(11);
+var seventhSlide = __webpack_require__(12);
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -144,10 +147,42 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         };
 
+        //seventh slide
+        var addAllInfo = function addAllInfo() {
+            var race = firstSlide.race;
+            var occupation = secondSlide.occupation;
+
+            var force = firstSlide.mainFeaturesRace0 + secondSlide.mainFeaturesOccupation0 + thirdSlide.forcePoint;
+            var strenght = firstSlide.mainFeaturesRace1 + secondSlide.mainFeaturesOccupation1 + thirdSlide.strenghtPoint;
+            var skill = firstSlide.mainFeaturesRace2 + secondSlide.mainFeaturesOccupation2 + thirdSlide.skillPoint;
+            var intellectuals = firstSlide.mainFeaturesRace3 + secondSlide.mainFeaturesOccupation4 + thirdSlide.intellectualsPoint;
+            var charisma = firstSlide.mainFeaturesRace4 + secondSlide.mainFeaturesOccupation4 + thirdSlide.charismaPoint;
+
+            $("#raceFromFile").text(race);
+            $("#occupationFromFile").text(occupation);
+
+            $("#forceFromFile").text(force);
+            $("#strenghtFromFile").text(strenght);
+            $("#skillFromFile").text(skill);
+            $("#intelectualsFromFile").text(intellectuals);
+            $("#charismaFromFile").text(charisma);
+
+            $("#sexFromFile").text(fourthSlide.sex);
+            $("#hairFromFile").text(fourthSlide.hair);
+            $("#eyesFromFile").text(fourthSlide.eyes);
+            $("#weightFromFile").text(fourthSlide.weight);
+            $("#heightFromFile").text(fourthSlide.height);
+            $("#equipmentFromFile").text(fifthSlide.equipArray);
+            $("#skillsFromFile").text(sixthSlide.skillArray);
+        };
+
         $('button.control_prev').click(function () {
+            addAllInfo();
             moveLeft();
         });
+
         $('button.control_next').click(function () {
+            addAllInfo();
             moveRight();
         });
     });
@@ -212,26 +247,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //fifth slide choose equipment
     $("#chooseEquipment input").on("click", function () {
-        var equipmentArray = [];
-        $.each($("input[name='weapon']:checked"), function () {
-            equipmentArray.push($(this).val());
-        });
-
-        console.log("sprzęt: " + equipmentArray.join(", "));
+        fifthSlide.equipment();
     });
 
-    var bonusesArray = [-5, -3, -2, 4, 5, 10];
-    //współczynniki z profesji
-    //wojownik siła +5, wytrzymałość +5
-    //złoczyńca zręczność +10
-    //mag charyzma +5, inteligencja +5
-
-    //współczynniki z rasy
-    //człowiek zero dla wszystkich cech
-    //elf siła -5, wytrzymałość -5, inteligencja +5, charyzma +5
-    //krasnolud siła +4, wytrzymałość +4, zręczność -2,  charyzma -3
-    //ork siła +5, wytrzymałość +5, inteligencja -5, charyzma -5
-
+    //sixth slide choose skill
+    $("#chooseSkill input").on("click", function () {
+        sixthSlide.skill();
+    });
 });
 
 /***/ }),
@@ -317,6 +339,34 @@ var skillsBandit = ["przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobat
 
 var skillWizard = ["pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów", "tworzenie eliksirów", "tworzenie mag. przedmiotów", "tworzenie maści", "astrologia", "tworzenie mag. runów", "zielarstwo"];
 
+var bonusesArray = [-5, -3, -2, 0, 4, 5, 10];
+module.exports.show = function () {
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  humanFeatures.push(bonusesArray[3]);
+  console.log(humanFeatures);
+
+  //współczynniki z profesji
+  //wojownik siła +5, wytrzymałość +5
+  //złoczyńca zręczność +10
+  //mag charyzma +5, inteligencja +5
+
+  //współczynniki z rasy
+  //człowiek zero dla wszystkich cech
+  //elf siła -5, wytrzymałość -5, inteligencja +5, charyzma +5
+  //krasnolud siła +4, wytrzymałość +4, zręczność -2,  charyzma -3
+  //ork siła +5, wytrzymałość +5, inteligencja -5, charyzma -5//all choose inforamtion
+
+  //<p id="infoForce"></p>
+  //<p id="infoStrenght"></p>
+  //<p id="infoSkill"></p>
+  //<p id="infoIntellectuals"></p>
+  //<p id="infoCharisma"></p>
+
+};
+
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -342,34 +392,83 @@ module.exports.showCreator = function showCreator() {
 
 //race description
 module.exports.chooseRace = function () {
-  var inputRaceChecked = $('input:radio[name=race]:checked').val();
+      var inputRaceChecked = $('input:radio[name=race]:checked').val();
 
-  switch (inputRaceChecked) {
-    case "human":
-      $("#raceDecription").text("Człowiek jedna z najbardziej licznych ras (ustępują jedynie goblinom). Są wszechstronni i wszędobylscy, dlatego też można spotkać ich na wszystkich kontynentach, parających się różnymi profesjami. Podstawowe cechy: wzrost: 150 - 210cm, waga: 40 - 120kg, kolor oczu: najczęściej piwne, szare, brązowe, kolor skóry: od białego do czarnego (wraz z odcieniami), żółta, czerwona, kolor włosów: każdy, wiek: do 100 lat, profesja: każda.");
+      module.exports.race = inputRaceChecked;
+      //mainFeaturesRace = [force, strenght, skill, intellectuals, charisma]
+      var mainFeaturesRace = [];
 
-      $("#infoRace").text("człowiek");
-      break;
+      switch (inputRaceChecked) {
+            case "human":
+                  $("#raceDecription").text("Człowiek jedna z najbardziej licznych ras (ustępują jedynie goblinom). Są wszechstronni i wszędobylscy, dlatego też można spotkać ich na wszystkich kontynentach, parających się różnymi profesjami. Podstawowe cechy: wzrost: 150 - 210cm, waga: 40 - 120kg, kolor oczu: najczęściej piwne, szare, brązowe, kolor skóry: od białego do czarnego (wraz z odcieniami), żółta, czerwona, kolor włosów: każdy, wiek: do 100 lat, profesja: każda.");
 
-    case "elv":
-      $("#raceDecription").text("Elfy to bardzo uzdolnieni czarodzieje. Pomimo olbrzymich umiejętności magicznych, są równie biegli w posługiwaniu się łukiem. Są długowieczni, przez co omyłkowo uznawani są za nieśmiertelnych. Podstawowe cechy: wzrost: 180 - 210cm, waga: 40 - 90kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 1500 lat, profesja: każda, z predyspozycjami do bycia czarodziejem.");
+                  mainFeaturesRace.splice(0, 1, 0);
+                  mainFeaturesRace.splice(1, 1, 0);
+                  mainFeaturesRace.splice(2, 1, 0);
+                  mainFeaturesRace.splice(3, 1, 0);
+                  mainFeaturesRace.splice(4, 1, 0);
 
-      $("#infoRace").text("elf");
+                  module.exports.mainFeaturesRace0 = mainFeaturesRace[0];
+                  module.exports.mainFeaturesRace1 = mainFeaturesRace[1];
+                  module.exports.mainFeaturesRace2 = mainFeaturesRace[2];
+                  module.exports.mainFeaturesRace3 = mainFeaturesRace[3];
+                  module.exports.mainFeaturesRace4 = mainFeaturesRace[4];
 
-      break;
+                  $("#infoRace").text("człowiek");
+                  break;
 
-    case "dwarf":
-      $("#raceDecription").text("Przez swoje specyficzne podejście do rzeczywistości, postrzegani są jako najardziej chamowata rasa świata. Jednakże są wyśmienitymi kowalami, górnikami i wojownikami. Bardzo uczuleni na punkcie krasnoludzkich kobiet, honoru oraz swoich bród. Podstawowe cechy: wzrost: 100 - 145cm, waga: 70 - 100kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 500 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
+            case "elv":
+                  $("#raceDecription").text("Elfy to bardzo uzdolnieni czarodzieje. Pomimo olbrzymich umiejętności magicznych, są równie biegli w posługiwaniu się łukiem. Są długowieczni, przez co omyłkowo uznawani są za nieśmiertelnych. Podstawowe cechy: wzrost: 180 - 210cm, waga: 40 - 90kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 1500 lat, profesja: każda, z predyspozycjami do bycia czarodziejem.");
 
-      $("#infoRace").text("krasnolud");
-      break;
+                  mainFeaturesRace.splice(0, 1, -5);
+                  mainFeaturesRace.splice(1, 1, -5);
+                  mainFeaturesRace.splice(2, 1, 0);
+                  mainFeaturesRace.splice(3, 1, 5);
+                  mainFeaturesRace.splice(4, 1, 5);
+                  module.exports.mainFeaturesRace0 = mainFeaturesRace[0];
+                  module.exports.mainFeaturesRace1 = mainFeaturesRace[1];
+                  module.exports.mainFeaturesRace2 = mainFeaturesRace[2];
+                  module.exports.mainFeaturesRace3 = mainFeaturesRace[3];
+                  module.exports.mainFeaturesRace4 = mainFeaturesRace[4];
 
-    case "orc":
-      $("#raceDecription").text("Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
+                  $("#infoRace").text("elf");
 
-      $("#infoRace").text("ork");
-      break;
-  }
+                  break;
+
+            case "dwarf":
+                  $("#raceDecription").text("Przez swoje specyficzne podejście do rzeczywistości, postrzegani są jako najardziej chamowata rasa świata. Jednakże są wyśmienitymi kowalami, górnikami i wojownikami. Bardzo uczuleni na punkcie krasnoludzkich kobiet, honoru oraz swoich bród. Podstawowe cechy: wzrost: 100 - 145cm, waga: 70 - 100kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 500 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
+
+                  mainFeaturesRace.splice(0, 1, 4);
+                  mainFeaturesRace.splice(1, 1, 4);
+                  mainFeaturesRace.splice(2, 1, 0);
+                  mainFeaturesRace.splice(3, 1, -2);
+                  mainFeaturesRace.splice(4, 1, -3);
+                  module.exports.mainFeaturesRace0 = mainFeaturesRace[0];
+                  module.exports.mainFeaturesRace1 = mainFeaturesRace[1];
+                  module.exports.mainFeaturesRace2 = mainFeaturesRace[2];
+                  module.exports.mainFeaturesRace3 = mainFeaturesRace[3];
+                  module.exports.mainFeaturesRace4 = mainFeaturesRace[4];
+
+                  $("#infoRace").text("krasnolud");
+                  break;
+
+            case "orc":
+                  $("#raceDecription").text("Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
+
+                  mainFeaturesRace.splice(0, 1, 5);
+                  mainFeaturesRace.splice(1, 1, 5);
+                  mainFeaturesRace.splice(2, 1, 0);
+                  mainFeaturesRace.splice(3, 1, -5);
+                  mainFeaturesRace.splice(4, 1, -5);
+                  module.exports.mainFeaturesRace0 = mainFeaturesRace[0];
+                  module.exports.mainFeaturesRace1 = mainFeaturesRace[1];
+                  module.exports.mainFeaturesRace2 = mainFeaturesRace[2];
+                  module.exports.mainFeaturesRace3 = mainFeaturesRace[3];
+                  module.exports.mainFeaturesRace4 = mainFeaturesRace[4];
+
+                  $("#infoRace").text("ork");
+                  break;
+      }
 };
 
 /***/ }),
@@ -381,27 +480,65 @@ module.exports.chooseRace = function () {
 
 //choose occupations
 module.exports.chooseOccupation = function () {
-  var inputOccupationChecked = $('input:radio[name=occupation]:checked').val();
+    var inputOccupationChecked = $('input:radio[name=occupation]:checked').val();
 
-  switch (inputOccupationChecked) {
-    case "warrior":
-      $("#occupationDecription").text("Wojownicy to specjaliści we władaniu każdą bronią białą bronią. Są podstawą wszystkich armii świata, ale także mogą podróżwać samotni lub w niewielkich grupach. Wielu idących drogą wojownika zdobyło sławę w bitwach czy pogromcy smoków. Będąc wojownikiem zwiedzisz świat.");
+    module.exports.occupation = inputOccupationChecked;
 
-      $("#infoOccupation").text("wojownik");
-      break;
+    // mainFeaturesOccupation = [force, strenght, skill, intellectuals, charisma]
+    var mainFeaturesOccupation = [];
 
-    case "bandit":
-      $("#occupationDecription").text("Trucizny. Pułapki. Skrytobójstwo. To wszystko i wiele innych rzeczy zapewni Tobie droga złoczyńcy. Już w każdym mniejszym miasteczku, są odpowiednie organizacje, które wyszkolą Cię na nieustraszonego rzezimieszka.");
+    switch (inputOccupationChecked) {
+        case "warrior":
+            $("#occupationDecription").text("Wojownicy to specjaliści we władaniu każdą bronią białą bronią. Są podstawą wszystkich armii świata, ale także mogą podróżwać samotni lub w niewielkich grupach. Wielu idących drogą wojownika zdobyło sławę w bitwach czy pogromcy smoków. Będąc wojownikiem zwiedzisz świat.");
 
-      $("#infoOccupation").text("złoczyńca");
-      break;
+            mainFeaturesOccupation.splice(0, 1, 5);
+            mainFeaturesOccupation.splice(1, 1, 5);
+            mainFeaturesOccupation.splice(2, 1, 0);
+            mainFeaturesOccupation.splice(3, 1, 0);
+            mainFeaturesOccupation.splice(4, 1, 0);
+            module.exports.mainFeaturesOccupation0 = mainFeaturesOccupation[0];
+            module.exports.mainFeaturesOccupation1 = mainFeaturesOccupation[1];
+            module.exports.mainFeaturesOccupation2 = mainFeaturesOccupation[2];
+            module.exports.mainFeaturesOccupation3 = mainFeaturesOccupation[3];
+            module.exports.mainFeaturesOccupation4 = mainFeaturesOccupation[4];
 
-    case "wizard":
-      $("#occupationDecription").text("Czarodziej to brzmi dumnie. Po wielu latach spędzonych na nauce. Będzie wzbudzał szacunek swoją tylko osobą, a wrogowie będą uciekać w panice przed Twoimi kulami ognia.");
+            $("#infoOccupation").text("wojownik");
+            break;
 
-      $("#infoOccupation").text("czarodziej");
-      break;
-  }
+        case "bandit":
+            $("#occupationDecription").text("Trucizny. Pułapki. Skrytobójstwo. To wszystko i wiele innych rzeczy zapewni Tobie droga złoczyńcy. Już w każdym mniejszym miasteczku, są odpowiednie organizacje, które wyszkolą Cię na nieustraszonego rzezimieszka.");
+
+            mainFeaturesOccupation.splice(0, 1, 0);
+            mainFeaturesOccupation.splice(1, 1, 0);
+            mainFeaturesOccupation.splice(2, 1, 10);
+            mainFeaturesOccupation.splice(3, 1, 0);
+            mainFeaturesOccupation.splice(4, 1, 0);
+            module.exports.mainFeaturesOccupation0 = mainFeaturesOccupation[0];
+            module.exports.mainFeaturesOccupation1 = mainFeaturesOccupation[1];
+            module.exports.mainFeaturesOccupation2 = mainFeaturesOccupation[2];
+            module.exports.mainFeaturesOccupation3 = mainFeaturesOccupation[3];
+            module.exports.mainFeaturesOccupation4 = mainFeaturesOccupation[4];
+
+            $("#infoOccupation").text("złoczyńca");
+            break;
+
+        case "wizard":
+            $("#occupationDecription").text("Czarodziej to brzmi dumnie. Po wielu latach spędzonych na nauce. Będzie wzbudzał szacunek swoją tylko osobą, a wrogowie będą uciekać w panice przed Twoimi kulami ognia.");
+
+            mainFeaturesOccupation.splice(0, 1, 0);
+            mainFeaturesOccupation.splice(1, 1, 0);
+            mainFeaturesOccupation.splice(2, 1, 0);
+            mainFeaturesOccupation.splice(3, 1, 5);
+            mainFeaturesOccupation.splice(4, 1, 5);
+            module.exports.mainFeaturesOccupation0 = mainFeaturesOccupation[0];
+            module.exports.mainFeaturesOccupation1 = mainFeaturesOccupation[1];
+            module.exports.mainFeaturesOccupation2 = mainFeaturesOccupation[2];
+            module.exports.mainFeaturesOccupation3 = mainFeaturesOccupation[3];
+            module.exports.mainFeaturesOccupation4 = mainFeaturesOccupation[4];
+
+            $("#infoOccupation").text("czarodziej");
+            break;
+    }
 };
 
 /***/ }),
@@ -415,7 +552,7 @@ module.exports.chooseOccupation = function () {
 module.exports.forcePoints = function () {
   var randomForcePoints = Math.round(Math.random() * 50);
   $("#forcePoints").text(randomForcePoints);
-  $("#infoForce").text(randomForcePoints);
+  module.exports.forcePoint = randomForcePoints;
 };
 
 module.exports.forceTooltip = function () {
@@ -432,7 +569,7 @@ module.exports.forceTooltip = function () {
 module.exports.strenghtPoints = function () {
   var randomStrenghtPoints = Math.round(Math.random() * 50);
   $("#strenghtPoints").text(randomStrenghtPoints);
-  $("#infoStrenght").text(randomStrenghtPoints);
+  module.exports.strenghtPoint = randomStrenghtPoints;
 };
 
 module.exports.strenghtTooltip = function () {
@@ -449,7 +586,7 @@ module.exports.strenghtTooltip = function () {
 module.exports.skillPoints = function () {
   var randomSkillPoints = Math.round(Math.random() * 50);
   $("#skillPoints").text(randomSkillPoints);
-  $("#infoSkill").text(randomSkillPoints);
+  module.exports.skillPoint = randomSkillPoints;
 };
 
 module.exports.skillTooltip = function () {
@@ -466,7 +603,7 @@ module.exports.skillTooltip = function () {
 module.exports.intellectualsPoints = function () {
   var randomIntellectualsPoints = Math.round(Math.random() * 50);
   $("#intellectualsPoints").text(randomIntellectualsPoints);
-  $("#infoIntellectuals").text(randomIntellectualsPoints);
+  module.exports.intellectualsPoint = randomIntellectualsPoints;
 };
 
 module.exports.intellectualsTooltip = function () {
@@ -483,7 +620,7 @@ module.exports.intellectualsTooltip = function () {
 module.exports.charismaPoints = function () {
   var randomCharismaPoints = Math.round(Math.random() * 50);
   $("#charismaPoints").text(randomCharismaPoints);
-  $("#infoCharisma").text(randomCharismaPoints);
+  module.exports.charismaPoint = randomCharismaPoints;
 };
 
 module.exports.charismaTooltip = function () {
@@ -505,23 +642,31 @@ module.exports.charismaTooltip = function () {
 
 //fourth slide choose features part 2
 //sex
+
+// mainFeaturesPart2  = [sex, hairColor, eyesColor, weight, height]
+
+var mainFeaturesPart2 = [];
+
 module.exports.sexCheck = function () {
   var inputSexChecked = $('input:radio[name=sex]:checked').val();
 
   switch (inputSexChecked) {
     case "female":
       $("#featPart2Description").text("Kobieta - żeńska wersja, każdej rasy.");
-      $("#infoSex").text("kobieta");
+      mainFeaturesPart2.splice(0, 1, "kobieta");
+      module.exports.sex = mainFeaturesPart2[0];
       break;
 
     case "male":
       $("#featPart2Description").text("Mężczyzna - męska wersja, każdej rasy.");
-      $("#infoSex").text("mężczyzna");
+      mainFeaturesPart2.splice(0, 1, "mężczyzna");
+      module.exports.sex = mainFeaturesPart2[0];
       break;
 
     case "other":
       $("#featPart2Description").text("Inna - Bogowie nudzili się i wymyślili krzyżówkę chłopa z babą.");
-      $("#infoSex").text("mężczyzna");
+      mainFeaturesPart2.splice(0, 1, "inna");
+      module.exports.sex = mainFeaturesPart2[0];
       break;
   }
 };
@@ -533,22 +678,26 @@ module.exports.hairColorCheck = function () {
   switch (inputHairColorChecked) {
     case "blond":
       $("#featPart2Description").text("Jasne włosy");
-      $("#infoHairColor").text("Blond");
+      mainFeaturesPart2.splice(1, 1, "blond");
+      module.exports.hair = mainFeaturesPart2[1];
       break;
 
     case "rude":
       $("#featPart2Description").text("Rude jak rdza.");
-      $("#infoHairColor").text("Rude");
+      mainFeaturesPart2.splice(1, 1, "rude");
+      module.exports.hair = mainFeaturesPart2[1];
       break;
 
     case "czarne":
       $("#featPart2Description").text("Czarniejsze niż smoła");
-      $("#infoHairColor").text("czarne");
+      mainFeaturesPart2.splice(1, 1, "czarne");
+      module.exports.hair = mainFeaturesPart2[1];
       break;
 
     case "farbowane":
       $("#featPart2Description").text("Takie fikuśne, różno kolorowe");
-      $("#infoHairColor").text("farbowane");
+      mainFeaturesPart2.splice(1, 1, "farbowane");
+      module.exports.hair = mainFeaturesPart2[1];
       break;
   }
 };
@@ -560,22 +709,26 @@ module.exports.eyesColorCheck = function () {
   switch (inputEyesColorChecked) {
     case "piwne":
       $("#featPart2Description").text("Piwne.");
-      $("#infoEyesColor").text("piwne");
+      mainFeaturesPart2.splice(2, 1, "piwne");
+      module.exports.eyes = mainFeaturesPart2[2];
       break;
 
     case "szare":
       $("#featPart2Description").text("Szare.");
-      $("#infoEyesColor").text("szare");
+      mainFeaturesPart2.splice(2, 1, "szare");
+      module.exports.eye = mainFeaturesPart2[2];
       break;
 
     case "brązowe":
       $("#featPart2Description").text("Brązowe");
-      $("#infoEyesColor").text("Brązowe");
+      mainFeaturesPart2.splice(2, 1, "brązowe");
+      module.exports.eyes = mainFeaturesPart2[2];
       break;
 
     case "niebieskie":
       $("#featPart2Description").text("niebieskie");
-      $("#infoEyesColor").text("niebieskie");
+      mainFeaturesPart2.splice(2, 1, "niebieskie");
+      module.exports.eyes = mainFeaturesPart2[2];
       break;
   }
 };
@@ -587,17 +740,20 @@ module.exports.weightCheck = function () {
   switch (inputWeightChecked) {
     case "niedowaga":
       $("#featPart2Description").text("niedowaga");
-      $("#infoWeight").text("niedowaga");
+      mainFeaturesPart2.splice(3, 1, "niedowaga");
+      module.exports.weight = mainFeaturesPart2[3];
       break;
 
     case "normalna":
       $("#featPart2Description").text("normalna");
-      $("#infoWeight").text("normalna");
+      mainFeaturesPart2.splice(3, 1, "normalna");
+      module.exports.weight = mainFeaturesPart2[3];
       break;
 
     case "nadwaga":
       $("#featPart2Description").text("nadwaga");
-      $("#infoWeight").text("nadwaga");
+      mainFeaturesPart2.splice(3, 1, "nadwaga");
+      module.exports.weight = mainFeaturesPart2[3];
       break;
   }
 };
@@ -609,20 +765,83 @@ module.exports.heightCheck = function () {
   switch (inputHeightChecked) {
     case "niski":
       $("#featPart2Description").text("niski");
-      $("#infoHeight").text("niski");
+      mainFeaturesPart2.splice(4, 1, "inna");
+      module.exports.height = mainFeaturesPart2[4];
       break;
 
     case "średni":
       $("#featPart2Description").text("średni");
-      $("#infoHeight").text("średni");
+      mainFeaturesPart2.splice(4, 1, "inna");
+      module.exports.height = mainFeaturesPart2[4];
       break;
 
     case "wysoki":
       $("#featPart2Description").text("wysoki");
-      $("#infoHeight").text("wysoki");
+      mainFeaturesPart2.splice(4, 1, "inna");
+      module.exports.height = mainFeaturesPart2[4];
       break;
   }
 };
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//choose equipment
+module.exports.equipment = function () {
+  var equipmentArray = [];
+
+  $.each($("input[name='item']:checked"), function () {
+    equipmentArray.push($(this).val());
+
+    if (equipmentArray.length > 5) {
+      $('#alertEquipment').text("Nie wybrać więcej niż 5 przedmiotów.");
+      equipmentArray.pop();
+    } else if (equipmentArray.length < 5) {
+      $('#alertEquipment').text("");
+    }
+  });
+
+  $("#equipmentDescription").text("sprzęt: " + equipmentArray.join(", "));
+
+  module.exports.equipArray = equipmentArray;
+};
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.skill = function () {
+  var skillArray = [];
+
+  $.each($("input[name='skill']:checked"), function () {
+    skillArray.push($(this).val());
+
+    if (skillArray.length > 3) {
+      $('#alertSkill').text("Nie wybrać więcej niż 3 umiejętności.");
+      skillArray.pop();
+    } else if (skill.length < 3) {
+      $('#alertSkill').text("");
+    }
+  });
+
+  $("#skillDescription").text("umiejętności: " + skillArray.join(", "));
+
+  module.exports.skillArray = skillArray;
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);

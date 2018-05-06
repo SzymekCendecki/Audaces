@@ -6,6 +6,9 @@ let firstSlide = require("./slides/firstSlide.js");
 let secondSlide = require("./slides/secondSlide.js");
 let thirdSlide = require("./slides/thirdSlide.js");
 let fourthSlide = require("./slides/fourthSlide.js");
+let fifthSlide = require("./slides/fifthSlide.js");
+let sixthSlide = require("./slides/sixthSlide.js");
+let seventhSlide = require("./slides/seventhSlide.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -59,40 +62,72 @@ heroCreator.showCreator();
         });
     };
 
-    $('button.control_prev').click(function () { moveLeft(); });
-    $('button.control_next').click(function () { moveRight(); });
+    //seventh slide
+    let addAllInfo = () => {
+      let race = firstSlide.race;
+      let occupation = secondSlide.occupation;
+
+      let force = (firstSlide.mainFeaturesRace0 + secondSlide.mainFeaturesOccupation0 + thirdSlide.forcePoint);
+      let strenght = (firstSlide.mainFeaturesRace1 + secondSlide.mainFeaturesOccupation1 + thirdSlide.strenghtPoint);
+      let skill= (firstSlide.mainFeaturesRace2 + secondSlide.mainFeaturesOccupation2 + thirdSlide.skillPoint);
+      let intellectuals = (firstSlide.mainFeaturesRace3 + secondSlide.mainFeaturesOccupation4 + thirdSlide.intellectualsPoint);
+      let charisma = (firstSlide.mainFeaturesRace4 + secondSlide.mainFeaturesOccupation4 + thirdSlide.charismaPoint);
+
+      $("#raceFromFile").text(race);
+      $("#occupationFromFile").text(occupation);
+
+      $("#forceFromFile").text(force);
+      $("#strenghtFromFile").text(strenght);
+      $("#skillFromFile").text(skill);
+      $("#intelectualsFromFile").text(intellectuals);
+      $("#charismaFromFile").text(charisma);
+
+      $("#sexFromFile").text(fourthSlide.sex)
+      $("#hairFromFile").text(fourthSlide.hair);
+      $("#eyesFromFile").text(fourthSlide.eyes);
+      $("#weightFromFile").text(fourthSlide.weight);
+      $("#heightFromFile").text(fourthSlide.height);
+      $("#equipmentFromFile").text(fifthSlide.equipArray);
+      $("#skillsFromFile").text(sixthSlide.skillArray);
+    }
+
+    $('button.control_prev').click(function () {
+      addAllInfo();
+      moveLeft();
+    });
+
+    $('button.control_next').click(function () {
+      addAllInfo();
+      moveRight();
+    });
 });
 
 //first slide - choose race
-$("#chooseRace input").on("click", function(){
-  firstSlide.chooseRace();
-});
+$("#chooseRace input").on("click", function(){ firstSlide.chooseRace(); });
 
 //second slide - choose occupation
-$("#chooseOccupation input").on("click", function(){
-  secondSlide.chooseOccupation();
-});
+$("#chooseOccupation input").on("click", function(){ secondSlide.chooseOccupation(); });
 
 //third slide choose features
 //force point and tooltip for force points
 $("#force").on("click", () => { thirdSlide.forcePoints(); });
-thirdSlide.forceTooltip();
+  thirdSlide.forceTooltip();
 
 //strenght
 $("#strenght").on("click", () => { thirdSlide.strenghtPoints(); });
-thirdSlide.strenghtTooltip();
+  thirdSlide.strenghtTooltip();
 
 //skill
 $("#skill").on("click", () => {thirdSlide.skillPoints(); });
-thirdSlide.skillTooltip();
+  thirdSlide.skillTooltip();
 
 //intellectuals
 $("#intellectuals").on("click", () => {thirdSlide.intellectualsPoints(); });
-thirdSlide.intellectualsTooltip();
+  thirdSlide.intellectualsTooltip();
 
 //charisma
 $("#charisma").on("click", () => {thirdSlide.charismaPoints(); });
-thirdSlide.charismaTooltip();
+  thirdSlide.charismaTooltip();
 
 //fourth slide choose feature part 2
 $(".sex input").on("click", () =>{ fourthSlide.sexCheck(); });
@@ -102,26 +137,9 @@ $(".weight input").on("click", () =>{ fourthSlide.weightCheck(); });
 $(".height input").on("click", () =>{ fourthSlide.heightCheck(); });
 
 //fifth slide choose equipment
-$("#chooseEquipment input").on("click", function(){
-	let equipmentArray = [];
-  $.each($("input[name='weapon']:checked"), function(){
-                equipmentArray.push($(this).val());
-            });
+$("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });
 
-console.log("sprzęt: " + equipmentArray.join(", "));
-});
-
-let bonusesArray = [-5, -3, -2, 4, 5, 10];
-//współczynniki z profesji
-//wojownik siła +5, wytrzymałość +5
-//złoczyńca zręczność +10
-//mag charyzma +5, inteligencja +5
-
-//współczynniki z rasy
-//człowiek zero dla wszystkich cech
-//elf siła -5, wytrzymałość -5, inteligencja +5, charyzma +5
-//krasnolud siła +4, wytrzymałość +4, zręczność -2,  charyzma -3
-//ork siła +5, wytrzymałość +5, inteligencja -5, charyzma -5
-
+//sixth slide choose skill
+$("#chooseSkill input").on("click", function(){ sixthSlide.skill(); });
 
 });
