@@ -62,35 +62,6 @@ heroCreator.showCreator();
         });
     };
 
-    //seventh slide
-    let addAllInfo = () => {
-      let race = firstSlide.race;
-      let occupation = secondSlide.occupation;
-
-      let force = (firstSlide.mainFeaturesRace0 + secondSlide.mainFeaturesOccupation0 + thirdSlide.forcePoint);
-      let strenght = (firstSlide.mainFeaturesRace1 + secondSlide.mainFeaturesOccupation1 + thirdSlide.strenghtPoint);
-      let skill= (firstSlide.mainFeaturesRace2 + secondSlide.mainFeaturesOccupation2 + thirdSlide.skillPoint);
-      let intellectuals = (firstSlide.mainFeaturesRace3 + secondSlide.mainFeaturesOccupation4 + thirdSlide.intellectualsPoint);
-      let charisma = (firstSlide.mainFeaturesRace4 + secondSlide.mainFeaturesOccupation4 + thirdSlide.charismaPoint);
-
-      $("#raceFromFile").text(race);
-      $("#occupationFromFile").text(occupation);
-
-      $("#forceFromFile").text(force);
-      $("#strenghtFromFile").text(strenght);
-      $("#skillFromFile").text(skill);
-      $("#intelectualsFromFile").text(intellectuals);
-      $("#charismaFromFile").text(charisma);
-
-      $("#sexFromFile").text(fourthSlide.sex)
-      $("#hairFromFile").text(fourthSlide.hair);
-      $("#eyesFromFile").text(fourthSlide.eyes);
-      $("#weightFromFile").text(fourthSlide.weight);
-      $("#heightFromFile").text(fourthSlide.height);
-      $("#equipmentFromFile").text(fifthSlide.equipArray);
-      $("#skillsFromFile").text(sixthSlide.skillArray);
-    }
-
     $('button.control_prev').click(function () {
       addAllInfo();
       moveLeft();
@@ -141,5 +112,71 @@ $("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });
 
 //sixth slide choose skill
 $("#chooseSkill input").on("click", function(){ sixthSlide.skill(); });
+
+//seventh slide
+let addAllInfo = () => {
+
+//sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, waki i zwrostu
+let rFF = $("#raceFromFile");
+let oFF = $("#occupationFromFile");
+let sexFF = $("#sexFromFile");
+let hFF = $("#hairFromFile");
+let eyesFF = $("#eyesFromFile");
+let wFF = $("#weightFromFile");
+let heightFF = $("#heightFromFile");
+
+function checkRadio(inputRadio, zz, dd){
+  if( inputRadio === undefined){
+    zz.text("wybierz " + dd);
+  }else{
+    zz.text(inputRadio);
+  }
+}
+
+checkRadio(firstSlide.race, rFF, "rasę");
+checkRadio(secondSlide.occupation, oFF, "profesję");
+checkRadio(fourthSlide.sex, sexFF,  "płeć");
+checkRadio(fourthSlide.hair, hFF, "włosy");
+checkRadio(fourthSlide.eyes, eyesFF, "kolor oczu");
+checkRadio(fourthSlide.weight, wFF, "wagę");
+checkRadio(fourthSlide.height, heightFF, "wzrost");
+
+//sprawdzenie wylosowania punktów cech
+let fFF = $("#forceFromFile");
+let sFF = $("#strenghtFromFile");
+let skFF = $("#skillFromFile");
+let iFF = $("#intelectualsFromFile");
+let cFF = $("#charismaFromFile");
+
+function check2 (race, occupation, randomPoints, ll){
+  if(!isNaN(race) && !isNaN(occupation) && !isNaN(randomPoints)){
+      ll.text((race + occupation + randomPoints));
+  }else{
+      ll.text("wybierz rasę, profesję i wylosuj punkty");
+  }
+}
+
+check2(firstSlide.mainFeaturesRace0, secondSlide.mainFeaturesOccupation0, thirdSlide.forcePoint, fFF);
+check2(firstSlide.mainFeaturesRace1, secondSlide.mainFeaturesOccupation1, thirdSlide.strenghtPoint, sFF);
+check2(firstSlide.mainFeaturesRace2, secondSlide.mainFeaturesOccupation2, thirdSlide.skillPoint, skFF);
+check2(firstSlide.mainFeaturesRace3, secondSlide.mainFeaturesOccupation3, thirdSlide.intellectualsPoint, iFF);
+check2(firstSlide.mainFeaturesRace4, secondSlide.mainFeaturesOccupation4, thirdSlide.charismaPoint, cFF);
+
+
+//sprawdzenie wybrania ekwipunku oraz umiejętności
+let equipFF = $("#equipmentFromFile");
+let skillsFF = $("#skillsFromFile");
+
+function checkArray(array, zb, dh){
+  if(array === undefined){
+    zb.text("wybierz " + dh);
+  }else{
+    zb.text(array);
+  }
+}
+
+checkArray(fifthSlide.equipArray, equipFF, "ekwipunek");
+checkArray(sixthSlide.skillArray, skillsFF, "umiejętności");
+}
 
 });

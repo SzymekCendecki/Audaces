@@ -90,170 +90,206 @@ var sixthSlide = __webpack_require__(11);
 var seventhSlide = __webpack_require__(12);
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("NIEWIERNE PSY RULEZ!!!!");
+  console.log("NIEWIERNE PSY RULEZ!!!!");
 
-    // hidden elements
-    $("#title, #startOptionsGame, #hello, .slider, #slider").hide();
+  // hidden elements
+  $("#title, #startOptionsGame, #hello, .slider, #slider").hide();
 
-    //intro - inscription and title
-    setTimeout(intro.hideInscription, 5000);
-    setTimeout(intro.showTitle, 7500);
-    setTimeout(intro.hideTitle, 12000);
+  //intro - inscription and title
+  setTimeout(intro.hideInscription, 5000);
+  setTimeout(intro.showTitle, 7500);
+  setTimeout(intro.hideTitle, 12000);
 
-    //main Menu
-    setTimeout(mainMenu.startOptionsGame, 14500);
+  //main Menu
+  setTimeout(mainMenu.startOptionsGame, 14500);
 
-    //buttons info, licence, tutorial, new game
-    $(".btnInfo").on("click", function () {
-        mainMenu.info();
-    });
-    $(".btnLicence").on("click", function () {
-        mainMenu.licence();
-    });
-    $(".btnTutorial").on("click", function () {
-        mainMenu.tutorial();
-    });
+  //buttons info, licence, tutorial, new game
+  $(".btnInfo").on("click", function () {
+    mainMenu.info();
+  });
+  $(".btnLicence").on("click", function () {
+    mainMenu.licence();
+  });
+  $(".btnTutorial").on("click", function () {
+    mainMenu.tutorial();
+  });
 
-    //Creator of hero
-    //slider
-    $(".btnNewGame").on("click", function () {
-        heroCreator.hideElements();
-        heroCreator.showCreator();
+  //Creator of hero
+  //slider
+  $(".btnNewGame").on("click", function () {
+    heroCreator.hideElements();
+    heroCreator.showCreator();
 
-        var slideCount = $('#slider ul li').length;
-        var slideWidth = $('#slider ul li').width();
-        var slideHeight = $('#slider ul li').height();
-        var sliderUlWidth = slideCount * slideWidth;
+    var slideCount = $('#slider ul li').length;
+    var slideWidth = $('#slider ul li').width();
+    var slideHeight = $('#slider ul li').height();
+    var sliderUlWidth = slideCount * slideWidth;
 
-        $('#slider').css({ width: slideWidth, height: slideHeight });
-        $('#slider ul').css({ width: sliderUlWidth, marginLeft: -slideWidth });
+    $('#slider').css({ width: slideWidth, height: slideHeight });
+    $('#slider ul').css({ width: sliderUlWidth, marginLeft: -slideWidth });
+    $('#slider ul li:last-child').prependTo('#slider ul');
+
+    function moveLeft() {
+      $('#slider ul').animate({
+        left: +slideWidth
+      }, 200, function () {
         $('#slider ul li:last-child').prependTo('#slider ul');
+        $('#slider ul').css('left', '');
+      });
+    };
 
-        function moveLeft() {
-            $('#slider ul').animate({
-                left: +slideWidth
-            }, 200, function () {
-                $('#slider ul li:last-child').prependTo('#slider ul');
-                $('#slider ul').css('left', '');
-            });
-        };
+    function moveRight() {
+      $('#slider ul').animate({
+        left: -slideWidth
+      }, 200, function () {
+        $('#slider ul li:first-child').appendTo('#slider ul');
+        $('#slider ul').css('left', '');
+      });
+    };
 
-        function moveRight() {
-            $('#slider ul').animate({
-                left: -slideWidth
-            }, 200, function () {
-                $('#slider ul li:first-child').appendTo('#slider ul');
-                $('#slider ul').css('left', '');
-            });
-        };
-
-        //seventh slide
-        var addAllInfo = function addAllInfo() {
-            var race = firstSlide.race;
-            var occupation = secondSlide.occupation;
-
-            var force = firstSlide.mainFeaturesRace0 + secondSlide.mainFeaturesOccupation0 + thirdSlide.forcePoint;
-            var strenght = firstSlide.mainFeaturesRace1 + secondSlide.mainFeaturesOccupation1 + thirdSlide.strenghtPoint;
-            var skill = firstSlide.mainFeaturesRace2 + secondSlide.mainFeaturesOccupation2 + thirdSlide.skillPoint;
-            var intellectuals = firstSlide.mainFeaturesRace3 + secondSlide.mainFeaturesOccupation4 + thirdSlide.intellectualsPoint;
-            var charisma = firstSlide.mainFeaturesRace4 + secondSlide.mainFeaturesOccupation4 + thirdSlide.charismaPoint;
-
-            $("#raceFromFile").text(race);
-            $("#occupationFromFile").text(occupation);
-
-            $("#forceFromFile").text(force);
-            $("#strenghtFromFile").text(strenght);
-            $("#skillFromFile").text(skill);
-            $("#intelectualsFromFile").text(intellectuals);
-            $("#charismaFromFile").text(charisma);
-
-            $("#sexFromFile").text(fourthSlide.sex);
-            $("#hairFromFile").text(fourthSlide.hair);
-            $("#eyesFromFile").text(fourthSlide.eyes);
-            $("#weightFromFile").text(fourthSlide.weight);
-            $("#heightFromFile").text(fourthSlide.height);
-            $("#equipmentFromFile").text(fifthSlide.equipArray);
-            $("#skillsFromFile").text(sixthSlide.skillArray);
-        };
-
-        $('button.control_prev').click(function () {
-            addAllInfo();
-            moveLeft();
-        });
-
-        $('button.control_next').click(function () {
-            addAllInfo();
-            moveRight();
-        });
+    $('button.control_prev').click(function () {
+      addAllInfo();
+      moveLeft();
     });
 
-    //first slide - choose race
-    $("#chooseRace input").on("click", function () {
-        firstSlide.chooseRace();
+    $('button.control_next').click(function () {
+      addAllInfo();
+      moveRight();
     });
+  });
 
-    //second slide - choose occupation
-    $("#chooseOccupation input").on("click", function () {
-        secondSlide.chooseOccupation();
-    });
+  //first slide - choose race
+  $("#chooseRace input").on("click", function () {
+    firstSlide.chooseRace();
+  });
 
-    //third slide choose features
-    //force point and tooltip for force points
-    $("#force").on("click", function () {
-        thirdSlide.forcePoints();
-    });
-    thirdSlide.forceTooltip();
+  //second slide - choose occupation
+  $("#chooseOccupation input").on("click", function () {
+    secondSlide.chooseOccupation();
+  });
 
-    //strenght
-    $("#strenght").on("click", function () {
-        thirdSlide.strenghtPoints();
-    });
-    thirdSlide.strenghtTooltip();
+  //third slide choose features
+  //force point and tooltip for force points
+  $("#force").on("click", function () {
+    thirdSlide.forcePoints();
+  });
+  thirdSlide.forceTooltip();
 
-    //skill
-    $("#skill").on("click", function () {
-        thirdSlide.skillPoints();
-    });
-    thirdSlide.skillTooltip();
+  //strenght
+  $("#strenght").on("click", function () {
+    thirdSlide.strenghtPoints();
+  });
+  thirdSlide.strenghtTooltip();
 
-    //intellectuals
-    $("#intellectuals").on("click", function () {
-        thirdSlide.intellectualsPoints();
-    });
-    thirdSlide.intellectualsTooltip();
+  //skill
+  $("#skill").on("click", function () {
+    thirdSlide.skillPoints();
+  });
+  thirdSlide.skillTooltip();
 
-    //charisma
-    $("#charisma").on("click", function () {
-        thirdSlide.charismaPoints();
-    });
-    thirdSlide.charismaTooltip();
+  //intellectuals
+  $("#intellectuals").on("click", function () {
+    thirdSlide.intellectualsPoints();
+  });
+  thirdSlide.intellectualsTooltip();
 
-    //fourth slide choose feature part 2
-    $(".sex input").on("click", function () {
-        fourthSlide.sexCheck();
-    });
-    $(".hairColor input").on("click", function () {
-        fourthSlide.hairColorCheck();
-    });
-    $(".eyesColor input").on("click", function () {
-        fourthSlide.eyesColorCheck();
-    });
-    $(".weight input").on("click", function () {
-        fourthSlide.weightCheck();
-    });
-    $(".height input").on("click", function () {
-        fourthSlide.heightCheck();
-    });
+  //charisma
+  $("#charisma").on("click", function () {
+    thirdSlide.charismaPoints();
+  });
+  thirdSlide.charismaTooltip();
 
-    //fifth slide choose equipment
-    $("#chooseEquipment input").on("click", function () {
-        fifthSlide.equipment();
-    });
+  //fourth slide choose feature part 2
+  $(".sex input").on("click", function () {
+    fourthSlide.sexCheck();
+  });
+  $(".hairColor input").on("click", function () {
+    fourthSlide.hairColorCheck();
+  });
+  $(".eyesColor input").on("click", function () {
+    fourthSlide.eyesColorCheck();
+  });
+  $(".weight input").on("click", function () {
+    fourthSlide.weightCheck();
+  });
+  $(".height input").on("click", function () {
+    fourthSlide.heightCheck();
+  });
 
-    //sixth slide choose skill
-    $("#chooseSkill input").on("click", function () {
-        sixthSlide.skill();
-    });
+  //fifth slide choose equipment
+  $("#chooseEquipment input").on("click", function () {
+    fifthSlide.equipment();
+  });
+
+  //sixth slide choose skill
+  $("#chooseSkill input").on("click", function () {
+    sixthSlide.skill();
+  });
+
+  //seventh slide
+  var addAllInfo = function addAllInfo() {
+
+    //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, waki i zwrostu
+    var rFF = $("#raceFromFile");
+    var oFF = $("#occupationFromFile");
+    var sexFF = $("#sexFromFile");
+    var hFF = $("#hairFromFile");
+    var eyesFF = $("#eyesFromFile");
+    var wFF = $("#weightFromFile");
+    var heightFF = $("#heightFromFile");
+
+    function checkRadio(inputRadio, zz, dd) {
+      if (inputRadio === undefined) {
+        zz.text("wybierz " + dd);
+      } else {
+        zz.text(inputRadio);
+      }
+    }
+
+    checkRadio(firstSlide.race, rFF, "rasę");
+    checkRadio(secondSlide.occupation, oFF, "profesję");
+    checkRadio(fourthSlide.sex, sexFF, "płeć");
+    checkRadio(fourthSlide.hair, hFF, "włosy");
+    checkRadio(fourthSlide.eyes, eyesFF, "kolor oczu");
+    checkRadio(fourthSlide.weight, wFF, "wagę");
+    checkRadio(fourthSlide.height, heightFF, "wzrost");
+
+    //sprawdzenie wylosowania punktów cech
+    var fFF = $("#forceFromFile");
+    var sFF = $("#strenghtFromFile");
+    var skFF = $("#skillFromFile");
+    var iFF = $("#intelectualsFromFile");
+    var cFF = $("#charismaFromFile");
+
+    function check2(race, occupation, randomPoints, ll) {
+      if (!isNaN(race) && !isNaN(occupation) && !isNaN(randomPoints)) {
+        ll.text(race + occupation + randomPoints);
+      } else {
+        ll.text("wybierz rasę, profesję i wylosuj punkty");
+      }
+    }
+
+    check2(firstSlide.mainFeaturesRace0, secondSlide.mainFeaturesOccupation0, thirdSlide.forcePoint, fFF);
+    check2(firstSlide.mainFeaturesRace1, secondSlide.mainFeaturesOccupation1, thirdSlide.strenghtPoint, sFF);
+    check2(firstSlide.mainFeaturesRace2, secondSlide.mainFeaturesOccupation2, thirdSlide.skillPoint, skFF);
+    check2(firstSlide.mainFeaturesRace3, secondSlide.mainFeaturesOccupation3, thirdSlide.intellectualsPoint, iFF);
+    check2(firstSlide.mainFeaturesRace4, secondSlide.mainFeaturesOccupation4, thirdSlide.charismaPoint, cFF);
+
+    //sprawdzenie wybrania ekwipunku oraz umiejętności
+    var equipFF = $("#equipmentFromFile");
+    var skillsFF = $("#skillsFromFile");
+
+    function checkArray(array, zb, dh) {
+      if (array === undefined) {
+        zb.text("wybierz " + dh);
+      } else {
+        zb.text(array);
+      }
+    }
+
+    checkArray(fifthSlide.equipArray, equipFF, "ekwipunek");
+    checkArray(sixthSlide.skillArray, skillsFF, "umiejętności");
+  };
 });
 
 /***/ }),
