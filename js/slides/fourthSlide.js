@@ -1,7 +1,7 @@
 //fourth slide choose features part 2
 //sex
 
-// mainFeaturesPart2  = [sex, hairColor, eyesColor, weight, height]
+// mainFeaturesPart2  = [sex, skin, hairColor, eyesColor, weight, height]
 
 let mainFeaturesPart2 = [];
 
@@ -123,19 +123,19 @@ module.exports.heightCheck = function(){
     switch (inputHeightChecked) {
         case "niski":
           $("#featPart2Description").text("niski");
-          mainFeaturesPart2.splice(4, 1, "inna");
+          mainFeaturesPart2.splice(4, 1, "niski");
           module.exports.height = mainFeaturesPart2[4];
        break;
 
         case "średni":
           $("#featPart2Description").text("średni");
-          mainFeaturesPart2.splice(4, 1, "inna");
+          mainFeaturesPart2.splice(4, 1, "średni");
           module.exports.height = mainFeaturesPart2[4];
         break;
 
         case "wysoki":
           $("#featPart2Description").text("wysoki");
-          mainFeaturesPart2.splice(4, 1, "inna");
+          mainFeaturesPart2.splice(4, 1, "wysoki");
           module.exports.height = mainFeaturesPart2[4];
         break;
      }

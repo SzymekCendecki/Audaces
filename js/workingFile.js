@@ -162,7 +162,6 @@ check2(firstSlide.mainFeaturesRace2, secondSlide.mainFeaturesOccupation2, thirdS
 check2(firstSlide.mainFeaturesRace3, secondSlide.mainFeaturesOccupation3, thirdSlide.intellectualsPoint, iFF);
 check2(firstSlide.mainFeaturesRace4, secondSlide.mainFeaturesOccupation4, thirdSlide.charismaPoint, cFF);
 
-
 //sprawdzenie wybrania ekwipunku oraz umiejętności
 let equipFF = $("#equipmentFromFile");
 let skillsFF = $("#skillsFromFile");
@@ -177,6 +176,35 @@ function checkArray(array, zb, dh){
 
 checkArray(fifthSlide.equipArray, equipFF, "ekwipunek");
 checkArray(sixthSlide.skillArray, skillsFF, "umiejętności");
+
+//button game disabled/enabled
+let textRace = rFF.text();
+let textOccupation = oFF.text();
+let textSex = sexFF.text();
+
+let textHair = hFF.text();
+let textEyes = eyesFF.text();
+let textWeight = wFF.text();
+let textHeight = heightFF.text();
+
+let textForce = fFF.text();
+let textStrenght = sFF.text();
+let textSkill = skFF.text();
+let textIntellectuals = iFF.text();
+let textCharisma = cFF.text();
+
+let textEquip = equipFF.text();
+let textSkills = skillsFF.text();
+
+function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o){
+  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == ""){
+    $("#game").prop("disabled", true);
+  }else{
+    $("#game").prop("disabled", false);
+  }
+}
+
+checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills);
 }
 
 });

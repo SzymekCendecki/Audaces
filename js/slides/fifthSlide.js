@@ -11,7 +11,6 @@ module.exports.equipment = function(){
               }else if(equipmentArray.length < 5){
                 $('#alertEquipment').text("");
               }
-
   });
 
   $("#equipmentDescription").text("sprzęt: " + equipmentArray.join(", "));

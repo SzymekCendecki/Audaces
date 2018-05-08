@@ -289,6 +289,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkArray(fifthSlide.equipArray, equipFF, "ekwipunek");
     checkArray(sixthSlide.skillArray, skillsFF, "umiejętności");
+
+    //button game disabled/enabled
+    var textRace = rFF.text();
+    var textOccupation = oFF.text();
+    var textSex = sexFF.text();
+
+    var textHair = hFF.text();
+    var textEyes = eyesFF.text();
+    var textWeight = wFF.text();
+    var textHeight = heightFF.text();
+
+    var textForce = fFF.text();
+    var textStrenght = sFF.text();
+    var textSkill = skFF.text();
+    var textIntellectuals = iFF.text();
+    var textCharisma = cFF.text();
+
+    var textEquip = equipFF.text();
+    var textSkills = skillsFF.text();
+
+    function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) {
+      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "") {
+        $("#game").prop("disabled", true);
+      } else {
+        $("#game").prop("disabled", false);
+      }
+    }
+
+    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills);
   };
 });
 
@@ -679,7 +708,7 @@ module.exports.charismaTooltip = function () {
 //fourth slide choose features part 2
 //sex
 
-// mainFeaturesPart2  = [sex, hairColor, eyesColor, weight, height]
+// mainFeaturesPart2  = [sex, skin, hairColor, eyesColor, weight, height]
 
 var mainFeaturesPart2 = [];
 
@@ -801,19 +830,19 @@ module.exports.heightCheck = function () {
   switch (inputHeightChecked) {
     case "niski":
       $("#featPart2Description").text("niski");
-      mainFeaturesPart2.splice(4, 1, "inna");
+      mainFeaturesPart2.splice(4, 1, "niski");
       module.exports.height = mainFeaturesPart2[4];
       break;
 
     case "średni":
       $("#featPart2Description").text("średni");
-      mainFeaturesPart2.splice(4, 1, "inna");
+      mainFeaturesPart2.splice(4, 1, "średni");
       module.exports.height = mainFeaturesPart2[4];
       break;
 
     case "wysoki":
       $("#featPart2Description").text("wysoki");
-      mainFeaturesPart2.splice(4, 1, "inna");
+      mainFeaturesPart2.splice(4, 1, "wysoki");
       module.exports.height = mainFeaturesPart2[4];
       break;
   }
