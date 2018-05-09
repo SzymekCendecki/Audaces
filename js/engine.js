@@ -230,9 +230,23 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //seventh slide
+
+  //enabled button game
+  // heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
+  var heroArrayFeatures1 = [];
+
+  //heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
+  var heroArrayFeatures2 = [];
+
+  // heroEquip = [equipment];
+  var heroEquip = [];
+
+  // heroEquip = [skills];
+  var heroSkills = [];
+
   var addAllInfo = function addAllInfo() {
 
-    //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, zwrostu i skóry
+    //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, wzrostu i skóry
     var rFF = $("#raceFromFile");
     var oFF = $("#occupationFromFile");
     var sexFF = $("#sexFromFile");
@@ -241,13 +255,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var wFF = $("#weightFromFile");
     var heightFF = $("#heightFromFile");
     var skinFF = $("#skinFromFile");
-    console.log(skinFF.text());
 
     function checkRadio(inputRadio, zz, dd) {
       if (inputRadio === undefined) {
         zz.text("wybierz " + dd);
       } else {
-        zz.text(inputRadio);
+        zz.text(inputRadio).css("color", "black");
       }
     }
 
@@ -269,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function check2(race, occupation, randomPoints, ll) {
       if (!isNaN(race) && !isNaN(occupation) && !isNaN(randomPoints)) {
-        ll.text(race + occupation + randomPoints);
+        ll.text(race + occupation + randomPoints).css("color", "black");
       } else {
         ll.text("wybierz rasę, profesję i wylosuj punkty");
       }
@@ -289,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (array === undefined) {
         zb.text("wybierz " + dh);
       } else {
-        zb.text(array);
+        zb.text(array).css("color", "black");
       }
     }
 
@@ -306,7 +319,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var textWeight = wFF.text();
     var textHeight = heightFF.text();
     var textSkin = skinFF.text();
-    console.log(textSkin);
 
     var textForce = fFF.text();
     var textStrenght = sFF.text();
@@ -318,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var textSkills = skillsFF.text();
 
     function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) {
-      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || o == "wybierz skórę" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "") {
+      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "" || o == "wybierz skórę") {
         $("#game").prop("disabled", true);
       } else {
         $("#game").prop("disabled", false);
@@ -327,6 +339,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
   };
+
+  $("#game").on("click", function () {
+
+    heroArrayFeatures1.push(firstSlide.race);
+    console.log(heroArrayFeatures1);
+  });
 });
 
 /***/ }),
@@ -472,7 +490,7 @@ module.exports.chooseRace = function () {
       var mainFeaturesRace = [];
 
       switch (inputRaceChecked) {
-            case "human":
+            case "człowiek":
                   $("#raceDecription").text("Człowiek jedna z najbardziej licznych ras (ustępują jedynie goblinom). Są wszechstronni i wszędobylscy, dlatego też można spotkać ich na wszystkich kontynentach, parających się różnymi profesjami. Podstawowe cechy: wzrost: 150 - 210cm, waga: 40 - 120kg, kolor oczu: najczęściej piwne, szare, brązowe, kolor skóry: od białego do czarnego (wraz z odcieniami), żółta, czerwona, kolor włosów: każdy, wiek: do 100 lat, profesja: każda.");
 
                   mainFeaturesRace.splice(0, 1, 0);
@@ -490,7 +508,7 @@ module.exports.chooseRace = function () {
                   $("#infoRace").text("człowiek");
                   break;
 
-            case "elv":
+            case "elf":
                   $("#raceDecription").text("Elfy to bardzo uzdolnieni czarodzieje. Pomimo olbrzymich umiejętności magicznych, są równie biegli w posługiwaniu się łukiem. Są długowieczni, przez co omyłkowo uznawani są za nieśmiertelnych. Podstawowe cechy: wzrost: 180 - 210cm, waga: 40 - 90kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 1500 lat, profesja: każda, z predyspozycjami do bycia czarodziejem.");
 
                   mainFeaturesRace.splice(0, 1, -5);
@@ -508,7 +526,7 @@ module.exports.chooseRace = function () {
 
                   break;
 
-            case "dwarf":
+            case "krasnolud":
                   $("#raceDecription").text("Przez swoje specyficzne podejście do rzeczywistości, postrzegani są jako najardziej chamowata rasa świata. Jednakże są wyśmienitymi kowalami, górnikami i wojownikami. Bardzo uczuleni na punkcie krasnoludzkich kobiet, honoru oraz swoich bród. Podstawowe cechy: wzrost: 100 - 145cm, waga: 70 - 100kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 500 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
 
                   mainFeaturesRace.splice(0, 1, 4);
@@ -525,7 +543,7 @@ module.exports.chooseRace = function () {
                   $("#infoRace").text("krasnolud");
                   break;
 
-            case "orc":
+            case "ork":
                   $("#raceDecription").text("Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
 
                   mainFeaturesRace.splice(0, 1, 5);
@@ -561,7 +579,7 @@ module.exports.chooseOccupation = function () {
     var mainFeaturesOccupation = [];
 
     switch (inputOccupationChecked) {
-        case "warrior":
+        case "wojownik":
             $("#occupationDecription").text("Wojownicy to specjaliści we władaniu każdą bronią białą bronią. Są podstawą wszystkich armii świata, ale także mogą podróżwać samotni lub w niewielkich grupach. Wielu idących drogą wojownika zdobyło sławę w bitwach czy pogromcy smoków. Będąc wojownikiem zwiedzisz świat.");
 
             mainFeaturesOccupation.splice(0, 1, 5);
@@ -578,7 +596,7 @@ module.exports.chooseOccupation = function () {
             $("#infoOccupation").text("wojownik");
             break;
 
-        case "bandit":
+        case "złoczyńca":
             $("#occupationDecription").text("Trucizny. Pułapki. Skrytobójstwo. To wszystko i wiele innych rzeczy zapewni Tobie droga złoczyńcy. Już w każdym mniejszym miasteczku, są odpowiednie organizacje, które wyszkolą Cię na nieustraszonego rzezimieszka.");
 
             mainFeaturesOccupation.splice(0, 1, 0);
@@ -595,7 +613,7 @@ module.exports.chooseOccupation = function () {
             $("#infoOccupation").text("złoczyńca");
             break;
 
-        case "wizard":
+        case "czarodziej":
             $("#occupationDecription").text("Czarodziej to brzmi dumnie. Po wielu latach spędzonych na nauce. Będzie wzbudzał szacunek swoją tylko osobą, a wrogowie będą uciekać w panice przed Twoimi kulami ognia.");
 
             mainFeaturesOccupation.splice(0, 1, 0);
@@ -724,19 +742,19 @@ module.exports.sexCheck = function () {
   var inputSexChecked = $('input:radio[name=sex]:checked').val();
 
   switch (inputSexChecked) {
-    case "female":
+    case "kobieta":
       $("#featPart2Description").text("Kobieta - żeńska wersja, każdej rasy.");
       mainFeaturesPart2.splice(0, 1, "kobieta");
       module.exports.sex = mainFeaturesPart2[0];
       break;
 
-    case "male":
+    case "mężczyzna":
       $("#featPart2Description").text("Mężczyzna - męska wersja, każdej rasy.");
       mainFeaturesPart2.splice(0, 1, "mężczyzna");
       module.exports.sex = mainFeaturesPart2[0];
       break;
 
-    case "other":
+    case "inna":
       $("#featPart2Description").text("Inna - Bogowie nudzili się i wymyślili krzyżówkę chłopa z babą.");
       mainFeaturesPart2.splice(0, 1, "inna");
       module.exports.sex = mainFeaturesPart2[0];
@@ -789,7 +807,7 @@ module.exports.eyesColorCheck = function () {
     case "szare":
       $("#featPart2Description").text("Szare.");
       mainFeaturesPart2.splice(2, 1, "szare");
-      module.exports.eye = mainFeaturesPart2[2];
+      module.exports.eyes = mainFeaturesPart2[2];
       break;
 
     case "brązowe":
@@ -856,7 +874,7 @@ module.exports.heightCheck = function () {
   }
 };
 
-//skin
+//skóra
 module.exports.skinCheck = function () {
   var inputSkinChecked = $('input:radio[name=skin]:checked').val();
 
@@ -891,12 +909,6 @@ module.exports.skinCheck = function () {
       module.exports.skin = mainFeaturesPart2[5];
       break;
 
-    case "błękitna":
-      $("#featPart2Description").text("błęitna");
-      mainFeaturesPart2.splice(5, 1, "błękitna");
-      module.exports.skin = mainFeaturesPart2[5];
-      break;
-
     case "zielona":
       $("#featPart2Description").text("zielona");
       mainFeaturesPart2.splice(5, 1, "zielona");
@@ -906,6 +918,12 @@ module.exports.skinCheck = function () {
     case "brunatna":
       $("#featPart2Description").text("brunatna");
       mainFeaturesPart2.splice(5, 1, "brunatna");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "błękitna":
+      $("#featPart2Description").text("błękitna");
+      mainFeaturesPart2.splice(5, 1, "błękitna");
       module.exports.skin = mainFeaturesPart2[5];
       break;
   }

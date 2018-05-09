@@ -64,22 +64,22 @@
 									<p class="style1">Wybór rasy</p>
 									<form id="chooseRace">
 											<div>
-												<input type="radio" value="human" name="race" id="human">
+												<input type="radio" value="człowiek" name="race" id="human">
 												<label for="human">człowiek</label>
 											</div>
 
 											<div>
-												<input type="radio" value="elv" name="race" id="elv">
+												<input type="radio" value="elf" name="race" id="elv">
 												<label for="elv">elf</label>
 											</div>
 
 											<div>
-												<input type="radio" value="dwarf" name="race" id="dwarf">
+												<input type="radio" value="krasnolud" name="race" id="dwarf">
 												<label for="dwarf">krasnolud</label>
 											</div>
 
 											<div>
-												<input type="radio" value="orc" name="race" id="orc">
+												<input type="radio" value="ork" name="race" id="orc">
 												<label for="orc">ork</label>
 											</div>
 											<div id="chooseRaceDescription">
@@ -94,17 +94,17 @@
 									<p class="style1">Wybór profesji</p>
 									<form id="chooseOccupation">
 											<div>
-												<input type="radio" value="warrior" name="occupation" id="warrior">
+												<input type="radio" value="wojownik" name="occupation" id="warrior">
 												<label for="warrior">wojownik</label>
 											</div>
 
 											<div>
-												<input type="radio" value="bandit" name="occupation" id="bandit">
+												<input type="radio" value="złoczyńca" name="occupation" id="bandit">
 												<label for="bandit">złoczyńca</label>
 											</div>
 
 											<div>
-												<input type="radio" value="wizard" name="occupation" id="wizard">
+												<input type="radio" value="czarodziej" name="occupation" id="wizard">
 												<label for="wizard">czarodziej</label>
 											</div>
 
@@ -187,7 +187,7 @@
 											<legend>waga</legend>
 											<label><input type="radio" value="niedowaga" name="weight">niedowaga</label>
 											<label><input type="radio" value="normalna" name="weight">normalna</label>
-											<label><input type="radio" value="nadwaga" name="weight">zbyt duża</label>
+											<label><input type="radio" value="nadwaga" name="weight">nadwaga</label>
 										</fieldset>
 
 										<fieldset class="height">
@@ -198,16 +198,17 @@
 										</fieldset>
 
 										<fieldset class="skin">
-											<legend>skóra</legend>
+											<legend>wzrost</legend>
 											<label><input type="radio" value="biała" name="skin">biała</label>
 											<label><input type="radio" value="brązowa" name="skin">brązowa</label>
 											<label><input type="radio" value="czarna" name="skin">czarna</label>
 											<label><input type="radio" value="czerwona" name="skin">czerwona</label>
 											<label><input type="radio" value="żółta" name="skin">żółta</label>
-											<label><input type="radio" value="błękitna" name="skin">błękitna</label>
 											<label><input type="radio" value="zielona" name="skin">zielona</label>
 											<label><input type="radio" value="brunatna" name="skin">brunatna</label>
+											<label><input type="radio" value="błękitna" name="skin">błękitna</label>
 										</fieldset>
+
 									</form>
 									<div id="featPart2Description"></div>
 								</li>
@@ -333,10 +334,10 @@
 
 					<!-- seventh slide -->
 								<li>
-									<div>
-										<h2 id="allInfo">Informacja zbiorcza</h2>
+									<div id="mainInfo">
+										<h2 class="infoDescription">Informacja zbiorcza</h2>
 
-										<div id="first"><!-- rasa i profesja -->
+										<div><!-- rasa i profesja -->
 												<div>
 													<p>rasa</p>
 													<p id="raceFromFile"></p>
@@ -400,20 +401,19 @@
 												<p>wzrost</p>
 												<p id="heightFromFile"></p>
 											</div>
+
+											<div>
+												<p>skóra</p>
+												<p id="skinFromFile"></p>
+											</div>
 										</div>
 
-										<div>
-											<p>skóra</p>
-											<p id="skinFromFile"></p>
-										</div>
-									</div>
-
-										<div><!-- sprzęt-->
+									<div class="equipmentStyle"><!-- sprzęt-->
 											<p>sprzęt</p>
 											<p id="equipmentFromFile"></p>
 										</div>
 
-										<div><!-- umiejętności -->
+										<div class="skillsStyles"><!-- umiejętności -->
 											<p>umiejętności</p>
 											<p id="skillsFromFile"></p>
 										</div>

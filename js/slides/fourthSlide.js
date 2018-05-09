@@ -9,19 +9,19 @@ module.exports.sexCheck = function(){
     let inputSexChecked = $('input:radio[name=sex]:checked').val();
 
     switch (inputSexChecked) {
-        case "female":
+        case "kobieta":
           $("#featPart2Description").text("Kobieta - żeńska wersja, każdej rasy.");
           mainFeaturesPart2.splice(0, 1, "kobieta");
           module.exports.sex = mainFeaturesPart2[0];
        break;
 
-        case "male":
+        case "mężczyzna":
           $("#featPart2Description").text("Mężczyzna - męska wersja, każdej rasy.");
           mainFeaturesPart2.splice(0, 1, "mężczyzna");
           module.exports.sex = mainFeaturesPart2[0];
         break;
 
-        case "other":
+        case "inna":
           $("#featPart2Description").text("Inna - Bogowie nudzili się i wymyślili krzyżówkę chłopa z babą.");
           mainFeaturesPart2.splice(0, 1, "inna");
           module.exports.sex = mainFeaturesPart2[0];
@@ -74,7 +74,7 @@ module.exports.eyesColorCheck = function(){
         case "szare":
           $("#featPart2Description").text("Szare.");
           mainFeaturesPart2.splice(2, 1, "szare");
-          module.exports.eye = mainFeaturesPart2[2];
+          module.exports.eyes = mainFeaturesPart2[2];
         break;
 
         case "brązowe":
@@ -141,7 +141,7 @@ module.exports.heightCheck = function(){
      }
 }
 
-//skin
+//skóra
 module.exports.skinCheck = function(){
     let inputSkinChecked = $('input:radio[name=skin]:checked').val();
 
@@ -176,12 +176,6 @@ module.exports.skinCheck = function(){
           module.exports.skin = mainFeaturesPart2[5];
         break;
 
-        case "błękitna":
-          $("#featPart2Description").text("błęitna");
-          mainFeaturesPart2.splice(5, 1, "błękitna");
-          module.exports.skin = mainFeaturesPart2[5];
-        break;
-
         case "zielona":
           $("#featPart2Description").text("zielona");
           mainFeaturesPart2.splice(5, 1, "zielona");
@@ -191,6 +185,12 @@ module.exports.skinCheck = function(){
         case "brunatna":
           $("#featPart2Description").text("brunatna");
           mainFeaturesPart2.splice(5, 1, "brunatna");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "błękitna":
+          $("#featPart2Description").text("błękitna");
+          mainFeaturesPart2.splice(5, 1, "błękitna");
           module.exports.skin = mainFeaturesPart2[5];
         break;
      }

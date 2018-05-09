@@ -106,7 +106,7 @@ $(".hairColor input").on("click", () =>{ fourthSlide.hairColorCheck(); });
 $(".eyesColor input").on("click", () =>{ fourthSlide.eyesColorCheck(); });
 $(".weight input").on("click", () =>{ fourthSlide.weightCheck(); });
 $(".height input").on("click", () =>{ fourthSlide.heightCheck(); });
-$(".skin input").on("click", () => { fourthSlide.skinCheck(); })
+$(".skin input").on("click", () => {fourthSlide.skinCheck(); });
 
 //fifth slide choose equipment
 $("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });
@@ -115,9 +115,24 @@ $("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });
 $("#chooseSkill input").on("click", function(){ sixthSlide.skill(); });
 
 //seventh slide
+
+//enabled button game
+// heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
+let heroArrayFeatures1 = [];
+
+//heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
+let heroArrayFeatures2 = [];
+
+// heroEquip = [equipment];
+let heroEquip = [];
+
+// heroEquip = [skills];
+let heroSkills = [];
+
+
 let addAllInfo = () => {
 
-//sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, zwrostu i skóry
+//sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, wzrostu i skóry
 let rFF = $("#raceFromFile");
 let oFF = $("#occupationFromFile");
 let sexFF = $("#sexFromFile");
@@ -126,13 +141,12 @@ let eyesFF = $("#eyesFromFile");
 let wFF = $("#weightFromFile");
 let heightFF = $("#heightFromFile");
 let skinFF = $("#skinFromFile");
-console.log(skinFF.text());
 
 function checkRadio(inputRadio, zz, dd){
   if( inputRadio === undefined){
     zz.text("wybierz " + dd);
   }else{
-    zz.text(inputRadio);
+    zz.text(inputRadio).css("color", "black");
   }
 }
 
@@ -154,7 +168,7 @@ let cFF = $("#charismaFromFile");
 
 function check2 (race, occupation, randomPoints, ll){
   if(!isNaN(race) && !isNaN(occupation) && !isNaN(randomPoints)){
-      ll.text((race + occupation + randomPoints));
+      ll.text((race + occupation + randomPoints)).css("color", "black");
   }else{
       ll.text("wybierz rasę, profesję i wylosuj punkty");
   }
@@ -174,7 +188,7 @@ function checkArray(array, zb, dh){
   if(array === undefined){
     zb.text("wybierz " + dh);
   }else{
-    zb.text(array);
+    zb.text(array).css("color", "black");
   }
 }
 
@@ -190,8 +204,7 @@ let textHair = hFF.text();
 let textEyes = eyesFF.text();
 let textWeight = wFF.text();
 let textHeight = heightFF.text();
-let textSkin =skinFF.text();
-console.log(textSkin)
+let textSkin = skinFF.text();
 
 let textForce = fFF.text();
 let textStrenght = sFF.text();
@@ -203,7 +216,7 @@ let textEquip = equipFF.text();
 let textSkills = skillsFF.text();
 
 function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o){
-  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || o == "wybierz skórę" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == ""){
+  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" ||  h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "" || o == "wybierz skórę"){
     $("#game").prop("disabled", true);
   }else{
     $("#game").prop("disabled", false);
@@ -211,6 +224,14 @@ function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o){
 }
 
 checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
+
 }
+
+$("#game").on("click",  () =>{
+
+heroArrayFeatures1.push(firstSlide.race);
+console.log(heroArrayFeatures1);
+});
+
 
 });

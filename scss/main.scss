@@ -232,3 +232,67 @@ html,body{
 	}
 }
 }
+
+//styles fourth slide choose features part 2
+.sex{
+  width: 30%;
+  border: 1px solid gold;
+  padding: 5px 0 5px 5px;
+
+  legend{
+    text-indent: 10px;
+  }
+
+  label:nth-child(1){
+    padding-left: 10px;
+  }
+
+  label{
+    padding-right: 10px;
+  }
+}
+
+//style for seventh slide
+
+#mainInfo{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  h2{
+    width: 100%;
+    text-align: center;
+  }
+
+div{
+  width: 33%;
+    text-align: center;
+    margin-top: 10px;
+
+    div{
+      width: 100%;
+      color: white;
+      p{
+          width: 100%;
+      }
+
+      p:nth-child(2){
+        color: red;
+        font-weight: bold;
+      }
+    }
+  }
+
+}
+
+.equipmentStyle, .skillsStyles{
+  p{
+      width: 100%;
+      color: white;
+      margin-top: 20px;
+  }
+
+  p:nth-child(2){
+    color: red;
+    font-weight: bold;
+  }
+}

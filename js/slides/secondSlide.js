@@ -8,7 +8,7 @@ module.exports.occupation = inputOccupationChecked;
     let mainFeaturesOccupation = [];
 
     switch (inputOccupationChecked) {
-    case "warrior":
+    case "wojownik":
       $("#occupationDecription").text("Wojownicy to specjaliści we władaniu każdą bronią białą bronią. Są podstawą wszystkich armii świata, ale także mogą podróżwać samotni lub w niewielkich grupach. Wielu idących drogą wojownika zdobyło sławę w bitwach czy pogromcy smoków. Będąc wojownikiem zwiedzisz świat.");
 
       mainFeaturesOccupation.splice(0, 1, 5);
@@ -25,7 +25,7 @@ module.exports.occupation = inputOccupationChecked;
       $("#infoOccupation").text("wojownik");
     break;
 
-    case "bandit":
+    case "złoczyńca":
       $("#occupationDecription").text("Trucizny. Pułapki. Skrytobójstwo. To wszystko i wiele innych rzeczy zapewni Tobie droga złoczyńcy. Już w każdym mniejszym miasteczku, są odpowiednie organizacje, które wyszkolą Cię na nieustraszonego rzezimieszka.");
 
       mainFeaturesOccupation.splice(0, 1, 0);
@@ -42,7 +42,7 @@ module.exports.occupation = inputOccupationChecked;
       $("#infoOccupation").text("złoczyńca");
     break;
 
-    case "wizard":
+    case "czarodziej":
         $("#occupationDecription").text("Czarodziej to brzmi dumnie. Po wielu latach spędzonych na nauce. Będzie wzbudzał szacunek swoją tylko osobą, a wrogowie będą uciekać w panice przed Twoimi kulami ognia.");
 
         mainFeaturesOccupation.splice(0, 1, 0);

@@ -7,7 +7,7 @@ module.exports.race = inputRaceChecked;
 let mainFeaturesRace = [];
 
 switch (inputRaceChecked) {
-      case "human":
+      case "człowiek":
         $("#raceDecription").text("Człowiek jedna z najbardziej licznych ras (ustępują jedynie goblinom). Są wszechstronni i wszędobylscy, dlatego też można spotkać ich na wszystkich kontynentach, parających się różnymi profesjami. Podstawowe cechy: wzrost: 150 - 210cm, waga: 40 - 120kg, kolor oczu: najczęściej piwne, szare, brązowe, kolor skóry: od białego do czarnego (wraz z odcieniami), żółta, czerwona, kolor włosów: każdy, wiek: do 100 lat, profesja: każda.");
 
       mainFeaturesRace.splice(0, 1, 0);
@@ -25,7 +25,7 @@ switch (inputRaceChecked) {
         $("#infoRace").text("człowiek");
       break;
 
-    case "elv":
+    case "elf":
       $("#raceDecription").text("Elfy to bardzo uzdolnieni czarodzieje. Pomimo olbrzymich umiejętności magicznych, są równie biegli w posługiwaniu się łukiem. Są długowieczni, przez co omyłkowo uznawani są za nieśmiertelnych. Podstawowe cechy: wzrost: 180 - 210cm, waga: 40 - 90kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 1500 lat, profesja: każda, z predyspozycjami do bycia czarodziejem.");
 
       mainFeaturesRace.splice(0, 1, -5);
@@ -43,7 +43,7 @@ switch (inputRaceChecked) {
 
     break;
 
-    case "dwarf":
+    case "krasnolud":
         $("#raceDecription").text("Przez swoje specyficzne podejście do rzeczywistości, postrzegani są jako najardziej chamowata rasa świata. Jednakże są wyśmienitymi kowalami, górnikami i wojownikami. Bardzo uczuleni na punkcie krasnoludzkich kobiet, honoru oraz swoich bród. Podstawowe cechy: wzrost: 100 - 145cm, waga: 70 - 100kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 500 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
 
         mainFeaturesRace.splice(0, 1, 4);
@@ -60,7 +60,7 @@ switch (inputRaceChecked) {
         $("#infoRace").text("krasnolud");
      break;
 
-     case "orc":
+     case "ork":
         $("#raceDecription").text("Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.");
 
         mainFeaturesRace.splice(0, 1, 5);
