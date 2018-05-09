@@ -215,6 +215,9 @@ document.addEventListener("DOMContentLoaded", function () {
   $(".height input").on("click", function () {
     fourthSlide.heightCheck();
   });
+  $(".skin input").on("click", function () {
+    fourthSlide.skinCheck();
+  });
 
   //fifth slide choose equipment
   $("#chooseEquipment input").on("click", function () {
@@ -229,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //seventh slide
   var addAllInfo = function addAllInfo() {
 
-    //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, waki i zwrostu
+    //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, zwrostu i skóry
     var rFF = $("#raceFromFile");
     var oFF = $("#occupationFromFile");
     var sexFF = $("#sexFromFile");
@@ -237,6 +240,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var eyesFF = $("#eyesFromFile");
     var wFF = $("#weightFromFile");
     var heightFF = $("#heightFromFile");
+    var skinFF = $("#skinFromFile");
+    console.log(skinFF.text());
 
     function checkRadio(inputRadio, zz, dd) {
       if (inputRadio === undefined) {
@@ -253,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
     checkRadio(fourthSlide.eyes, eyesFF, "kolor oczu");
     checkRadio(fourthSlide.weight, wFF, "wagę");
     checkRadio(fourthSlide.height, heightFF, "wzrost");
+    checkRadio(fourthSlide.skin, skinFF, "skórę");
 
     //sprawdzenie wylosowania punktów cech
     var fFF = $("#forceFromFile");
@@ -299,6 +305,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var textEyes = eyesFF.text();
     var textWeight = wFF.text();
     var textHeight = heightFF.text();
+    var textSkin = skinFF.text();
+    console.log(textSkin);
 
     var textForce = fFF.text();
     var textStrenght = sFF.text();
@@ -310,14 +318,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var textSkills = skillsFF.text();
 
     function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) {
-      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "") {
+      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || o == "wybierz skórę" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "") {
         $("#game").prop("disabled", true);
       } else {
         $("#game").prop("disabled", false);
       }
     }
 
-    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills);
+    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
   };
 });
 
@@ -708,7 +716,7 @@ module.exports.charismaTooltip = function () {
 //fourth slide choose features part 2
 //sex
 
-// mainFeaturesPart2  = [sex, skin, hairColor, eyesColor, weight, height]
+// mainFeaturesPart2  = [sex, skin, hairColor, eyesColor, weight, height, skóra]
 
 var mainFeaturesPart2 = [];
 
@@ -844,6 +852,61 @@ module.exports.heightCheck = function () {
       $("#featPart2Description").text("wysoki");
       mainFeaturesPart2.splice(4, 1, "wysoki");
       module.exports.height = mainFeaturesPart2[4];
+      break;
+  }
+};
+
+//skin
+module.exports.skinCheck = function () {
+  var inputSkinChecked = $('input:radio[name=skin]:checked').val();
+
+  switch (inputSkinChecked) {
+    case "biała":
+      $("#featPart2Description").text("biała");
+      mainFeaturesPart2.splice(5, 1, "biała");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "brązowa":
+      $("#featPart2Description").text("brązowa");
+      mainFeaturesPart2.splice(5, 1, "brązowa");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "czarna":
+      $("#featPart2Description").text("czarna");
+      mainFeaturesPart2.splice(5, 1, "czarna");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "czerwona":
+      $("#featPart2Description").text("czerwona");
+      mainFeaturesPart2.splice(5, 1, "czerwona");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "żółta":
+      $("#featPart2Description").text("żółta");
+      mainFeaturesPart2.splice(5, 1, "żółta");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "błękitna":
+      $("#featPart2Description").text("błęitna");
+      mainFeaturesPart2.splice(5, 1, "błękitna");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "zielona":
+      $("#featPart2Description").text("zielona");
+      mainFeaturesPart2.splice(5, 1, "zielona");
+      module.exports.skin = mainFeaturesPart2[5];
+      break;
+
+    case "brunatna":
+      $("#featPart2Description").text("brunatna");
+      mainFeaturesPart2.splice(5, 1, "brunatna");
+      module.exports.skin = mainFeaturesPart2[5];
       break;
   }
 };

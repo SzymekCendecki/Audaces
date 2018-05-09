@@ -1,7 +1,7 @@
 //fourth slide choose features part 2
 //sex
 
-// mainFeaturesPart2  = [sex, skin, hairColor, eyesColor, weight, height]
+// mainFeaturesPart2  = [sex, skin, hairColor, eyesColor, weight, height, skóra]
 
 let mainFeaturesPart2 = [];
 
@@ -137,6 +137,61 @@ module.exports.heightCheck = function(){
           $("#featPart2Description").text("wysoki");
           mainFeaturesPart2.splice(4, 1, "wysoki");
           module.exports.height = mainFeaturesPart2[4];
+        break;
+     }
+}
+
+//skin
+module.exports.skinCheck = function(){
+    let inputSkinChecked = $('input:radio[name=skin]:checked').val();
+
+    switch (inputSkinChecked) {
+        case "biała":
+          $("#featPart2Description").text("biała");
+          mainFeaturesPart2.splice(5, 1, "biała");
+          module.exports.skin = mainFeaturesPart2[5];
+       break;
+
+        case "brązowa":
+          $("#featPart2Description").text("brązowa");
+          mainFeaturesPart2.splice(5, 1, "brązowa");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "czarna":
+          $("#featPart2Description").text("czarna");
+          mainFeaturesPart2.splice(5, 1, "czarna");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "czerwona":
+          $("#featPart2Description").text("czerwona");
+          mainFeaturesPart2.splice(5, 1, "czerwona");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "żółta":
+          $("#featPart2Description").text("żółta");
+          mainFeaturesPart2.splice(5, 1, "żółta");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "błękitna":
+          $("#featPart2Description").text("błęitna");
+          mainFeaturesPart2.splice(5, 1, "błękitna");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "zielona":
+          $("#featPart2Description").text("zielona");
+          mainFeaturesPart2.splice(5, 1, "zielona");
+          module.exports.skin = mainFeaturesPart2[5];
+        break;
+
+        case "brunatna":
+          $("#featPart2Description").text("brunatna");
+          mainFeaturesPart2.splice(5, 1, "brunatna");
+          module.exports.skin = mainFeaturesPart2[5];
         break;
      }
 }

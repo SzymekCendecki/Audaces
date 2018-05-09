@@ -106,6 +106,7 @@ $(".hairColor input").on("click", () =>{ fourthSlide.hairColorCheck(); });
 $(".eyesColor input").on("click", () =>{ fourthSlide.eyesColorCheck(); });
 $(".weight input").on("click", () =>{ fourthSlide.weightCheck(); });
 $(".height input").on("click", () =>{ fourthSlide.heightCheck(); });
+$(".skin input").on("click", () => { fourthSlide.skinCheck(); })
 
 //fifth slide choose equipment
 $("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });
@@ -116,7 +117,7 @@ $("#chooseSkill input").on("click", function(){ sixthSlide.skill(); });
 //seventh slide
 let addAllInfo = () => {
 
-//sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, waki i zwrostu
+//sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, zwrostu i skóry
 let rFF = $("#raceFromFile");
 let oFF = $("#occupationFromFile");
 let sexFF = $("#sexFromFile");
@@ -124,6 +125,8 @@ let hFF = $("#hairFromFile");
 let eyesFF = $("#eyesFromFile");
 let wFF = $("#weightFromFile");
 let heightFF = $("#heightFromFile");
+let skinFF = $("#skinFromFile");
+console.log(skinFF.text());
 
 function checkRadio(inputRadio, zz, dd){
   if( inputRadio === undefined){
@@ -140,6 +143,7 @@ checkRadio(fourthSlide.hair, hFF, "włosy");
 checkRadio(fourthSlide.eyes, eyesFF, "kolor oczu");
 checkRadio(fourthSlide.weight, wFF, "wagę");
 checkRadio(fourthSlide.height, heightFF, "wzrost");
+checkRadio(fourthSlide.skin, skinFF, "skórę");
 
 //sprawdzenie wylosowania punktów cech
 let fFF = $("#forceFromFile");
@@ -186,6 +190,8 @@ let textHair = hFF.text();
 let textEyes = eyesFF.text();
 let textWeight = wFF.text();
 let textHeight = heightFF.text();
+let textSkin =skinFF.text();
+console.log(textSkin)
 
 let textForce = fFF.text();
 let textStrenght = sFF.text();
@@ -197,14 +203,14 @@ let textEquip = equipFF.text();
 let textSkills = skillsFF.text();
 
 function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o){
-  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == ""){
+  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || o == "wybierz skórę" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == ""){
     $("#game").prop("disabled", true);
   }else{
     $("#game").prop("disabled", false);
   }
 }
 
-checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills);
+checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
 }
 
 });
