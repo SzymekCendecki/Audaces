@@ -60,40 +60,47 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1);
+"use strict";
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
-var intro = __webpack_require__(2);
-var mainMenu = __webpack_require__(3);
-var arrays = __webpack_require__(4);
-var heroCreator = __webpack_require__(5);
-var firstSlide = __webpack_require__(6);
-var secondSlide = __webpack_require__(7);
-var thirdSlide = __webpack_require__(8);
-var fourthSlide = __webpack_require__(9);
-var fifthSlide = __webpack_require__(10);
-var sixthSlide = __webpack_require__(11);
-var seventhSlide = __webpack_require__(12);
+var intro = __webpack_require__(3);
+var mainMenu = __webpack_require__(4);
+var arrays = __webpack_require__(5);
+var heroCreator = __webpack_require__(6);
+var firstSlide = __webpack_require__(7);
+var secondSlide = __webpack_require__(8);
+var thirdSlide = __webpack_require__(9);
+var fourthSlide = __webpack_require__(10);
+var fifthSlide = __webpack_require__(11);
+var sixthSlide = __webpack_require__(12);
+var seventhSlide = __webpack_require__(0);
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("NIEWIERNE PSY RULEZ!!!!");
 
   // hidden elements
-  $("#title, #startOptionsGame, #hello, .slider, #slider").hide();
+  $("#title, #startOptionsGame, #hello, .slider, #slider, #gameAnim, #name").hide();
 
   //intro - inscription and title
   setTimeout(intro.hideInscription, 5000);
@@ -230,20 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //seventh slide
-
-  //enabled button game
-  // heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
-  var heroArrayFeatures1 = [];
-
-  //heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
-  var heroArrayFeatures2 = [];
-
-  // heroEquip = [equipment];
-  var heroEquip = [];
-
-  // heroEquip = [skills];
-  var heroSkills = [];
-
   var addAllInfo = function addAllInfo() {
 
     //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, wzrostu i skóry
@@ -338,17 +331,57 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
+
+    $("#game").on("click", function () {
+
+      //enabled button game
+      // heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
+      var heroArrayFeatures1 = [];
+
+      //heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
+      var heroArrayFeatures2 = [];
+
+      // heroEquip = [equipment];
+      var heroEquip = [];
+
+      // heroEquip = [skills];
+      var heroSkills = [];
+
+      heroArrayFeatures1.push(textRace);
+      heroArrayFeatures1.push(textOccupation);
+      heroArrayFeatures1.push(textSex);
+      heroArrayFeatures1.push(textHair);
+      heroArrayFeatures1.push(textEyes);
+      heroArrayFeatures1.push(textWeight);
+      heroArrayFeatures1.push(textHeight);
+      heroArrayFeatures1.push(textSkin);
+
+      heroArrayFeatures2.push(parseInt(textForce));
+      heroArrayFeatures2.push(parseInt(textStrenght));
+      heroArrayFeatures2.push(parseInt(textSkill));
+      heroArrayFeatures2.push(parseInt(textIntellectuals));
+      heroArrayFeatures2.push(parseInt(textCharisma));
+
+      heroEquip.push(fifthSlide.equipArray);
+      heroSkills.push(sixthSlide.skillArray);
+
+      $("#name").fadeIn(500);
+
+      $("#name").on("click", function () {
+        var name = $("#giveName").val();
+        heroArrayFeatures1.splice(8, 1, name);
+        console.log(heroArrayFeatures1);
+      });
+
+      console.log(heroArrayFeatures1);
+      //$("#slider").fadeOut(750);
+      //$("#gameAnim").delay(800).fadeIn(650);
+    });
   };
-
-  $("#game").on("click", function () {
-
-    heroArrayFeatures1.push(firstSlide.race);
-    console.log(heroArrayFeatures1);
-  });
 });
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,7 +401,7 @@ module.exports.hideTitle = function hideTitle() {
 };
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -396,11 +429,13 @@ module.exports.tutorial = function tutorial() {
 };
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var seventhSlide = __webpack_require__(0);
 
 //Arrays for creator
 //main races
@@ -431,13 +466,13 @@ var skillsBandit = ["przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobat
 var skillWizard = ["pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów", "tworzenie eliksirów", "tworzenie mag. przedmiotów", "tworzenie maści", "astrologia", "tworzenie mag. runów", "zielarstwo"];
 
 var bonusesArray = [-5, -3, -2, 0, 4, 5, 10];
+
 module.exports.show = function () {
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
-  console.log(humanFeatures);
 
   //współczynniki z profesji
   //wojownik siła +5, wytrzymałość +5
@@ -455,11 +490,10 @@ module.exports.show = function () {
   //<p id="infoSkill"></p>
   //<p id="infoIntellectuals"></p>
   //<p id="infoCharisma"></p>
-
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -475,7 +509,7 @@ module.exports.showCreator = function showCreator() {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -563,7 +597,7 @@ module.exports.chooseRace = function () {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -633,7 +667,7 @@ module.exports.chooseOccupation = function () {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -725,7 +759,7 @@ module.exports.charismaTooltip = function () {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -930,7 +964,7 @@ module.exports.skinCheck = function () {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -957,7 +991,7 @@ module.exports.equipment = function () {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -986,13 +1020,6 @@ module.exports.skill = function () {
 
   module.exports.skillArray = skillArray;
 };
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 /***/ })
 /******/ ]);

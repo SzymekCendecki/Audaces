@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
 
 // hidden elements
-$("#title, #startOptionsGame, #hello, .slider, #slider").hide();
+$("#title, #startOptionsGame, #hello, .slider, #slider, #gameAnim, #name").hide();
 
 //intro - inscription and title
 setTimeout(intro.hideInscription, 5000);
@@ -115,21 +115,6 @@ $("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });
 $("#chooseSkill input").on("click", function(){ sixthSlide.skill(); });
 
 //seventh slide
-
-//enabled button game
-// heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
-let heroArrayFeatures1 = [];
-
-//heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
-let heroArrayFeatures2 = [];
-
-// heroEquip = [equipment];
-let heroEquip = [];
-
-// heroEquip = [skills];
-let heroSkills = [];
-
-
 let addAllInfo = () => {
 
 //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, wzrostu i skóry
@@ -225,13 +210,53 @@ function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o){
 
 checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
 
-}
-
 $("#game").on("click",  () =>{
 
-heroArrayFeatures1.push(firstSlide.race);
-console.log(heroArrayFeatures1);
-});
+  //enabled button game
+  // heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
+  let heroArrayFeatures1 = [];
 
+  //heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
+  let heroArrayFeatures2 = [];
+
+  // heroEquip = [equipment];
+  let heroEquip = [];
+
+  // heroEquip = [skills];
+  let heroSkills = [];
+
+heroArrayFeatures1.push(textRace);
+heroArrayFeatures1.push(textOccupation);
+heroArrayFeatures1.push(textSex);
+heroArrayFeatures1.push(textHair);
+heroArrayFeatures1.push(textEyes);
+heroArrayFeatures1.push(textWeight);
+heroArrayFeatures1.push(textHeight);
+heroArrayFeatures1.push(textSkin);
+
+heroArrayFeatures2.push(parseInt(textForce));
+heroArrayFeatures2.push(parseInt(textStrenght));
+heroArrayFeatures2.push(parseInt(textSkill));
+heroArrayFeatures2.push(parseInt(textIntellectuals));
+heroArrayFeatures2.push(parseInt(textCharisma));
+
+heroEquip.push(fifthSlide.equipArray);
+heroSkills.push(sixthSlide.skillArray);
+
+
+$("#name").fadeIn(500);
+
+$("#name").on("click", function(){
+  let name = $("#giveName").val();
+  heroArrayFeatures1.splice(8, 1, name);
+  console.log(heroArrayFeatures1);
+})
+
+console.log(heroArrayFeatures1);
+//$("#slider").fadeOut(750);
+//$("#gameAnim").delay(800).fadeIn(650);
+
+});
+}
 
 });

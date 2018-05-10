@@ -1,3 +1,5 @@
+let seventhSlide = require("./slides/seventhSlide.js");
+
 //Arrays for creator
 //main races
 let races = ["człowiek", "elf", "krasnolud", "ork"];
@@ -27,13 +29,13 @@ let skillsBandit = ["przygotowanie trucizn", "wspinaczka", "aktorstwo", "akrobat
 let skillWizard = ["pisanie i czytanie", "przywołanie/odpędzenie demona", "wróżbiarstwo", "leczenie ran", "rzucanie czarów", "tworzenie eliksirów", "tworzenie mag. przedmiotów", "tworzenie maści", "astrologia", "tworzenie mag. runów", "zielarstwo"];
 
 let bonusesArray = [-5, -3, -2, 0, 4, 5, 10];
+
 module.exports.show = function(){
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
   humanFeatures.push(bonusesArray[3]);
-console.log(humanFeatures);
 
 //współczynniki z profesji
 //wojownik siła +5, wytrzymałość +5
@@ -51,6 +53,5 @@ console.log(humanFeatures);
 //<p id="infoSkill"></p>
 //<p id="infoIntellectuals"></p>
 //<p id="infoCharisma"></p>
-
 
 }
