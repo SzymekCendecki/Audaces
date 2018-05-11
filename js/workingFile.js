@@ -246,15 +246,24 @@ heroSkills.push(sixthSlide.skillArray);
 
 $("#name").fadeIn(500);
 
-$("#name").on("click", function(){
-  let name = $("#giveName").val();
+$("#name").on("click", () => {
+//  let name = event.target.value.replace(/\d/g, '');
+  let name = $("#giveName").val().replace(/\d/g, '');
   heroArrayFeatures1.splice(8, 1, name);
-  console.log(heroArrayFeatures1);
-})
 
-console.log(heroArrayFeatures1);
-//$("#slider").fadeOut(750);
-//$("#gameAnim").delay(800).fadeIn(650);
+if(heroArrayFeatures1[8] == ""){
+  console.log("Podaj swoje imie.");
+}else{
+  $("#slider, #name").fadeOut(750);
+  $("#gameAnim").delay(800).fadeIn(650);
+}
+});
+
+
+
+
+
+
 
 });
 }

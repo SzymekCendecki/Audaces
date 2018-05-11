@@ -368,14 +368,17 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#name").fadeIn(500);
 
       $("#name").on("click", function () {
-        var name = $("#giveName").val();
+        //  let name = event.target.value.replace(/\d/g, '');
+        var name = $("#giveName").val().replace(/\d/g, '');
         heroArrayFeatures1.splice(8, 1, name);
-        console.log(heroArrayFeatures1);
-      });
 
-      console.log(heroArrayFeatures1);
-      //$("#slider").fadeOut(750);
-      //$("#gameAnim").delay(800).fadeIn(650);
+        if (heroArrayFeatures1[8] == "") {
+          console.log("Podaj swoje imie.");
+        } else {
+          $("#slider, #name").fadeOut(750);
+          $("#gameAnim").delay(800).fadeIn(650);
+        }
+      });
     });
   };
 });
@@ -977,10 +980,13 @@ module.exports.equipment = function () {
   $.each($("input[name='item']:checked"), function () {
     equipmentArray.push($(this).val());
 
-    if (equipmentArray.length > 5) {
+    if (equipmentArray.length >= 5) {
+      $("input[name='item']").attr("checked", false).prop("disabled", true);
+      $("input[name='item']:checked").attr("checked", true).prop("disabled", false);
       $('#alertEquipment').text("Nie wybrać więcej niż 5 przedmiotów.");
       equipmentArray.pop();
     } else if (equipmentArray.length < 5) {
+      $("input[name='item']").prop("disabled", false);
       $('#alertEquipment').text("");
     }
   });
@@ -1002,18 +1008,25 @@ module.exports.skill = function () {
 
   $.each($("input[name='skill']:checked"), function () {
 
-    if (skillArray.indexOf($(this).val()) !== -1) {
-      console.log("Masz już tą umiejętność. wybierz inną");
-    } else {
-      skillArray.push($(this).val());
+    function skillCheck(skillToCheck) {
+      if (skillArray.indexOf(skillToCheck) !== -1) {
+        console.log("Masz już tą umiejętność. wybierz inną");
+      } else {
+        skillArray.push(skillToCheck);
+      }
+
+      if (skillArray.length > 3) {
+        $("input[name='skill']").attr("checked", false).prop("disabled", true);
+        $("input[name='skill']:checked").attr("checked", true).prop("disabled", false);
+        $('#alertSkill').text("Nie wybrać więcej niż 3 umiejętności.");
+        skillArray.pop();
+      } else if (skillArray.length < 3) {
+        $("input[name='skill']").prop("disabled", false);
+        $('#alertSkill').text("");
+      }
     }
 
-    if (skillArray.length > 3) {
-      $('#alertSkill').text("Nie wybrać więcej niż 3 umiejętności.");
-      skillArray.pop();
-    } else if (skill.length < 3) {
-      $('#alertSkill').text("");
-    }
+    skillCheck($(this).val());
   });
 
   $("#skillDescription").text("umiejętności: " + skillArray.join(", "));
