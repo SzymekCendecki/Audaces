@@ -59,6 +59,15 @@
 							<button class="control_next">następny</button>
 						</div>
 							<ul>
+								<li>
+									<div>
+											<p>wybór imienia</p>
+											<input type='text' id="giveName"/>
+											<button id="nameAccept">Zatwierdź</button>
+											<p id="choosenName"></p>
+									</div>
+								</li>
+
 								<!--first slide choose race -->
 								<li>
 									<p class="style1">Wybór rasy</p>
@@ -314,7 +323,13 @@
 									<div id="mainInfo">
 										<h2 class="infoDescription">Informacja zbiorcza</h2>
 
-										<div><!-- rasa i profesja -->
+										<div><!-- imię, rasa, profesja-->
+
+											<div>
+												<p>imię</p>
+												<p id="nameFromFile"></p>
+											</div>
+
 												<div>
 													<p>rasa</p>
 													<p id="raceFromFile"></p>
@@ -324,9 +339,9 @@
 													<p>profesja</p>
 													<p id="occupationFromFile"></p>
 												</div>
-										</div>
+											</div>
 
-										<div><!--siła, wytrzymałość, zręczność, inteligencja, charyzma -->
+									<div><!--siła, wytrzymałość, zręczność, inteligencja, charyzma -->
 											<div>
 												<p>siła</p>
 												<p id="forceFromFile"></p>
@@ -353,7 +368,7 @@
 											</div>
 										</div>
 
-										<div><!-- płeć, włosy, oczy, waga, wzrost -->
+										<div><!-- płeć, włosy, oczy, waga, wzrost, skóra-->
 											<div>
 												<p>płeć</p>
 												<p id="sexFromFile"></p>
@@ -401,13 +416,8 @@
 							</ul>
 					</div>
 
-					<div id="name">
-							<p>Podaj swoje imię</p>
-							<input type='text' id="giveName"/>
-							<button>Zatwierdź</button>
-					</div>
-
 					<div id="gameAnim">
+						<div id="partOne">
 							<p>Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.</p>
 
 							<p>Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.</p>
@@ -417,10 +427,13 @@
 							<p>Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.<p>
 
 							<p>Większość nie wraca...</p>
+						</div>
 
+						<div id="partTwo">
 							<p>Twoja historia zaczyna się w mieście Erharuf.</p>
 							<p>W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.</p>
-							<p>Na jego usilną prośbę zgadzasz się dostarczyć małą paczkę do wioski, która leży tuż na granicy z Dzikimi pustkowami.</p>
+							<p>Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego  w niewielkiej  wiosce, która leży tuż przy granicy z Dzikimi pustkowami.</p>
+						</div>
 					</div>
 
 			</section>

@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("NIEWIERNE PSY RULEZ!!!!");
 
   // hidden elements
-  $("#title, #startOptionsGame, #hello, .slider, #slider, #gameAnim, #name").hide();
+  $("#title, #startOptionsGame, #hello, .slider, #slider, #gameAnim").hide();
 
   //intro - inscription and title
   setTimeout(intro.hideInscription, 5000);
@@ -163,6 +163,23 @@ document.addEventListener("DOMContentLoaded", function () {
       addAllInfo();
       moveRight();
     });
+  });
+
+  //wybór imienia
+  var choosenName = $("#choosenName");
+
+  //sprawdzenie wyboru imienia
+  $("#nameAccept").on("click", function () {
+
+    var name = $("#giveName").val().replace(/\d/g, '');
+
+    if (name == "") {
+      $("#nameFromFile").text("podaj imię").css("color", "red");
+    } else {
+      choosenName.text(name);
+      $("#nameFromFile").text(name);
+      $("#nameFromFile").css("color", "black");
+    }
   });
 
   //first slide - choose race
@@ -228,7 +245,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //seventh slide
   var addAllInfo = function addAllInfo() {
-
     //sprawdzenie wybrania rasy, profesji, płci, włosów, koloru oczu, wagi, wzrostu i skóry
     var rFF = $("#raceFromFile");
     var oFF = $("#occupationFromFile");
@@ -238,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var wFF = $("#weightFromFile");
     var heightFF = $("#heightFromFile");
     var skinFF = $("#skinFromFile");
+    var nameFF = $("#nameFromFile");
 
     function checkRadio(inputRadio, zz, dd) {
       if (inputRadio === undefined) {
@@ -296,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var textRace = rFF.text();
     var textOccupation = oFF.text();
     var textSex = sexFF.text();
+    var textName = nameFF.text();
 
     var textHair = hFF.text();
     var textEyes = eyesFF.text();
@@ -312,20 +330,20 @@ document.addEventListener("DOMContentLoaded", function () {
     var textEquip = equipFF.text();
     var textSkills = skillsFF.text();
 
-    function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) {
-      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "" || o == "wybierz skórę") {
+    function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) {
+      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "" || o == "wybierz skórę" || p == "podaj imię" || p == "") {
         $("#game").prop("disabled", true);
       } else {
         $("#game").prop("disabled", false);
       }
     }
 
-    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin);
+    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin, textName);
 
     $("#game").on("click", function () {
 
       //enabled button game
-      // heroArray = [race, occupation, sex, hair, eyes, weight, height, skin]
+      // heroArray = [name, race, occupation, sex, hair, eyes, weight, height, skin]
       var heroArrayFeatures1 = [];
 
       //heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
@@ -337,6 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // heroEquip = [skills];
       var heroSkills = [];
 
+      heroArrayFeatures1.push(textName);
       heroArrayFeatures1.push(textRace);
       heroArrayFeatures1.push(textOccupation);
       heroArrayFeatures1.push(textSex);
@@ -355,20 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
       heroEquip.push(fifthSlide.equipArray);
       heroSkills.push(sixthSlide.skillArray);
 
-      $("#name").fadeIn(500);
-
-      $("#name").on("click", function () {
-        //  let name = event.target.value.replace(/\d/g, '');
-        var name = $("#giveName").val().replace(/\d/g, '');
-        heroArrayFeatures1.splice(8, 1, name);
-
-        if (heroArrayFeatures1[8] == "") {
-          console.log("Podaj swoje imie.");
-        } else {
-          $("#slider, #name").fadeOut(750);
-          $("#gameAnim").delay(800).fadeIn(650);
-        }
-      });
+      console.log(heroArrayFeatures1);
     });
   };
 });
