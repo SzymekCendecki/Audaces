@@ -160,45 +160,35 @@
 								<li>
 									<div>Wybór cech cz. 2</div>
 									<form>
-										<fieldset class="sex">
-											<legend>Płeć</legend>
+										<fieldset class="main">
+											<p>płeć</p>
 											<label><input type="radio" value="kobieta" name="sex">kobieta</label>
 											<label><input type="radio" value="mężczyzna" name="sex">mężczyzna</label>
 											<label><input type="radio" value="inna" name="sex">inna</label>
-										</fieldset>
 
-										<fieldset class="hairColor">
-											<legend>kolor włosów</legend>
+											<p>kolor włosów</p>
 											<label><input type="radio" value="blond" name="hairColor">blond</label>
 											<label><input type="radio" value="rude" name="hairColor">rude</label>
 											<label><input type="radio" value="czarne" name="hairColor">czarne</label>
 											<label><input type="radio" value="farbowane" name="hairColor">farbowane</label>
-										</fieldset>
 
-										<fieldset class="eyesColor">
-											<legend>kolor oczu</legend>
+											<p>kolor oczu</p>
 											<label><input type="radio" value="piwne" name="eyesColor">piwne</label>
 											<label><input type="radio" value="szare" name="eyesColor">szare</label>
 											<label><input type="radio" value="brązowe" name="eyesColor">brązowe</label>
 											<label><input type="radio" value="niebieskie" name="eyesColor">niebieskie</label>
-										</fieldset>
 
-										<fieldset class="weight">
-											<legend>waga</legend>
+											<p>waga</p>
 											<label><input type="radio" value="niedowaga" name="weight">niedowaga</label>
 											<label><input type="radio" value="normalna" name="weight">normalna</label>
 											<label><input type="radio" value="nadwaga" name="weight">nadwaga</label>
-										</fieldset>
 
-										<fieldset class="height">
-											<legend>wzrost</legend>
+											<p>wzrost</p>
 											<label><input type="radio" value="niski" name="height">niski</label>
 											<label><input type="radio" value="średni" name="height">średni</label>
 											<label><input type="radio" value="wysoki" name="height">wysoki</label>
-										</fieldset>
 
-										<fieldset class="skin">
-											<legend>wzrost</legend>
+											<p>kolor skóry</p>
 											<label><input type="radio" value="biała" name="skin">biała</label>
 											<label><input type="radio" value="brązowa" name="skin">brązowa</label>
 											<label><input type="radio" value="czarna" name="skin">czarna</label>
@@ -219,56 +209,49 @@
 									<div>Wybór ekwipunku</div>
 									<form id="chooseEquipment">
 										<fieldset>
-											<legend>broń</legend>
-											<label><input type="checkbox" name="item" value="sztylet">sztylet</label>
-											<label><input type="checkbox" name="item" value="drewniana pałka">drewniana pałka</label>
-											<label><input type="checkbox" name="item" value="krótki miecz">krótki miecz</label>
-											<label><input type="checkbox" name="item" value="szabla">szabla</label>
-											<label><input type="checkbox" name="item" value="włócznia">włócznia</label>
-											<label><input type="checkbox" name="item" value="proca">proca</label>
-											<label><input type="checkbox" name="item" value="łuk">łuk</label>
-										</fieldset>
+											<p>broń</p>
+											<input type="checkbox" name="item" value="sztylet">sztylet
+											<input type="checkbox" name="item" value="drewniana pałka">drewniana pałka
+											<input type="checkbox" name="item" value="krótki miecz">krótki miecz
+											<input type="checkbox" name="item" value="szabla">szabla
+											<input type="checkbox" name="item" value="włócznia">włócznia
+											<input type="checkbox" name="item" value="proca">proca
+											<input type="checkbox" name="item" value="łuk">łuk
 
-										<fieldset>
-											<legend>zbroja</legend>
-											<label><input type="checkbox" name="item" value="przeszywanica">przeszywanica</label>
-											<label><input type="checkbox" name="item" value="zbroja skórzana">skórzana</label>
-											<label><input type="checkbox" name="item" value="zbroja ćwiekowana">ćwiekowana</label>
-										</fieldset>
+											<p>zbroja</p>
+											<input type="checkbox" name="item" value="przeszywanica">przeszywanica
+											<input type="checkbox" name="item" value="zbroja skórzana">skórzana
+											<input type="checkbox" name="item" value="zbroja ćwiekowana">ćwiekowana
 
-										<fieldset>
-											<legend>tarcza</legend>
-											<label><input type="checkbox" name="item" value="puklerz">puklerz</label>
-											<label><input type="checkbox" name="item" value="tarcza mała drewniana">mała drewniana</label>
-											<label><input type="checkbox" name="item" value="tarcza mała metalowa">mała metalowa</label>
-										</fieldset>
+											<p>tarcza</p>
+											<input type="checkbox" name="item" value="puklerz">puklerz
+											<input type="checkbox" name="item" value="tarcza mała drewniana">mała drewniana
+											<input type="checkbox" name="item" value="tarcza mała metalowa">mała metalowa
 
-										<fieldset>
-											<legend>różne</legend>
-											<label><input type="checkbox" name="item" value="hubka i krzeiwo">hubka i krzesiwo</label>
-											<label><input type="checkbox" name="item" value="mieszek">mieszek</label>
-											<label><input type="checkbox" name="item" value="pas skórzany">pas skórzany</label>
-											<label><input type="checkbox" name="item" value="igły i nici">igły i nici</label>
-											<label><input type="checkbox" name="item" value="tuba na pergaminy">tuba na pergaminy</label>
+											<p>inne</p>
+											<input type="checkbox" name="item" value="hubka i krzeiwo">hubka i krzesiwo
+											<input type="checkbox" name="item" value="mieszek">mieszek
+										  <input type="checkbox" name="item" value="pas skórzany">pas skórzany
+											<input type="checkbox" name="item" value="igły i nici">igły i nici
+											<input type="checkbox" name="item" value="tuba na pergaminy">tuba na pergaminy
 
-											<label><input type="checkbox" name="item" value="pęk piór do pisania">pęk piór do pisania</label>
-											<label><input type="checkbox" name="item" value="pergaminy 5szt.">pergaminy 5szt.</label>
-											<label><input type="checkbox" name="item" value="zwykłe ubranie">zwykłe ubranie</label>
-											<label><input type="checkbox" name="item" value="płaszcz">płaszcz</label>
-											<label><input type="checkbox" name="item" value="fikuśny kapelusz">fikuśny kapelusz</label>
+											<input type="checkbox" name="item" value="pęk piór do pisania">pęk piór do pisania
+											<input type="checkbox" name="item" value="pergaminy 5szt.">pergaminy 5szt.
+											<input type="checkbox" name="item" value="zwykłe ubranie">zwykłe ubranie
+											<input type="checkbox" name="item" value="płaszcz">płaszcz
+											<input type="checkbox" name="item" value="fikuśny kapelusz">fikuśny kapelusz
 
-											<label><input type="checkbox" name="item" value="torba podróżna">torba podróżna</label>
-											<label><input type="checkbox" name="item" value="sakwa">sakwa</label>
-											<label><input type="checkbox" name="item" value="koc">koc</label>
-											<label><input type="checkbox" name="item" value="namiot">namiot</label>
-											<label><input type="checkbox" name="item" value="drewniana miska">drewniana miska</label>
+											<input type="checkbox" name="item" value="torba podróżna">torba podróżna
+											<input type="checkbox" name="item" value="sakwa">sakwa
+											<input type="checkbox" name="item" value="koc">koc
+											<input type="checkbox" name="item" value="namiot">namiot
+											<input type="checkbox" name="item" value="drewniana miska">drewniana miska
 
-											<label><input type="checkbox" name="item" value="drewniana łyżka">drewniana łyżka</label>
-											<label><input type="checkbox" name="item" value="pochodnia">pochodnia</label>
-											<label><input type="checkbox" name="item" value="lampa oliwna">lampa oliwna</label>
-											<label><input type="checkbox" name="item" value="kaganek">kaganek</label>
-
-											<label><input type="checkbox" name="item" value="lina 5m">lina 5m</label>
+											<input type="checkbox" name="item" value="drewniana łyżka">drewniana łyżka
+											<input type="checkbox" name="item" value="pochodnia">pochodnia
+											<input type="checkbox" name="item" value="lampa oliwna">lampa oliwna
+											<input type="checkbox" name="item" value="kaganek">kaganek
+											<input type="checkbox" name="item" value="lina 5m">lina 5m
 										</fieldset>
 									</form>
 									<div id="equipmentDescription"></div>
@@ -279,54 +262,48 @@
 								<li>
 									<div>Wybór umiejętności</div>
 									<form id="chooseSkill">
-										<fieldset>
-											<legend>Umiejętości wojownika</legend>
-											<label><input type="checkbox" name="skill" value="sztuka przetrwania">sztuka przetrwania</label>
-											<label><input type="checkbox" name="skill" value="dyscyplina">dyscyplina</label>
-											<label><input type="checkbox" name="skill" value="dowodzenie">dowodzenie</label>
-											<label><input type="checkbox" name="skill" value="uderzenie tarczą">uderzenie tarczą</label>
-											<label><input type="checkbox" name="skill" value="jeździectwo">jeździectwo</label>
-											<label><input type="checkbox" name="skill" value="sztylet">sztylet</label>
-											<label><input type="checkbox" name="skill" value="krótki miecz">krótki miecz</label>
-											<label><input type="checkbox" name="skill" value="szabla">szabla</label>
-											<label><input type="checkbox" name="skill" value="włócznia">włócznia</label>
-											<label><input type="checkbox" name="skill" value="łuk">łuk</label>
-											<label><input type="checkbox" name="skill" value="puklerz">puklerz</label>
-											<label><input type="checkbox" name="skill" value="mała tarcza drewniana">mała tarcza drewniana</label>
-											<label><input type="checkbox" name="skill" value="mała tarcza metalowa">mała tarcza metalowa</label>
-										</fieldset>
+										<p>Umiejętości wojownika</p>
+											<input type="checkbox" name="skill" value="sztuka przetrwania">sztuka przetrwania
+											<input type="checkbox" name="skill" value="dyscyplina">dyscyplina
+											<input type="checkbox" name="skill" value="dowodzenie">dowodzenie
+											<input type="checkbox" name="skill" value="uderzenie tarczą">uderzenie tarczą
+											<input type="checkbox" name="skill" value="jeździectwo">jeździectwo
+											<input type="checkbox" name="skill" value="sztylet">sztylet
+											<input type="checkbox" name="skill" value="krótki miecz">krótki miecz
+											<input type="checkbox" name="skill" value="szabla">szabla
+											<input type="checkbox" name="skill" value="włócznia">włócznia
+											<input type="checkbox" name="skill" value="łuk">łuk
+											<input type="checkbox" name="skill" value="puklerz">puklerz
+											<input type="checkbox" name="skill" value="mała tarcza drewniana">mała tarcza drewniana
+											<input type="checkbox" name="skill" value="mała tarcza metalowa">mała tarcza metalowa
 
-										<fieldset>
-											<legend>Umiejętości złoczyńczy</legend>
-											<label><input type="checkbox" name="skill" value="przygotowanie trucizn">przygotowanie trucizn</label>
-											<label><input type="checkbox" name="skill" value="wspinaczka">wspinaczka</label>
-											<label><input type="checkbox" name="skill" value="aktorstwo">aktorstwo</label>
-											<label><input type="checkbox" name="skill" value="akrobatyka">akrobatyka</label>
-											<label><input type="checkbox" name="skill" value="tworzenie pułapek">tworzenie pułapek</label>
-											<label><input type="checkbox" name="skill" value="skradanie się">skardanie się</label>
-											<label><input type="checkbox" name="skill" value="kradzież kieszonkowa">kradzież kieszkonowa</label>
-											<label><input type="checkbox" name="skill" value="uniki">uniki</label>
-											<label><input type="checkbox" name="skill" value="drewniana pałka">drewniana pałka</label>
-											<label><input type="checkbox" name="skill" value="sztylet">sztylet</label>
-											<label><input type="checkbox" name="skill" value="krótki miecz">krótki miecz</label>
-											<label><input type="checkbox" name="skill" value="blefowanie">blefowanie</label>
-										</fieldset>
+											<p>Umiejętości złoczyńczy</p>
+											<input type="checkbox" name="skill" value="przygotowanie trucizn">przygotowanie trucizn
+											<input type="checkbox" name="skill" value="wspinaczka">wspinaczka
+										  <input type="checkbox" name="skill" value="aktorstwo">aktorstwo
+											<input type="checkbox" name="skill" value="akrobatyka">akrobatyka
+											<input type="checkbox" name="skill" value="tworzenie pułapek">tworzenie pułapek
+											<input type="checkbox" name="skill" value="skradanie się">skardanie się
+											<input type="checkbox" name="skill" value="kradzież kieszonkowa">kradzież kieszkonowa
+											<input type="checkbox" name="skill" value="uniki">uniki
+											<input type="checkbox" name="skill" value="drewniana pałka">drewniana pałka
+											<input type="checkbox" name="skill" value="sztylet">sztylet
+											<input type="checkbox" name="skill" value="krótki miecz">krótki miecz
+											<input type="checkbox" name="skill" value="blefowanie">blefowanie
 
-										<fieldset>
-											<legend>Umiejętości czarodzieja</legend>
-											<label><input type="checkbox" name="skill" value="pisanie i czytanie">pisanie i czytanie</label>
-											<label><input type="checkbox" name="skill" value="przywołanie/odpędzenie demona">przywołanie/odpędzenie demona</label>
-											<label><input type="checkbox" name="skill" value="wróżbiarstwo">wróżbiarstwo</label>
-											<label><input type="checkbox" name="skill" value="leczenie ran">lecznie ran</label>
-											<label><input type="checkbox" name="skill" value="rzucanie czarów">rzucane czarów</label>
-											<label><input type="checkbox" name="skill" value="tworzenie eliksirów">tworzenie eliksirów</label>
-											<label><input type="checkbox" name="skill" value="tworzenie mag.przedmiotów">tworzenie mag. przedmiotów</label>
-											<label><input type="checkbox" name="skill" value="tworzenie maści">tworzenie maści</label>
-											<label><input type="checkbox" name="skill" value="astrologia">astrologia</label>
-											<label><input type="checkbox" name="skill" value="tworzenie runów">tworzenie runów</label>
-											<label><input type="checkbox" name="skill" value="zielarstwo">zielarstwo</label>
-										</fieldset>
-									</form>
+											<p>Umiejętości czarodzieja</p>
+											<input type="checkbox" name="skill" value="pisanie i czytanie">pisanie i czytanie
+										  <input type="checkbox" name="skill" value="przywołanie/odpędzenie demona">przywołanie/odpędzenie demona
+											<input type="checkbox" name="skill" value="wróżbiarstwo">wróżbiarstwo
+											<input type="checkbox" name="skill" value="leczenie ran">lecznie ran
+											<input type="checkbox" name="skill" value="rzucanie czarów">rzucane czarów
+											<input type="checkbox" name="skill" value="tworzenie eliksirów">tworzenie eliksirów
+											<input type="checkbox" name="skill" value="tworzenie mag.przedmiotów">tworzenie mag. przedmiotów
+											<input type="checkbox" name="skill" value="tworzenie maści">tworzenie maści
+										  <input type="checkbox" name="skill" value="astrologia">astrologia
+											<input type="checkbox" name="skill" value="tworzenie runów">tworzenie runów
+											<input type="checkbox" name="skill" value="zielarstwo">zielarstwo
+										</form>
 
 										<div id="skillDescription"></div>
 										<div id="alertSkill"></div>

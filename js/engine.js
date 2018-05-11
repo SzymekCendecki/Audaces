@@ -207,22 +207,12 @@ document.addEventListener("DOMContentLoaded", function () {
   thirdSlide.charismaTooltip();
 
   //fourth slide choose feature part 2
-  $(".sex input").on("click", function () {
+  $(".main input").on("click", function () {
     fourthSlide.sexCheck();
-  });
-  $(".hairColor input").on("click", function () {
     fourthSlide.hairColorCheck();
-  });
-  $(".eyesColor input").on("click", function () {
     fourthSlide.eyesColorCheck();
-  });
-  $(".weight input").on("click", function () {
     fourthSlide.weightCheck();
-  });
-  $(".height input").on("click", function () {
     fourthSlide.heightCheck();
-  });
-  $(".skin input").on("click", function () {
     fourthSlide.skinCheck();
   });
 
@@ -980,7 +970,7 @@ module.exports.equipment = function () {
   $.each($("input[name='item']:checked"), function () {
     equipmentArray.push($(this).val());
 
-    if (equipmentArray.length >= 5) {
+    if (equipmentArray.length > 5) {
       $("input[name='item']").attr("checked", false).prop("disabled", true);
       $("input[name='item']:checked").attr("checked", true).prop("disabled", false);
       $('#alertEquipment').text("Nie wybrać więcej niż 5 przedmiotów.");
@@ -1014,19 +1004,22 @@ module.exports.skill = function () {
       } else {
         skillArray.push(skillToCheck);
       }
+    }
 
-      if (skillArray.length > 3) {
+    function skillArrayCheck(array) {
+      if (array.length > 3) {
         $("input[name='skill']").attr("checked", false).prop("disabled", true);
         $("input[name='skill']:checked").attr("checked", true).prop("disabled", false);
         $('#alertSkill').text("Nie wybrać więcej niż 3 umiejętności.");
-        skillArray.pop();
-      } else if (skillArray.length < 3) {
+        array.pop();
+      } else if (array.length < 3) {
         $("input[name='skill']").prop("disabled", false);
         $('#alertSkill').text("");
       }
     }
 
     skillCheck($(this).val());
+    skillArrayCheck(skillArray);
   });
 
   $("#skillDescription").text("umiejętności: " + skillArray.join(", "));

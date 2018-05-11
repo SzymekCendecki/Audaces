@@ -5,7 +5,7 @@ module.exports.equipment = function(){
   $.each($("input[name='item']:checked"), function(){
               equipmentArray.push($(this).val());
 
-            if(equipmentArray.length >= 5){
+            if(equipmentArray.length > 5){
               $("input[name='item']").attr("checked", false).prop("disabled", true);
               $("input[name='item']:checked").attr("checked", true).prop("disabled", false);
               $('#alertEquipment').text("Nie wybrać więcej niż 5 przedmiotów.");

@@ -101,12 +101,15 @@ $("#charisma").on("click", () => {thirdSlide.charismaPoints(); });
   thirdSlide.charismaTooltip();
 
 //fourth slide choose feature part 2
-$(".sex input").on("click", () =>{ fourthSlide.sexCheck(); });
-$(".hairColor input").on("click", () =>{ fourthSlide.hairColorCheck(); });
-$(".eyesColor input").on("click", () =>{ fourthSlide.eyesColorCheck(); });
-$(".weight input").on("click", () =>{ fourthSlide.weightCheck(); });
-$(".height input").on("click", () =>{ fourthSlide.heightCheck(); });
-$(".skin input").on("click", () => {fourthSlide.skinCheck(); });
+$(".main input").on("click", () =>{
+  fourthSlide.sexCheck();
+  fourthSlide.hairColorCheck();
+  fourthSlide.eyesColorCheck();
+  fourthSlide.weightCheck();
+  fourthSlide.heightCheck();
+  fourthSlide.skinCheck();
+ });
+
 
 //fifth slide choose equipment
 $("#chooseEquipment input").on("click", function(){ fifthSlide.equipment(); });

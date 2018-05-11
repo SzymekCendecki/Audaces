@@ -9,13 +9,15 @@ module.exports.skill = function(){
               }else {
                 skillArray.push(skillToCheck);
               }
+}
 
-              if(skillArray.length > 3){
+function skillArrayCheck(array){
+              if(array.length > 3){
                 $("input[name='skill']").attr("checked", false).prop("disabled", true);
                 $("input[name='skill']:checked").attr("checked", true).prop("disabled", false);
                 $('#alertSkill').text("Nie wybrać więcej niż 3 umiejętności.");
-                skillArray.pop();
-              }else if(skillArray.length < 3){
+                array.pop();
+              }else if(array.length < 3){
               $("input[name='skill']").prop("disabled", false);
                 $('#alertSkill').text("");
               }
@@ -23,6 +25,7 @@ module.exports.skill = function(){
             }
 
       skillCheck($(this).val());
+      skillArrayCheck(skillArray);
   });
 
   $("#skillDescription").text("umiejętności: " + skillArray.join(", "));
