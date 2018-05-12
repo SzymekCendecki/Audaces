@@ -273,6 +273,8 @@ $("#newGame").on("click", function(){
 });
 
 
+
+
 //przyciski głównego panelu gry
 //zbudowanie zawartości okna dialogowego pod przyciskiem cech
 
@@ -322,7 +324,7 @@ $("#skills").on("click", function(){
 
 //przycisk zadań
 function tasks(){
-  let tasks = "<div id='task1'><p id='descriptionTitleTask1'>Zadanie 1</p><p id='descriptionTask1'>Oddać paczkę mnichowi w przygranicznej wiosce.</p></div>";
+  let tasks = "<ul><li>Oddać paczkę mnichowi w przygranicznej wiosce.</li></ul>";
 
   let dialog = document.querySelector("#dialogPanelDescription");
   dialog.innerHTML = tasks;
@@ -338,12 +340,18 @@ $("#close").on("click", function(){
     $("#dialogPanel").fadeOut(500);
 });
 
+//pierwszy tekst w grze - początek
+function firstText(){
+  let text = "<p>Stoisz w swoim pokoju. Na stole leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?<ul><button>rozejrzyj się</button><button>weź paczkę</button><button>wyjdź z pomieszczenia</button></ul></p>";
 
+  let gameDescription = document.querySelector("#gameDescription");
 
+  gameDescription.innerHTML = text;
+}
+
+firstText();
 
 });
 }
-
-
 
 });

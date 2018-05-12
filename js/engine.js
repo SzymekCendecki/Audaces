@@ -429,7 +429,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //przycisk zadań
       function tasks() {
-        var tasks = "<div id='task1'><p id='descriptionTitleTask1'>Zadanie 1</p><p id='descriptionTask1'>Oddać paczkę mnichowi w przygranicznej wiosce.</p></div>";
+        var tasks = "<ul><li>Oddać paczkę mnichowi w przygranicznej wiosce.</li></ul>";
 
         var dialog = document.querySelector("#dialogPanelDescription");
         dialog.innerHTML = tasks;
@@ -444,6 +444,17 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#close").on("click", function () {
         $("#dialogPanel").fadeOut(500);
       });
+
+      //pierwszy tekst w grze - początek
+      function firstText() {
+        var text = "<p>Stoisz w swoim pokoju. Na stole leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?<ul><button>rozejrzyj się</button><button>weź paczkę</button><button>wyjdź z pomieszczenia</button></ul></p>";
+
+        var gameDescription = document.querySelector("#gameDescription");
+
+        gameDescription.innerHTML = text;
+      }
+
+      firstText();
     });
   };
 });
