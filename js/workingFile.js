@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
 
 // hidden elements
-$("#title, #startOptionsGame, #hello, .slider, #slider, #gameAnim").hide();
+$("#title, #startOptionsGame, #hello, .slider, #slider, #gameIntro, #mainPanel, #dialogPanel").hide();
 
 //intro - inscription and title
 setTimeout(intro.hideInscription, 5000);
@@ -232,7 +232,6 @@ function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p){
 checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin, textName);
 
 $("#game").on("click",  () =>{
-
   //enabled button game
   // heroArray = [name, race, occupation, sex, hair, eyes, weight, height, skin]
   let heroArrayFeatures1 = [];
@@ -265,8 +264,86 @@ heroArrayFeatures2.push(parseInt(textCharisma));
 heroEquip.push(fifthSlide.equipArray);
 heroSkills.push(sixthSlide.skillArray);
 
-console.log(heroArrayFeatures1);
+$("#slider").fadeOut(650)
+$("#gameIntro").delay(650).fadeIn(650);
+
+$("#newGame").on("click", function(){
+  $(this).parent().fadeOut(650);
+  $("#mainPanel").delay(2000).fadeIn(650);
+});
+
+
+//przyciski głównego panelu gry
+//zbudowanie zawartości okna dialogowego pod przyciskiem cech
+
+function createFeaturesDialog(){
+let allFeatures = "<div id='name'><p id='descriptionTitleName'>Imię</p><p id='descriptionName'></p></div><div id='race'><p id='descriptionTitleRace'>Rasa</p><p id='descriptionRace'></p></div><div id='occupation'><p id='descriptionTitleOccupation'>Profesja</p><p id='descriptionOccupation'></p></div><div id='sex'><p id='descriptionTitleSex'>Płeć</p><p id='descriptionSex'></p></div><div id='hair'><p id='descriptionTitleHair'>Kolor włosów</p><p id='descriptionHair'></p></div><div id='eyes'><p id='descriptionTitleEyes'>Kolor oczu</p><p id='descriptionEyes'></p></div><div id='weight'><p id='descriptionTitleWeight'>Waga</p><p id='descriptionWeight'></p></div><div id='height'><p id='descriptionTitleHeight'>Wzrost</p><p id='descriptionHeight'></p><p id='descriptionTitleSkin'>Kolor skóry</p><p id='descriptionSkin'></p></div></div><div id='force'><p id='descriptionTitleForce'>Siła</p><p id='descriptionForce'></p></div><div id='strenght'><p id='descriptionTitleStrenght'>Wytrzymałość</p><p id='descriptionStrenght'></p></div><div id='skill'><p id='descriptionTitleSkill'>Zręczność</p><p id='descriptionSkill'></p></div><div id='intellectuals'><p id='descriptionTitleIntellectuals'>Inteligencja</p><p id='descriptionIntellectuals'></p></div><div id='charisma'><p id='descriptionTitleCharisma'>Charyzma</p><p id='descriptionCharisma'></p></div>";
+
+let dialog =  document.querySelector("#dialogPanelDescription");
+dialog.innerHTML = allFeatures;
+
+// heroArray = [name, race, occupation, sex, hair, eyes, weight, height, skin]
+$("#descriptionName").text(heroArrayFeatures1[0]);
+$("#descriptionRace").text(heroArrayFeatures1[1]);
+$("#descriptionOccupation").text(heroArrayFeatures1[2]);
+$("#descriptionSex").text(heroArrayFeatures1[3]);
+$("#descriptionHair").text(heroArrayFeatures1[4]);
+$("#descriptionEyes").text(heroArrayFeatures1[5]);
+$("#descriptionWeight").text(heroArrayFeatures1[6]);
+$("#descriptionHeight").text(heroArrayFeatures1[7]);
+$("#descriptionSkin").text(heroArrayFeatures1[8]);
+
+//heroArrayFeatures2 = [force, strenght, skill, intellectuals, charisma]
+$("#descriptionForce").text(heroArrayFeatures2[0]);
+$("#descriptionStrenght").text(heroArrayFeatures2[1]);
+$("#descriptionSkill").text(heroArrayFeatures2[2]);
+$("#descriptionIntellectuals").text(heroArrayFeatures2[3]);
+$("#descriptionCharisma").text(heroArrayFeatures2[4]);
+}
+
+//przycisk cech
+$("#features2").on("click", function(){
+  $("#dialogPanel").fadeIn(500);
+  createFeaturesDialog();
+});
+
+
+//przycisk ekwipunku
+  $("#equip").on("click", function(){
+  $("#dialogPanel").fadeIn(500);
+  $("#dialogPanelDescription").text(heroEquip);
+});
+
+//przycisk umiejętności
+$("#skills").on("click", function(){
+  $("#dialogPanel").fadeIn(500);
+  $("#dialogPanelDescription").text(heroSkills);
+});
+
+//przycisk zadań
+function tasks(){
+  let tasks = "<div id='task1'><p id='descriptionTitleTask1'>Zadanie 1</p><p id='descriptionTask1'>Oddać paczkę mnichowi w przygranicznej wiosce.</p></div>";
+
+  let dialog = document.querySelector("#dialogPanelDescription");
+  dialog.innerHTML = tasks;
+}
+
+$("#task").on("click", function(){
+  $("#dialogPanel").fadeIn(500);
+  tasks();
+});
+
+//funkcja zamykająca dialogPanel
+$("#close").on("click", function(){
+    $("#dialogPanel").fadeOut(500);
+});
+
+
+
+
 });
 }
+
+
 
 });
