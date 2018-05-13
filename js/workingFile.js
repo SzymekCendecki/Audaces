@@ -218,18 +218,15 @@ let textSkill = skFF.text();
 let textIntellectuals = iFF.text();
 let textCharisma = cFF.text();
 
-let textEquip = equipFF.text();
-let textSkills = skillsFF.text();
-
-function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p){
-  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" ||  h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "" || o == "wybierz skórę" || p =="podaj imię" || p == ""){
+function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n){
+  if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" ||  h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz skórę" || n =="podaj imię" || n == ""){
     $("#game").prop("disabled", true);
   }else{
     $("#game").prop("disabled", false);
   }
 }
 
-checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin, textName);
+checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textSkin, textName);
 
 $("#game").on("click",  () =>{
   //enabled button game
@@ -240,10 +237,10 @@ $("#game").on("click",  () =>{
   let heroArrayFeatures2 = [];
 
   // heroEquip = [equipment];
-  let heroEquip = [];
+  let heroEquip = fifthSlide.equipArray;
 
   // heroEquip = [skills];
-  let heroSkills = [];
+  let heroSkills = sixthSlide.skillArray;
 
   //tablica ze złotem -stan początkowy
   let gold = [0];
@@ -263,9 +260,6 @@ heroArrayFeatures2.push(parseInt(textStrenght));
 heroArrayFeatures2.push(parseInt(textSkill));
 heroArrayFeatures2.push(parseInt(textIntellectuals));
 heroArrayFeatures2.push(parseInt(textCharisma));
-
-heroEquip.push(fifthSlide.equipArray);
-heroSkills.push(sixthSlide.skillArray);
 
 $("#slider").fadeOut(650)
 $("#gameIntro").delay(650).fadeIn(650);
@@ -690,6 +684,7 @@ $("#market").on("click", function(){
 
                 main.append(weaponBtn);
               }
+
 
               });
 

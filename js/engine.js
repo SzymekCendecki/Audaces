@@ -84,6 +84,8 @@ module.exports = __webpack_require__(2);
 "use strict";
 
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var intro = __webpack_require__(3);
 var mainMenu = __webpack_require__(4);
 var arrays = __webpack_require__(5);
@@ -327,18 +329,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var textIntellectuals = iFF.text();
     var textCharisma = cFF.text();
 
-    var textEquip = equipFF.text();
-    var textSkills = skillsFF.text();
-
-    function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p) {
-      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz ekwipunek" || n == "wybierz umiejętności" || m == "" || n == "" || o == "wybierz skórę" || p == "podaj imię" || p == "") {
+    function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
+      if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz skórę" || n == "podaj imię" || n == "") {
         $("#game").prop("disabled", true);
       } else {
         $("#game").prop("disabled", false);
       }
     }
 
-    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textEquip, textSkills, textSkin, textName);
+    checkButtonGame(textRace, textOccupation, textSex, textHair, textEyes, textWeight, textForce, textStrenght, textSkill, textIntellectuals, textCharisma, textSkin, textName);
 
     $("#game").on("click", function () {
       //enabled button game
@@ -349,10 +348,10 @@ document.addEventListener("DOMContentLoaded", function () {
       var heroArrayFeatures2 = [];
 
       // heroEquip = [equipment];
-      var heroEquip = [];
+      var heroEquip = fifthSlide.equipArray;
 
       // heroEquip = [skills];
-      var heroSkills = [];
+      var heroSkills = sixthSlide.skillArray;
 
       //tablica ze złotem -stan początkowy
       var gold = [0];
@@ -372,9 +371,6 @@ document.addEventListener("DOMContentLoaded", function () {
       heroArrayFeatures2.push(parseInt(textSkill));
       heroArrayFeatures2.push(parseInt(textIntellectuals));
       heroArrayFeatures2.push(parseInt(textCharisma));
-
-      heroEquip.push(fifthSlide.equipArray);
-      heroSkills.push(sixthSlide.skillArray);
 
       $("#slider").fadeOut(650);
       $("#gameIntro").delay(650).fadeIn(650);
@@ -799,7 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     main.append("Twój Ekwipunek to: " + heroEquip);
                     console.log(heroEquip.length);
-                    var arr = [].concat(heroEquip);
+                    var arr = [].concat(_toConsumableArray(heroEquip));
                     console.log(arr);
                     for (var i = 0; i < heroEquip.length; i++) {
                       var weaponBtn = document.createElement("button");
