@@ -669,29 +669,37 @@ $("#market").on("click", function(){
               journey();
 
               $("#fight").on("click", function(){
-                $("#fight").prop("disabled", true);
+                $("#fight").remove();
+                  $("#further").prop("disabled", false);
                 let fightValue = heroArrayFeatures2[0] + heroArrayFeatures2[1] + heroArrayFeatures2[2] +  heroArrayFeatures2[3] + heroArrayFeatures2[4];
-                console.log(fightValue);
+                main.append("Twój Ekwipunek to: " + heroEquip);
+              main.append("Wybierz maks.3 rzeczy: ");
 
-              main.append("Twój Ekwipunek to: " + heroEquip);
-                console.log(heroEquip.length);
-                let arr = [...heroEquip];
-                console.log(arr);
-              for(let i=0; i<heroEquip.length; i++){
+            for(let i=0; i<heroEquip.length; i++){
                 let weaponBtn = document.createElement("button");
-                weaponBtn.id = i;
+                weaponBtn.id = heroEquip[i];
                 weaponBtn.innerText = heroEquip[i];
-
                 main.append(weaponBtn);
-              }
+            }
 
+            let allBtns = document.querySelectorAll("#main button");
+              let fightWeapon = [];
 
-              });
-
-              $("#further").on("click", function(){
-
-              });
-
+            for (let i=0; i<allBtns.length; i++) {
+                  allBtns[i].onclick = function () {
+                    if(fightWeapon.length < 3 ){
+                      let item = $(this).text();
+                      fightWeapon.push(item);
+                      $(this).remove();
+                    }else if(fightWeapon.length >= 3){
+                      main.append('Nie możesz wybrać więcej rzeczy.');
+                      }
+                    }
+                  }
+                  $("#further").on("click", function(){
+                    console.log((fightValue + (fightWeapon.length * 10)), fightWeapon);
+                  });
+            });
           });
         });
       });

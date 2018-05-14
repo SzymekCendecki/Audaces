@@ -84,8 +84,6 @@ module.exports = __webpack_require__(2);
 "use strict";
 
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var intro = __webpack_require__(3);
 var mainMenu = __webpack_require__(4);
 var arrays = __webpack_require__(5);
@@ -789,24 +787,37 @@ document.addEventListener("DOMContentLoaded", function () {
                   journey();
 
                   $("#fight").on("click", function () {
-                    $("#fight").prop("disabled", true);
+                    $("#fight").remove();
+                    $("#further").prop("disabled", false);
                     var fightValue = heroArrayFeatures2[0] + heroArrayFeatures2[1] + heroArrayFeatures2[2] + heroArrayFeatures2[3] + heroArrayFeatures2[4];
-                    console.log(fightValue);
-
                     main.append("Twój Ekwipunek to: " + heroEquip);
-                    console.log(heroEquip.length);
-                    var arr = [].concat(_toConsumableArray(heroEquip));
-                    console.log(arr);
+                    main.append("Wybierz maks.3 rzeczy: ");
+
                     for (var i = 0; i < heroEquip.length; i++) {
                       var weaponBtn = document.createElement("button");
-                      weaponBtn.id = i;
+                      weaponBtn.id = heroEquip[i];
                       weaponBtn.innerText = heroEquip[i];
-
                       main.append(weaponBtn);
                     }
-                  });
 
-                  $("#further").on("click", function () {});
+                    var allBtns = document.querySelectorAll("#main button");
+                    var fightWeapon = [];
+
+                    for (var _i = 0; _i < allBtns.length; _i++) {
+                      allBtns[_i].onclick = function () {
+                        if (fightWeapon.length < 3) {
+                          var item = $(this).text();
+                          fightWeapon.push(item);
+                          $(this).remove();
+                        } else if (fightWeapon.length >= 3) {
+                          main.append('Nie możesz wybrać więcej rzeczy.');
+                        }
+                      };
+                    }
+                    $("#further").on("click", function () {
+                      console.log(fightValue + fightWeapon.length * 10, fightWeapon);
+                    });
+                  });
                 });
               });
             });
