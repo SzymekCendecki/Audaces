@@ -1,4 +1,4 @@
-//random force points and tooltip for force
+//random force points and description
 module.exports.forcePoints = function(){
   let randomForcePoints = Math.round(Math.random()*50);
   $("#forcePoints").text(randomForcePoints);
@@ -6,16 +6,12 @@ module.exports.forcePoints = function(){
 }
 
 module.exports.forceTooltip = function(){
-  $("#force").on("mouseenter", () =>{
+  $("#force").on("click", () =>{
     $("#featuresDescription").text("SIŁA - określa ile postać może udźwignąć, podnieść, jak daleko rzucić itd. Ważna dla wojowników.");
-  });
-
-  $("#force").on("mouseleave", () =>{
-    $("#featuresDescription").text("");
   });
 }
 
-//random strenght points and tooltip for strenght
+//random strenght points and description
 module.exports.strenghtPoints = function(){
   let randomStrenghtPoints = Math.round(Math.random()*50);
 	$("#strenghtPoints").text(randomStrenghtPoints);
@@ -23,16 +19,12 @@ module.exports.strenghtPoints = function(){
 }
 
 module.exports.strenghtTooltip = function(){
-  $("#strenght").on("mouseenter", () =>{
+  $("#strenght").on("click", () =>{
     $("#featuresDescription").text("WYTRZYMAŁOŚĆ - określa ile postać może odnieść ran, jej odporność na choroby  lub trucizny. Ważna dla wojowników.");
-  });
-
-  $("#strenght").on("mouseleave", () =>{
-    	$("#featuresDescription").text("");
   });
 }
 
-//random skill points and tooltip for skill
+//random skill points and description
 module.exports.skillPoints = function(){
     let randomSkillPoints = Math.round(Math.random()*50);
     $("#skillPoints").text(randomSkillPoints);
@@ -40,14 +32,11 @@ module.exports.skillPoints = function(){
 }
 
 module.exports.skillTooltip = function(){
-    $("#skill").on("mouseenter", () =>{ $("#featuresDescription").text("ZRĘCZNOŚĆ - określa sprawność ruchową postaci. Ważna dla złoczyńców.");
+    $("#skill").on("click", () =>{ $("#featuresDescription").text("ZRĘCZNOŚĆ - określa sprawność ruchową postaci. Ważna dla złoczyńców.");
     });
-
-    $("#skill").on("mouseleave", () =>{	$("#featuresDescription").text("");
-  });
 }
 
-//random intellectuals points and tooltip for intellectuals
+//random intellectuals points and description
 module.exports.intellectualsPoints = function(){
 	let randomIntellectualsPoints = Math.round(Math.random()*50);
 	$("#intellectualsPoints").text(randomIntellectualsPoints);
@@ -55,13 +44,11 @@ module.exports.intellectualsPoints = function(){
 }
 
 module.exports.intellectualsTooltip = function (){
-  $("#intellectuals").on("mouseenter", () =>{ $("#featuresDescription").text("INTELIGENCJA - określa sprawność umysłową postaci, czyli jak zapamiętuje, kojarzy fakty itd.");
+  $("#intellectuals").on("click", () =>{ $("#featuresDescription").text("INTELIGENCJA - określa sprawność umysłową postaci, czyli jak zapamiętuje, kojarzy fakty itd.");
 });
-
-$("#intellectuals").on("mouseleave", () =>{	$("#featuresDescription").text("");});
 }
 
-//random charisma points and tooltip for charisma
+//random charisma points and description
 module.exports.charismaPoints = function(){
 	let randomCharismaPoints = Math.round(Math.random()*50);
 	$("#charismaPoints").text(randomCharismaPoints);
@@ -69,9 +56,6 @@ module.exports.charismaPoints = function(){
 }
 
 module.exports.charismaTooltip = function(){
-  $("#charisma").on("mouseenter", () =>{ $("#featuresDescription").text("CHARYZMA - określa sposób w jaki postać jest odbierana przez innych. Dzięki charyzmie, postać może np. przekonać rozmówcę do swoich racji. Ważna dla złoczyńcy i czarodziejów.");
-  });
-
-  $("#charisma").on("mouseleave", () =>{	$("#featuresDescription").text("");
+  $("#charisma").on("click", () =>{ $("#featuresDescription").text("CHARYZMA - określa sposób w jaki postać jest odbierana przez innych. Dzięki charyzmie, postać może np. przekonać rozmówcę do swoich racji. Ważna dla złoczyńcy i czarodziejów.");
   });
 }

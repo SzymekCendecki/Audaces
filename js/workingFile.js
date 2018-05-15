@@ -9,6 +9,7 @@ let fourthSlide = require("./slides/fourthSlide.js");
 let fifthSlide = require("./slides/fifthSlide.js");
 let sixthSlide = require("./slides/sixthSlide.js");
 let seventhSlide = require("./slides/seventhSlide.js");
+let firstP = require("./firstParagraph.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -324,7 +325,6 @@ $("#goldArray").on("click", function(){
 //przycisk zadań
 function tasks(){
   let tasks = "<ul><li>Oddać paczkę mnichowi w przygranicznej wiosce.</li></ul>";
-
   let dialog = document.querySelector("#dialogPanelDescription");
   dialog.innerHTML = tasks;
 }
@@ -339,17 +339,8 @@ $("#close").on("click", function(){
     $("#dialogPanel").fadeOut(500);
 });
 
-//pierwszy tekst w grze - początek
-function firstText(){
-  let text = "<p id='main'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?<ul id='roomList'><button id='lookingAround'>rozejrzyj się</button><button id='wardrobe'>zbadaj szafę</button><button id='chest'>zbadaj szkrzynię</button><button id='takePackage'>weź paczkę</button><button id='leave'>wyjdź z pomieszczenia</button></ul></p>";
-
-  let gameDescription = document.querySelector("#gameDescription");
-  gameDescription.innerHTML = text;
-
-  $("#leave").prop("disabled", true);
-}
-firstText();
-
+//pierwszy paragraf
+firstP.firstP();
 //przycisk rozglądania się - pierwszy tekst
 $("#lookingAround").on("click", function(){
   main.append(" Pokój jak pokój. Stół, łóżko, szafa, skrzynia.");
@@ -367,7 +358,7 @@ let roomList = document.querySelector("#roomList");
 roomList.appendChild(btnCoat);
 $(this).remove();
 
-//przycik zabrania płaszcza- pierwszy tekst
+//przycik zabrania płaszcza - pierwszy tekst
 $("#coat").on("click", function (){
   main.append(" Płaszcz wzięty.");
   heroEquip.push("płaszcz");
@@ -406,307 +397,18 @@ $("#takePackage").on("click", function (){
 
 //przycisk opuszczenia pomieszczenia
 $("#leave").on("click", function(){
-  let parent = document.querySelector("#gameDescription");
-  let firstChild = document.querySelector("#main");
-  let secondChild = document.querySelector("#roomList");
-  parent.removeChild(firstChild);
-  parent.removeChild(secondChild);
+document.querySelector("#main").removeChild(document.querySelector("#text"));
+document.querySelector("#main").removeChild(document.querySelector("#roomList"));
 
-function secondText(){
-  let text = "<p id='main'>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. <ul id='street'><button id='lookingAround'>rozejrzyj się</button><button id='market'>targ</button></ul></p>";
+  //drugi paragraf
+  function secondText(){
+    let text = "<div id='main'><p>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. </p><div id='street'><button id='lookingAround'>rozejrzyj się</button><button id='market'>targ</button></div><div>";
 
-let gameDescription = document.querySelector("#gameDescription");
-gameDescription.innerHTML = text;
-}
-secondText();
-
-//przycisk rozglądania się - ulica
-$("#lookingAround").on("click", function(){
-  main.append(" Typowa ulica dzielnicy Najemników, miasta Erharuf. Częściowo brukowana. Pobliskie budynki są niskie i drewniane, maksymalnie jednopiętrowe. Nic specjalnego.");
+  let gameDescription = document.querySelector("#gameDescription");
+  gameDescription.innerHTML = text;
+  }
+  secondText();
 });
-
-$("#market").on("click", function(){
-  let parent = document.querySelector("#gameDescription");
-  let firstChild = document.querySelector("#main");
-  let secondChild = document.querySelector("#street");
-  parent.removeChild(firstChild);
-  parent.removeChild(secondChild);
-
-  function marketText(){
-     let text = "<p id='main'>Stoisz na środku placu targowego. Wokół widzisz stragany, na których możesz kupić potrzebne rzeczy.<ul id='buyItems'><button id='tent'>namiot - 5szt. zł.</button><button id='bag'>torba 1szt. zł</button><button id='blanket'>derka - 1szt. zł</button><button id='lamp'>lampa - 1szt. zł</button><button id='rope'>lina - 1szt. zł</button><button id='food'>racja żyw. - 1szt. zł</button><button id='dagger'>sztylet - 8szt. zł</button><button id='woodenStick'>pałka drewniana - 4szt. zł</button><button id='buckler'>puklerz - 12szt. zł</button></ul><ul id='market'><button id='lookingAround'>rozejrzyj się</button><button id='caravan'>karawana</button></ul></p>";
-
-     let gameDescription = document.querySelector("#gameDescription");
-     gameDescription.innerHTML = text;
-   }
-   marketText();
-
-//zakupu namiotu
-   $("#tent").on("click", function(){
-     if(gold[0] > 5){
-       heroEquip.push("namiot");
-       let newGold = (gold[0] - 5);
-       gold.splice(0, 1, newGold);
-     }else{
-         function goldNone(){
-           let infoGold = "<p>Nie masz tyle złota</p>";
-           let dialog = document.querySelector("#dialogPanelDescription");
-           dialog.innerHTML = infoGold;
-         }
-         $("#dialogPanel").fadeIn(500);
-         goldNone();
-     }
-   });
-
-   //zakupu torby
-      $("#bag").on("click", function(){
-        if(gold[0] > 1){
-          heroEquip.push("torba");
-          let newGold = (gold[0] - 1);
-          gold.splice(0, 1, newGold);
-        }else{
-            function goldNone(){
-              let infoGold = "<p>Nie masz tyle złota</p>";
-              let dialog = document.querySelector("#dialogPanelDescription");
-              dialog.innerHTML = infoGold;
-            }
-            $("#dialogPanel").fadeIn(500);
-            goldNone();
-        }
-      });
-
-      //zakupu derki
-         $("#blanket").on("click", function(){
-           if(gold[0] > 1){
-             heroEquip.push("derka");
-             let newGold = (gold[0] - 1);
-             gold.splice(0, 1, newGold);
-           }else{
-               function goldNone(){
-                 let infoGold = "<p>Nie masz tyle złota</p>";
-                 let dialog = document.querySelector("#dialogPanelDescription");
-                 dialog.innerHTML = infoGold;
-               }
-               $("#dialogPanel").fadeIn(500);
-               goldNone();
-           }
-         });
-
-         //zakupu lampy
-            $("#lamp").on("click", function(){
-              if(gold[0] > 1){
-                heroEquip.push("lampa");
-                let newGold = (gold[0] - 1);
-                gold.splice(0, 1, newGold);
-              }else{
-                  function goldNone(){
-                    let infoGold = "<p>Nie masz tyle złota</p>";
-                    let dialog = document.querySelector("#dialogPanelDescription");
-                    dialog.innerHTML = infoGold;
-                  }
-                  $("#dialogPanel").fadeIn(500);
-                  goldNone();
-              }
-            });
-
-            //zakup liny
-               $("#rope").on("click", function(){
-                 if(gold[0] > 1){
-                   heroEquip.push("lina");
-                   let newGold = (gold[0] - 1);
-                   gold.splice(0, 1, newGold);
-                 }else{
-                     function goldNone(){
-                       let infoGold = "<p>Nie masz tyle złota</p>";
-                       let dialog = document.querySelector("#dialogPanelDescription");
-                       dialog.innerHTML = infoGold;
-                     }
-                     $("#dialogPanel").fadeIn(500);
-                     goldNone();
-                 }
-               });
-
-               //zakup jedzenia
-                  $("#food").on("click", function(){
-                    if(gold[0] > 1){
-                      heroEquip.push("racja żyw.");
-                      let newGold = (gold[0] - 1);
-                      gold.splice(0, 1, newGold);
-                    }else{
-                        function goldNone(){
-                          let infoGold = "<p>Nie masz tyle złota</p>";
-                          let dialog = document.querySelector("#dialogPanelDescription");
-                          dialog.innerHTML = infoGold;
-                        }
-                        $("#dialogPanel").fadeIn(500);
-                        goldNone();
-                    }
-                  });
-
-                  //zakup sztyletu
-                     $("#dagger").on("click", function(){
-                       if(gold[0] > 1){
-                         heroEquip.push("sztylet");
-                         let newGold = (gold[0] - 8);
-                         gold.splice(0, 1, newGold);
-                       }else{
-                           function goldNone(){
-                             let infoGold = "<p>Nie masz tyle złota</p>";
-                             let dialog = document.querySelector("#dialogPanelDescription");
-                             dialog.innerHTML = infoGold;
-                           }
-                           $("#dialogPanel").fadeIn(500);
-                           goldNone();
-                       }
-                     });
-
-                     //zakup pałki drewnianej
-                        $("#woodenStick").on("click", function(){
-                          if(gold[0] > 1){
-                            heroEquip.push("drewniana pałka");
-                            let newGold = (gold[0] - 4);
-                            gold.splice(0, 1, newGold);
-                          }else{
-                              function goldNone(){
-                                let infoGold = "<p>Nie masz tyle złota</p>";
-                                let dialog = document.querySelector("#dialogPanelDescription");
-                                dialog.innerHTML = infoGold;
-                              }
-                              $("#dialogPanel").fadeIn(500);
-                              goldNone();
-                          }
-                        });
-
-                        //zakup puklerz
-                           $("#buckler").on("click", function(){
-                             if(gold[0] > 1){
-                               heroEquip.push("puklerz");
-                               let newGold = (gold[0] - 12);
-                               gold.splice(0, 1, newGold);
-                             }else{
-                                 function goldNone(){
-                                   let infoGold = "<p>Nie masz tyle złota</p>";
-                                   let dialog = document.querySelector("#dialogPanelDescription");
-                                   dialog.innerHTML = infoGold;
-                                 }
-                                 $("#dialogPanel").fadeIn(500);
-                                 goldNone();
-                             }
-                           });
-
-   //przycisk rozglądania się - targ
-   $("#lookingAround").on("click", function(){
-     main.append(" Niewielki targ, na którym okoliczni mieszczkańcy mogą dokonywać swoich zakupów.");
-   });
-
-   $("#caravan").on("click", function(){
-     let parent = document.querySelector("#gameDescription");
-     let firstChild = document.querySelector("#main");
-     let secondChild = document.querySelector("#buyItems");
-     let thirdChild = document.querySelector("#market");
-     parent.removeChild(firstChild);
-     parent.removeChild(secondChild);
-     parent.removeChild(thirdChild);
-
-     function caravanSquare(){
-        let text = "<p id='main'>W końcu udało się wyjść z miasta. Przed sobą widzisz wielki plac, na którym jakaś karawana szykuje się właśnie do odjazdu. Może warto spytać się, czy jedzie do przygranicznej wioski?<ul id='caravanPlace'><button id='lookingAround'>rozejrzyj się</button><button id='ask'>zapytaj</button></ul></p>";
-
-        let gameDescription = document.querySelector("#gameDescription");
-        gameDescription.innerHTML = text;
-      }
-
-      caravanSquare();
-
-      $("#lookingAround").on("click", function(){
-        main.append(" Za sobą masz bramę do miasta oraz wysokie mury miasta Erharuf. Przed sobą widzisz wielki plac, na którym karawany mogą przygotować się do podróży. W dali widniej ciemna linia  prastarego lasu.");
-      });
-
-      $("#ask").on("click", function(){
-        let caravanPlace = document.querySelector("#caravanPlace");
-        let ask = document.querySelector("#ask");
-        caravanPlace.removeChild(ask);
-
-        let accept2 = document.createElement("button");
-        accept2.id = "accept";
-        accept2.innerText = "zgódź się";
-        caravanPlace.appendChild(accept2);
-        main.append(" Podchodzisz bliżej. Widzisz postać krasnoluda, który wydziera się w niebo głosy i pogania wszystkich wokół. Gdy jesteś już blisko, pytasz: 'Mości krasnoludzie, czy ta karawana jedzie do wioski na pograniczu?' 'Że co? Aaaa... Tak! Jedziemy dalej, ale będziemy przez nią przejeżdżać. Jak chcesz się zabrać to musisz się pospiesz z wsiadaniem. Na ostatnim wozie jest jeszcze trochę miejsca.'- odpowiedział i wrócił do swoich obowiązków ");
-
-        $("#accept").on("click", function(){
-          let parent = document.querySelector("#gameDescription");
-          let firstChild = document.querySelector("#main");
-          let secondChild = document.querySelector("#caravanPlace");
-          parent.removeChild(firstChild);
-          parent.removeChild(secondChild);
-
-          function caravan(){
-            let text = "<p id='main'>Na ostatnim wozie okazało się, że jest jeszcze sporo miejsca, dzięki czemu będzie można podróżować dość wygodnie. Po kilkunastu minutach karawana ruszyła...<ul id='journeyStart'><button id='lookingAround'>rozejrzyj się</button><button id='startJourney'>dalej</button></ul></p>";
-
-            let gameDescription = document.querySelector("#gameDescription");
-            gameDescription.innerHTML = text;
-          }
-          caravan();
-
-          $("#lookingAround").on("click", function(){
-              main.append(" Widzisz kilka paczek na wozie, szczelnie opakowane, woźnicę, orka, ziewającego, w oczekiwaniu na odjazd.");
-          });
-
-          $("#startJourney").on("click", function(){
-            let parent = document.querySelector("#gameDescription");
-            let firstChild = document.querySelector("#main");
-            let secondChild = document.querySelector("#journeyStart");
-            parent.removeChild(firstChild);
-            parent.removeChild(secondChild);
-
-            function journey(){
-                let textJourney = "<p id='main'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy musieli walczyć!.<ul id='firstFight'><button id='fight'>walka</button><button id='further'>dalej</button></ul></p>";
-
-                let gameDescription = document.querySelector("#gameDescription");
-                gameDescription.innerHTML = textJourney;
-
-                $("#further").prop("disabled", true);
-              }
-
-              journey();
-
-              $("#fight").on("click", function(){
-                $("#fight").remove();
-                  $("#further").prop("disabled", false);
-                let fightValue = heroArrayFeatures2[0] + heroArrayFeatures2[1] + heroArrayFeatures2[2] +  heroArrayFeatures2[3] + heroArrayFeatures2[4];
-                main.append("Twój Ekwipunek to: " + heroEquip);
-              main.append("Wybierz maks.3 rzeczy: ");
-
-            for(let i=0; i<heroEquip.length; i++){
-                let weaponBtn = document.createElement("button");
-                weaponBtn.id = heroEquip[i];
-                weaponBtn.innerText = heroEquip[i];
-                main.append(weaponBtn);
-            }
-
-            let allBtns = document.querySelectorAll("#main button");
-              let fightWeapon = [];
-
-            for (let i=0; i<allBtns.length; i++) {
-                  allBtns[i].onclick = function () {
-                    if(fightWeapon.length < 3 ){
-                      let item = $(this).text();
-                      fightWeapon.push(item);
-                      $(this).remove();
-                    }else if(fightWeapon.length >= 3){
-                      main.append('Nie możesz wybrać więcej rzeczy.');
-                      }
-                    }
-                  }
-                  $("#further").on("click", function(){
-                    console.log((fightValue + (fightWeapon.length * 10)), fightWeapon);
-                  });
-            });
-          });
-        });
-      });
-    });
-});
-
-});//zamknięcie zdarzenia opuszczania pomieszczenia linia 409
 
 });//zamknięcie zdarzenia game linia 234
 }

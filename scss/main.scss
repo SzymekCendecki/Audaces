@@ -67,8 +67,8 @@ html,body{
 #startOptionsGame{ display: flex; justify-content: space-between; }
 
 #hello{
-  font-family: 'Berkshire Swash', cursive;
   font-size: 150%;
+  font-weight: bold;
   text-shadow: 2px 1px white;
   border-bottom: 1px solid black;
   text-indent: 3%;
@@ -84,7 +84,6 @@ html,body{
   font-size: 150%;
   padding: 1% 0 1% 0;
   border-radius: 15%;
-  box-shadow: 0 9px gray;
 }
 
 //styles for menu buttons
@@ -107,7 +106,6 @@ html,body{
   text-indent: 3%;
   padding-top: 2%;
   text-shadow: 2px 1px white;
-  font-family: 'Berkshire Swash', cursive;
   font-size: 120%;
 }
 
@@ -124,14 +122,12 @@ html,body{
 .randomHeroDescription{
   z-index: 2;
   margin-left: 11%;
-  font-family: 'Berkshire Swash', cursive;
   position: absolute;
 }
 
 .createHeroDescription{
   z-index: 2;
   margin-left: 11%;
-  font-family: 'Berkshire Swash', cursive;
   position: absolute;
 }
 
@@ -159,6 +155,7 @@ html,body{
     padding: 0;
     height: 200px;
     list-style: none;
+    margin-top: 20px;
 
     li {
        position: relative;
@@ -167,7 +164,6 @@ html,body{
        padding: 0;
        width: 1100px;
        height: 575px;
-       background-color: green;
      }
   }
 }
@@ -183,6 +179,7 @@ html,body{
     color: #fff;
     font-weight: bold;
     font-size: 20px;
+    border-radius: 20px;
   }
 
    button.control_next{
@@ -192,22 +189,50 @@ html,body{
      color: #fff;
      font-weight: bold;
      font-size: 20px;
+     border-radius: 20px;
    }
 }
 
-.style1{
+//styles for slider
+.style1slider{
   text-decoration: underline;
   text-decoration-color: gold;
   font-size: 22px;
   font-weight: bold;
 }
 
+//first slides
+#nameAccept{
+  background-color: green;
+  border-radius: 20px;
+  margin-left: 2%;
+  color: white;
+  font-weight: bold;
+  width: 10%;
+  height: 30px;
+}
+
+.nameDescription{
+  margin-top: 15px;
+  font-weight: bold;
+  text-shadow: 2px 1px white;
+}
+
+#choosenName{
+  margin-top: 20px;
+  font-weight: bold;
+  text-shadow: 2px 1px white;
+  font-size: 150%;
+}
+
+//slide drugi i trzeci
 #chooseRace, #chooseOccupation{
   width: 100%;
   font-size: 18px;
-  color: white;
+  color: black;
   font-weight: bold;
   padding-top: 10px;
+  text-shadow: 2px 1px white;
 
   div{
     width: 25%;
@@ -233,27 +258,56 @@ html,body{
 }
 }
 
-//styles fourth slide choose features part 2
-.sex{
-  width: 30%;
-  border: 1px solid gold;
-  padding: 5px 0 5px 5px;
+//slide fourth slide part 1
+#randomPointsTitle{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+#features{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
 
-  legend{
-    text-indent: 10px;
-  }
-
-  label:nth-child(1){
-    padding-left: 10px;
-  }
-
-  label{
-    padding-right: 10px;
+  button{
+    width: 10%;
+    height: 40px;
+    font-weight:bold;
+    text-shadow: 2px 1px white;
+    border-radius: 25px;
+    background: lightgreen;
   }
 }
 
-//style for seventh slide
+#show{
+  font-weight: bold;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
 
+  #forcePoints, #strenghtPoints, #skillPoints, #intellectualsPoints, #charismaPoints {
+    font-weight: bold;
+  }
+}
+
+#featuresDescription{
+    margin-top: 30px;
+    font-weight: bold;
+    text-shadow: 2px 1px white;
+}
+
+
+//styles fourth slide choose features part 2
+.features2{
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 100%;
+  text-shadow: 2px 1px white;
+  text-decoration: underline;
+  text-decoration-color: gold;
+}
+
+//style for seventh slide
 #mainInfo{
   display: flex;
   justify-content: space-between;
@@ -270,7 +324,10 @@ div{
 
     div{
       width: 100%;
-      color: white;
+      color: black;
+      font-weight: bold;
+      font-size: 110%;
+      text-shadow: 2px 1px white;
       p{
           width: 100%;
       }
@@ -282,17 +339,59 @@ div{
     }
   }
 
-}
-
 .equipmentStyle, .skillsStyles{
   p{
       width: 100%;
-      color: white;
+      color: black;
+      font-weight: bold;
+      font-size: 110%;
+      text-shadow: 2px 1px white;
       margin-top: 20px;
   }
 
   p:nth-child(2){
     color: red;
     font-weight: bold;
+  }
+}
+}
+
+#game{
+  background: green;
+  width:20%;
+  height: 40px;
+  margin: 20px 0 0 40%;
+  font-weight: bold;
+  color: white;
+}
+
+#gameIntro{
+  text-align: center;
+  text-shadow: 2px 1px white;
+  font-weight: bold;
+
+  p{
+    padding-top: 5px;
+    font-size: 125%;
+  }
+}
+#newGame{
+  background: green;
+  width: 20%;
+  height: 40px;
+  font-weight: bold;
+  color: white;
+  margin-top: 25px;
+}
+
+#btnsPanel{
+  display: flex;
+  justify-content: space-around;
+
+  button{
+    width: 10%;
+    height: 35px;
+    color: white;
+    font-weight: bold italic; 
   }
 }

@@ -95,6 +95,7 @@ var fourthSlide = __webpack_require__(10);
 var fifthSlide = __webpack_require__(11);
 var sixthSlide = __webpack_require__(12);
 var seventhSlide = __webpack_require__(0);
+var firstP = __webpack_require__(15);
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -433,7 +434,6 @@ document.addEventListener("DOMContentLoaded", function () {
       //przycisk zadań
       function tasks() {
         var tasks = "<ul><li>Oddać paczkę mnichowi w przygranicznej wiosce.</li></ul>";
-
         var dialog = document.querySelector("#dialogPanelDescription");
         dialog.innerHTML = tasks;
       }
@@ -448,17 +448,8 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#dialogPanel").fadeOut(500);
       });
 
-      //pierwszy tekst w grze - początek
-      function firstText() {
-        var text = "<p id='main'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?<ul id='roomList'><button id='lookingAround'>rozejrzyj się</button><button id='wardrobe'>zbadaj szafę</button><button id='chest'>zbadaj szkrzynię</button><button id='takePackage'>weź paczkę</button><button id='leave'>wyjdź z pomieszczenia</button></ul></p>";
-
-        var gameDescription = document.querySelector("#gameDescription");
-        gameDescription.innerHTML = text;
-
-        $("#leave").prop("disabled", true);
-      }
-      firstText();
-
+      //pierwszy paragraf
+      firstP.firstP();
       //przycisk rozglądania się - pierwszy tekst
       $("#lookingAround").on("click", function () {
         main.append(" Pokój jak pokój. Stół, łóżko, szafa, skrzynia.");
@@ -476,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
         roomList.appendChild(btnCoat);
         $(this).remove();
 
-        //przycik zabrania płaszcza- pierwszy tekst
+        //przycik zabrania płaszcza - pierwszy tekst
         $("#coat").on("click", function () {
           main.append(" Płaszcz wzięty.");
           heroEquip.push("płaszcz");
@@ -515,315 +506,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //przycisk opuszczenia pomieszczenia
       $("#leave").on("click", function () {
-        var parent = document.querySelector("#gameDescription");
-        var firstChild = document.querySelector("#main");
-        var secondChild = document.querySelector("#roomList");
-        parent.removeChild(firstChild);
-        parent.removeChild(secondChild);
+        document.querySelector("#main").removeChild(document.querySelector("#text"));
+        document.querySelector("#main").removeChild(document.querySelector("#roomList"));
 
+        //drugi paragraf
         function secondText() {
-          var text = "<p id='main'>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. <ul id='street'><button id='lookingAround'>rozejrzyj się</button><button id='market'>targ</button></ul></p>";
+          var text = "<div id='main'><p>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. </p><div id='street'><button id='lookingAround'>rozejrzyj się</button><button id='market'>targ</button></div><div>";
 
           var gameDescription = document.querySelector("#gameDescription");
           gameDescription.innerHTML = text;
         }
         secondText();
-
-        //przycisk rozglądania się - ulica
-        $("#lookingAround").on("click", function () {
-          main.append(" Typowa ulica dzielnicy Najemników, miasta Erharuf. Częściowo brukowana. Pobliskie budynki są niskie i drewniane, maksymalnie jednopiętrowe. Nic specjalnego.");
-        });
-
-        $("#market").on("click", function () {
-          var parent = document.querySelector("#gameDescription");
-          var firstChild = document.querySelector("#main");
-          var secondChild = document.querySelector("#street");
-          parent.removeChild(firstChild);
-          parent.removeChild(secondChild);
-
-          function marketText() {
-            var text = "<p id='main'>Stoisz na środku placu targowego. Wokół widzisz stragany, na których możesz kupić potrzebne rzeczy.<ul id='buyItems'><button id='tent'>namiot - 5szt. zł.</button><button id='bag'>torba 1szt. zł</button><button id='blanket'>derka - 1szt. zł</button><button id='lamp'>lampa - 1szt. zł</button><button id='rope'>lina - 1szt. zł</button><button id='food'>racja żyw. - 1szt. zł</button><button id='dagger'>sztylet - 8szt. zł</button><button id='woodenStick'>pałka drewniana - 4szt. zł</button><button id='buckler'>puklerz - 12szt. zł</button></ul><ul id='market'><button id='lookingAround'>rozejrzyj się</button><button id='caravan'>karawana</button></ul></p>";
-
-            var gameDescription = document.querySelector("#gameDescription");
-            gameDescription.innerHTML = text;
-          }
-          marketText();
-
-          //zakupu namiotu
-          $("#tent").on("click", function () {
-            if (gold[0] > 5) {
-              heroEquip.push("namiot");
-              var newGold = gold[0] - 5;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakupu torby
-          $("#bag").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("torba");
-              var newGold = gold[0] - 1;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakupu derki
-          $("#blanket").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("derka");
-              var newGold = gold[0] - 1;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakupu lampy
-          $("#lamp").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("lampa");
-              var newGold = gold[0] - 1;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakup liny
-          $("#rope").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("lina");
-              var newGold = gold[0] - 1;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakup jedzenia
-          $("#food").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("racja żyw.");
-              var newGold = gold[0] - 1;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakup sztyletu
-          $("#dagger").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("sztylet");
-              var newGold = gold[0] - 8;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakup pałki drewnianej
-          $("#woodenStick").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("drewniana pałka");
-              var newGold = gold[0] - 4;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //zakup puklerz
-          $("#buckler").on("click", function () {
-            if (gold[0] > 1) {
-              heroEquip.push("puklerz");
-              var newGold = gold[0] - 12;
-              gold.splice(0, 1, newGold);
-            } else {
-              var goldNone = function goldNone() {
-                var infoGold = "<p>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription");
-                dialog.innerHTML = infoGold;
-              };
-
-              $("#dialogPanel").fadeIn(500);
-              goldNone();
-            }
-          });
-
-          //przycisk rozglądania się - targ
-          $("#lookingAround").on("click", function () {
-            main.append(" Niewielki targ, na którym okoliczni mieszczkańcy mogą dokonywać swoich zakupów.");
-          });
-
-          $("#caravan").on("click", function () {
-            var parent = document.querySelector("#gameDescription");
-            var firstChild = document.querySelector("#main");
-            var secondChild = document.querySelector("#buyItems");
-            var thirdChild = document.querySelector("#market");
-            parent.removeChild(firstChild);
-            parent.removeChild(secondChild);
-            parent.removeChild(thirdChild);
-
-            function caravanSquare() {
-              var text = "<p id='main'>W końcu udało się wyjść z miasta. Przed sobą widzisz wielki plac, na którym jakaś karawana szykuje się właśnie do odjazdu. Może warto spytać się, czy jedzie do przygranicznej wioski?<ul id='caravanPlace'><button id='lookingAround'>rozejrzyj się</button><button id='ask'>zapytaj</button></ul></p>";
-
-              var gameDescription = document.querySelector("#gameDescription");
-              gameDescription.innerHTML = text;
-            }
-
-            caravanSquare();
-
-            $("#lookingAround").on("click", function () {
-              main.append(" Za sobą masz bramę do miasta oraz wysokie mury miasta Erharuf. Przed sobą widzisz wielki plac, na którym karawany mogą przygotować się do podróży. W dali widniej ciemna linia  prastarego lasu.");
-            });
-
-            $("#ask").on("click", function () {
-              var caravanPlace = document.querySelector("#caravanPlace");
-              var ask = document.querySelector("#ask");
-              caravanPlace.removeChild(ask);
-
-              var accept2 = document.createElement("button");
-              accept2.id = "accept";
-              accept2.innerText = "zgódź się";
-              caravanPlace.appendChild(accept2);
-              main.append(" Podchodzisz bliżej. Widzisz postać krasnoluda, który wydziera się w niebo głosy i pogania wszystkich wokół. Gdy jesteś już blisko, pytasz: 'Mości krasnoludzie, czy ta karawana jedzie do wioski na pograniczu?' 'Że co? Aaaa... Tak! Jedziemy dalej, ale będziemy przez nią przejeżdżać. Jak chcesz się zabrać to musisz się pospiesz z wsiadaniem. Na ostatnim wozie jest jeszcze trochę miejsca.'- odpowiedział i wrócił do swoich obowiązków ");
-
-              $("#accept").on("click", function () {
-                var parent = document.querySelector("#gameDescription");
-                var firstChild = document.querySelector("#main");
-                var secondChild = document.querySelector("#caravanPlace");
-                parent.removeChild(firstChild);
-                parent.removeChild(secondChild);
-
-                function caravan() {
-                  var text = "<p id='main'>Na ostatnim wozie okazało się, że jest jeszcze sporo miejsca, dzięki czemu będzie można podróżować dość wygodnie. Po kilkunastu minutach karawana ruszyła...<ul id='journeyStart'><button id='lookingAround'>rozejrzyj się</button><button id='startJourney'>dalej</button></ul></p>";
-
-                  var gameDescription = document.querySelector("#gameDescription");
-                  gameDescription.innerHTML = text;
-                }
-                caravan();
-
-                $("#lookingAround").on("click", function () {
-                  main.append(" Widzisz kilka paczek na wozie, szczelnie opakowane, woźnicę, orka, ziewającego, w oczekiwaniu na odjazd.");
-                });
-
-                $("#startJourney").on("click", function () {
-                  var parent = document.querySelector("#gameDescription");
-                  var firstChild = document.querySelector("#main");
-                  var secondChild = document.querySelector("#journeyStart");
-                  parent.removeChild(firstChild);
-                  parent.removeChild(secondChild);
-
-                  function journey() {
-                    var textJourney = "<p id='main'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy musieli walczyć!.<ul id='firstFight'><button id='fight'>walka</button><button id='further'>dalej</button></ul></p>";
-
-                    var gameDescription = document.querySelector("#gameDescription");
-                    gameDescription.innerHTML = textJourney;
-
-                    $("#further").prop("disabled", true);
-                  }
-
-                  journey();
-
-                  $("#fight").on("click", function () {
-                    $("#fight").remove();
-                    $("#further").prop("disabled", false);
-                    var fightValue = heroArrayFeatures2[0] + heroArrayFeatures2[1] + heroArrayFeatures2[2] + heroArrayFeatures2[3] + heroArrayFeatures2[4];
-                    main.append("Twój Ekwipunek to: " + heroEquip);
-                    main.append("Wybierz maks.3 rzeczy: ");
-
-                    for (var i = 0; i < heroEquip.length; i++) {
-                      var weaponBtn = document.createElement("button");
-                      weaponBtn.id = heroEquip[i];
-                      weaponBtn.innerText = heroEquip[i];
-                      main.append(weaponBtn);
-                    }
-
-                    var allBtns = document.querySelectorAll("#main button");
-                    var fightWeapon = [];
-
-                    for (var _i = 0; _i < allBtns.length; _i++) {
-                      allBtns[_i].onclick = function () {
-                        if (fightWeapon.length < 3) {
-                          var item = $(this).text();
-                          fightWeapon.push(item);
-                          $(this).remove();
-                        } else if (fightWeapon.length >= 3) {
-                          main.append('Nie możesz wybrać więcej rzeczy.');
-                        }
-                      };
-                    }
-                    $("#further").on("click", function () {
-                      console.log(fightValue + fightWeapon.length * 10, fightWeapon);
-                    });
-                  });
-                });
-              });
-            });
-          });
-        });
-      }); //zamknięcie zdarzenia opuszczania pomieszczenia linia 409
+      });
     }); //zamknięcie zdarzenia game linia 234
   };
 });
@@ -1121,7 +815,7 @@ module.exports.chooseOccupation = function () {
 "use strict";
 
 
-//random force points and tooltip for force
+//random force points and description
 module.exports.forcePoints = function () {
   var randomForcePoints = Math.round(Math.random() * 50);
   $("#forcePoints").text(randomForcePoints);
@@ -1129,16 +823,12 @@ module.exports.forcePoints = function () {
 };
 
 module.exports.forceTooltip = function () {
-  $("#force").on("mouseenter", function () {
+  $("#force").on("click", function () {
     $("#featuresDescription").text("SIŁA - określa ile postać może udźwignąć, podnieść, jak daleko rzucić itd. Ważna dla wojowników.");
-  });
-
-  $("#force").on("mouseleave", function () {
-    $("#featuresDescription").text("");
   });
 };
 
-//random strenght points and tooltip for strenght
+//random strenght points and description
 module.exports.strenghtPoints = function () {
   var randomStrenghtPoints = Math.round(Math.random() * 50);
   $("#strenghtPoints").text(randomStrenghtPoints);
@@ -1146,16 +836,12 @@ module.exports.strenghtPoints = function () {
 };
 
 module.exports.strenghtTooltip = function () {
-  $("#strenght").on("mouseenter", function () {
+  $("#strenght").on("click", function () {
     $("#featuresDescription").text("WYTRZYMAŁOŚĆ - określa ile postać może odnieść ran, jej odporność na choroby  lub trucizny. Ważna dla wojowników.");
-  });
-
-  $("#strenght").on("mouseleave", function () {
-    $("#featuresDescription").text("");
   });
 };
 
-//random skill points and tooltip for skill
+//random skill points and description
 module.exports.skillPoints = function () {
   var randomSkillPoints = Math.round(Math.random() * 50);
   $("#skillPoints").text(randomSkillPoints);
@@ -1163,16 +849,12 @@ module.exports.skillPoints = function () {
 };
 
 module.exports.skillTooltip = function () {
-  $("#skill").on("mouseenter", function () {
+  $("#skill").on("click", function () {
     $("#featuresDescription").text("ZRĘCZNOŚĆ - określa sprawność ruchową postaci. Ważna dla złoczyńców.");
-  });
-
-  $("#skill").on("mouseleave", function () {
-    $("#featuresDescription").text("");
   });
 };
 
-//random intellectuals points and tooltip for intellectuals
+//random intellectuals points and description
 module.exports.intellectualsPoints = function () {
   var randomIntellectualsPoints = Math.round(Math.random() * 50);
   $("#intellectualsPoints").text(randomIntellectualsPoints);
@@ -1180,16 +862,12 @@ module.exports.intellectualsPoints = function () {
 };
 
 module.exports.intellectualsTooltip = function () {
-  $("#intellectuals").on("mouseenter", function () {
+  $("#intellectuals").on("click", function () {
     $("#featuresDescription").text("INTELIGENCJA - określa sprawność umysłową postaci, czyli jak zapamiętuje, kojarzy fakty itd.");
-  });
-
-  $("#intellectuals").on("mouseleave", function () {
-    $("#featuresDescription").text("");
   });
 };
 
-//random charisma points and tooltip for charisma
+//random charisma points and description
 module.exports.charismaPoints = function () {
   var randomCharismaPoints = Math.round(Math.random() * 50);
   $("#charismaPoints").text(randomCharismaPoints);
@@ -1197,12 +875,8 @@ module.exports.charismaPoints = function () {
 };
 
 module.exports.charismaTooltip = function () {
-  $("#charisma").on("mouseenter", function () {
+  $("#charisma").on("click", function () {
     $("#featuresDescription").text("CHARYZMA - określa sposób w jaki postać jest odbierana przez innych. Dzięki charyzmie, postać może np. przekonać rozmówcę do swoich racji. Ważna dla złoczyńcy i czarodziejów.");
-  });
-
-  $("#charisma").on("mouseleave", function () {
-    $("#featuresDescription").text("");
   });
 };
 
@@ -1428,7 +1102,7 @@ module.exports.equipment = function () {
     if (equipmentArray.length > 5) {
       $("input[name='item']").attr("checked", false).prop("disabled", true);
       $("input[name='item']:checked").attr("checked", true).prop("disabled", false);
-      $('#alertEquipment').text("Nie wybrać więcej niż 5 przedmiotów.");
+      $('#alertEquipment').css("color", "red").text("Nie wybrać więcej niż 5 przedmiotów.");
       equipmentArray.pop();
     } else if (equipmentArray.length < 5) {
       $("input[name='item']").prop("disabled", false);
@@ -1455,7 +1129,7 @@ module.exports.skill = function () {
 
     function skillCheck(skillToCheck) {
       if (skillArray.indexOf(skillToCheck) !== -1) {
-        console.log("Masz już tą umiejętność. wybierz inną");
+        $('#alertSkill').css("color", "red").text("Jakąś umiejętność wybrałeś dwukrotnie. Sprawdź swoje wybory.");
       } else {
         skillArray.push(skillToCheck);
       }
@@ -1465,7 +1139,7 @@ module.exports.skill = function () {
       if (array.length > 3) {
         $("input[name='skill']").attr("checked", false).prop("disabled", true);
         $("input[name='skill']:checked").attr("checked", true).prop("disabled", false);
-        $('#alertSkill').text("Nie wybrać więcej niż 3 umiejętności.");
+        $('#alertSkill').css("color", "red").text("Nie wybrać więcej niż 3 umiejętności.");
         array.pop();
       } else if (array.length < 3) {
         $("input[name='skill']").prop("disabled", false);
@@ -1480,6 +1154,29 @@ module.exports.skill = function () {
   $("#skillDescription").text("umiejętności: " + skillArray.join(", "));
 
   module.exports.skillArray = skillArray;
+};
+
+/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.firstP = function () {
+
+  //pierwszy tekst w grze - początek
+  function firstText() {
+    var text = "<div id='main'><p id='text'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?<p><div id='roomList'><button id='lookingAround'>rozejrzyj się</button><button id='wardrobe'>zbadaj szafę</button><button id='chest'>zbadaj szkrzynię</button><button id='takePackage'>weź paczkę</button><button id='leave'>wyjdź z pomieszczenia</button></div></div>";
+
+    var gameDescription = document.querySelector("#gameDescription");
+    gameDescription.innerHTML = text;
+
+    $("#leave").prop("disabled", true);
+  }
+  firstText();
 };
 
 /***/ })

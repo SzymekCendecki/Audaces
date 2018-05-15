@@ -6,7 +6,6 @@
 	<title>Audaces - Serce ze stali</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
 	<script src="js/engine.js"></script>
 	<link rel="Stylesheet" type="text/css" href="css/main.css" />
 </head>
@@ -61,16 +60,17 @@
 							<ul>
 								<li>
 									<div>
-											<p>wybór imienia</p>
+											<p class="style1slider">Wybór imienia.</p>
 											<input type='text' id="giveName"/>
 											<button id="nameAccept">Zatwierdź</button>
+											<p class="nameDescription">Wpisz w pole wyżej swoje imię. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę.</p>
 											<p id="choosenName"></p>
 									</div>
 								</li>
 
 								<!--first slide choose race -->
 								<li>
-									<p class="style1">Wybór rasy</p>
+									<p class="style1slider">Wybór rasy</p>
 									<form id="chooseRace">
 											<div>
 												<input type="radio" value="człowiek" name="race" id="human">
@@ -100,7 +100,7 @@
 
 								<!-- second slide choose occupation -->
 								<li>
-									<p class="style1">Wybór profesji</p>
+									<p class="style1slider">Wybór profesji</p>
 									<form id="chooseOccupation">
 											<div>
 												<input type="radio" value="wojownik" name="occupation" id="warrior">
@@ -122,82 +122,68 @@
 												<p id="occupationDecription"></p>
 											</div>
 										</form>
-
 								</li>
 
 								<!-- third slide choose features part 1-->
 								<li>
-									<p class="style1">Wybór cech</p>
+									<p class="style1slider">Wybór cech</p>
 									<div>
 										<p id="randomPointsTitle">Wylosuj ilość punktów cech</p>
 									</div>
 
 									<div id="features">
-											<div>
-												<button id="force">Siła</button>
-												<p id="forcePoints"></p>
-											</div>
+											<button id="force">Siła</button>
+											<button id="strenght">Wytrzymałość</button>
+											<button id="skill">Zręczność</button>
+											<button id="intellectuals">Inteligencja</button>
+											<button id="charisma">Charyzma</button>
+									</div>
 
-											<div>
-												<button id="strenght">Wytrzymałość</button>
-												<p id="strenghtPoints"></p>
-											</div>
+									<div id="show">
+											<div>siła<div id="forcePoints"></div></div>
+											<div>wytrzymałość<div id="strenghtPoints"></div></div>
+											<div>zręczność<div id="skillPoints"></div></div>
+											<div>inteligencja<div id="intellectualsPoints"></div></div>
+											<div>charyzma<div id="charismaPoints"></div></div>
+									</div>
 
-											<div>
-												<button id="skill">Zręczność</button>
-												<p id="skillPoints"></p>
-											</div>
-
-											<div>
-												<button id="intellectuals">Inteligencja</button>
-												<p id="intellectualsPoints"></p>
-											</div>
-
-												<div>
-												<button id="charisma">Charyzma</button>
-												<p id="charismaPoints"></p>
-											</div>
-
-											<div id="featuresDescription"></div>
-
-											<div id="alerts"></div>
-										</div>
-								</li>
+									<div id="featuresDescription"></div>
+									</li>
 
 
 								<!-- fourth slide choose features part 2-->
 								<li>
-									<div>Wybór cech cz. 2</div>
+									<p class="style1slider">Wybór cech cz. 2</p>
 									<form>
 										<fieldset class="main">
-											<p>płeć</p>
+											<p class="features2">Płeć</p>
 											<label><input type="radio" value="kobieta" name="sex">kobieta</label>
 											<label><input type="radio" value="mężczyzna" name="sex">mężczyzna</label>
 											<label><input type="radio" value="inna" name="sex">inna</label>
 
-											<p>kolor włosów</p>
+											<p class="features2">Kolor włosów</p>
 											<label><input type="radio" value="blond" name="hairColor">blond</label>
 											<label><input type="radio" value="rude" name="hairColor">rude</label>
 											<label><input type="radio" value="czarne" name="hairColor">czarne</label>
 											<label><input type="radio" value="farbowane" name="hairColor">farbowane</label>
 
-											<p>kolor oczu</p>
+											<p class="features2">Kolor oczu</p>
 											<label><input type="radio" value="piwne" name="eyesColor">piwne</label>
 											<label><input type="radio" value="szare" name="eyesColor">szare</label>
 											<label><input type="radio" value="brązowe" name="eyesColor">brązowe</label>
 											<label><input type="radio" value="niebieskie" name="eyesColor">niebieskie</label>
 
-											<p>waga</p>
+											<p class="features2">Waga</p>
 											<label><input type="radio" value="niedowaga" name="weight">niedowaga</label>
 											<label><input type="radio" value="normalna" name="weight">normalna</label>
 											<label><input type="radio" value="nadwaga" name="weight">nadwaga</label>
 
-											<p>wzrost</p>
+											<p class="features2">Wzrost</p>
 											<label><input type="radio" value="niski" name="height">niski</label>
 											<label><input type="radio" value="średni" name="height">średni</label>
 											<label><input type="radio" value="wysoki" name="height">wysoki</label>
 
-											<p>kolor skóry</p>
+											<p class="features2">Kolor skóry</p>
 											<label><input type="radio" value="biała" name="skin">biała</label>
 											<label><input type="radio" value="brązowa" name="skin">brązowa</label>
 											<label><input type="radio" value="czarna" name="skin">czarna</label>
@@ -207,18 +193,15 @@
 											<label><input type="radio" value="brunatna" name="skin">brunatna</label>
 											<label><input type="radio" value="błękitna" name="skin">błękitna</label>
 										</fieldset>
-
 									</form>
-									<div id="featPart2Description"></div>
 								</li>
-
 
 								<!-- fifth slide equipment -->
 								<li>
-									<div>Wybór ekwipunku</div>
+									<p class="style1slider">Wybór ekwipunku</p>
 									<form id="chooseEquipment">
 										<fieldset>
-											<p>broń</p>
+											<p class="features2">broń</p>
 											<input type="checkbox" name="item" value="sztylet">sztylet
 											<input type="checkbox" name="item" value="drewniana pałka">drewniana pałka
 											<input type="checkbox" name="item" value="krótki miecz">krótki miecz
@@ -227,17 +210,17 @@
 											<input type="checkbox" name="item" value="proca">proca
 											<input type="checkbox" name="item" value="łuk">łuk
 
-											<p>zbroja</p>
+											<p class="features2">zbroja</p>
 											<input type="checkbox" name="item" value="przeszywanica">przeszywanica
 											<input type="checkbox" name="item" value="zbroja skórzana">skórzana
 											<input type="checkbox" name="item" value="zbroja ćwiekowana">ćwiekowana
 
-											<p>tarcza</p>
+											<p class="features2">tarcza</p>
 											<input type="checkbox" name="item" value="puklerz">puklerz
 											<input type="checkbox" name="item" value="tarcza mała drewniana">mała drewniana
 											<input type="checkbox" name="item" value="tarcza mała metalowa">mała metalowa
 
-											<p>inne</p>
+											<p class="features2">inne</p>
 											<input type="checkbox" name="item" value="hubka i krzeiwo">hubka i krzesiwo
 											<input type="checkbox" name="item" value="mieszek">mieszek
 										  <input type="checkbox" name="item" value="pas skórzany">pas skórzany
@@ -262,16 +245,15 @@
 											<input type="checkbox" name="item" value="kaganek">kaganek
 											<input type="checkbox" name="item" value="lina 5m">lina 5m
 										</fieldset>
+										<p id="alertEquipment"></p>
 									</form>
-									<div id="equipmentDescription"></div>
-									<div id="alertEquipment"</div>
 								</li>
 
 								<!-- sixth -->
 								<li>
-									<div>Wybór umiejętności</div>
+									<div class="style1slider">Wybór umiejętności</div>
 									<form id="chooseSkill">
-										<p>Umiejętości wojownika</p>
+										<p class="features2">Umiejętości wojownika</p>
 											<input type="checkbox" name="skill" value="sztuka przetrwania">sztuka przetrwania
 											<input type="checkbox" name="skill" value="dyscyplina">dyscyplina
 											<input type="checkbox" name="skill" value="dowodzenie">dowodzenie
@@ -286,7 +268,7 @@
 											<input type="checkbox" name="skill" value="mała tarcza drewniana">mała tarcza drewniana
 											<input type="checkbox" name="skill" value="mała tarcza metalowa">mała tarcza metalowa
 
-											<p>Umiejętości złoczyńczy</p>
+											<p class="features2">Umiejętości złoczyńczy</p>
 											<input type="checkbox" name="skill" value="przygotowanie trucizn">przygotowanie trucizn
 											<input type="checkbox" name="skill" value="wspinaczka">wspinaczka
 										  <input type="checkbox" name="skill" value="aktorstwo">aktorstwo
@@ -300,7 +282,7 @@
 											<input type="checkbox" name="skill" value="krótki miecz">krótki miecz
 											<input type="checkbox" name="skill" value="blefowanie">blefowanie
 
-											<p>Umiejętości czarodzieja</p>
+											<p class="features2">Umiejętości czarodzieja</p>
 											<input type="checkbox" name="skill" value="pisanie i czytanie">pisanie i czytanie
 										  <input type="checkbox" name="skill" value="przywołanie/odpędzenie demona">przywołanie/odpędzenie demona
 											<input type="checkbox" name="skill" value="wróżbiarstwo">wróżbiarstwo
@@ -313,9 +295,7 @@
 											<input type="checkbox" name="skill" value="tworzenie runów">tworzenie runów
 											<input type="checkbox" name="skill" value="zielarstwo">zielarstwo
 										</form>
-
-										<div id="skillDescription"></div>
-										<div id="alertSkill"></div>
+										<p id="alertSkill"></p>
 									</li>
 
 					<!-- seventh slide -->
@@ -435,6 +415,7 @@
 									<button id="features2">cechy</button>
 									<button id="equip">ekwipunek</button>
 									<button id="skills">umiejętności</button>
+									<button id="goldArray">złoto</button>
 									<button id="task">zadania</button>
 							</div>
 
