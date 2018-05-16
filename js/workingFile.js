@@ -10,6 +10,8 @@ let fifthSlide = require("./slides/fifthSlide.js");
 let sixthSlide = require("./slides/sixthSlide.js");
 let seventhSlide = require("./slides/seventhSlide.js");
 let firstP = require("./firstParagraph.js");
+let secondP = require("./secondParagraph.js");
+let thirdP = require("./thirdParagraph.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -221,9 +223,10 @@ let textCharisma = cFF.text();
 
 function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n){
   if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" ||  h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz skórę" || n =="podaj imię" || n == ""){
-    $("#game").prop("disabled", true);
+    $("#game").addClass("red").prop("disabled", true);
   }else{
-    $("#game").prop("disabled", false);
+
+    $("#game").prop("disabled", false).removeClass("red" ).addClass("green");
   }
 }
 
@@ -274,10 +277,10 @@ $("#newGame").on("click", function(){
 //zbudowanie zawartości okna dialogowego pod przyciskiem cech
 
 function createFeaturesDialog(){
-let allFeatures = "<div id='name'><p id='descriptionTitleName'>Imię</p><p id='descriptionName'></p></div><div id='race'><p id='descriptionTitleRace'>Rasa</p><p id='descriptionRace'></p></div><div id='occupation'><p id='descriptionTitleOccupation'>Profesja</p><p id='descriptionOccupation'></p></div><div id='sex'><p id='descriptionTitleSex'>Płeć</p><p id='descriptionSex'></p></div><div id='hair'><p id='descriptionTitleHair'>Kolor włosów</p><p id='descriptionHair'></p></div><div id='eyes'><p id='descriptionTitleEyes'>Kolor oczu</p><p id='descriptionEyes'></p></div><div id='weight'><p id='descriptionTitleWeight'>Waga</p><p id='descriptionWeight'></p></div><div id='height'><p id='descriptionTitleHeight'>Wzrost</p><p id='descriptionHeight'></p><p id='descriptionTitleSkin'>Kolor skóry</p><p id='descriptionSkin'></p></div></div><div id='force'><p id='descriptionTitleForce'>Siła</p><p id='descriptionForce'></p></div><div id='strenght'><p id='descriptionTitleStrenght'>Wytrzymałość</p><p id='descriptionStrenght'></p></div><div id='skill'><p id='descriptionTitleSkill'>Zręczność</p><p id='descriptionSkill'></p></div><div id='intellectuals'><p id='descriptionTitleIntellectuals'>Inteligencja</p><p id='descriptionIntellectuals'></p></div><div id='charisma'><p id='descriptionTitleCharisma'>Charyzma</p><p id='descriptionCharisma'></p></div>";
-
 let dialog =  document.querySelector("#dialogPanelDescription");
-dialog.innerHTML = allFeatures;
+let dialog2 =  document.querySelector("#dialogPanelDescription2");
+dialog.innerHTML = heroCreator.features1;
+dialog2.innerHTML = heroCreator.features2;
 
 // heroArray = [name, race, occupation, sex, hair, eyes, weight, height, skin]
 $("#descriptionName").text(heroArrayFeatures1[0]);
@@ -308,30 +311,21 @@ $("#features2").on("click", function(){
   $("#equip").on("click", function(){
   $("#dialogPanel").fadeIn(500);
   $("#dialogPanelDescription").text(heroEquip);
+  $("#dialogPanelDescription2").text("złoto: " + gold[0]);
 });
 
 //przycisk umiejętności
 $("#skills").on("click", function(){
   $("#dialogPanel").fadeIn(500);
   $("#dialogPanelDescription").text(heroSkills);
-});
-
-//przycisk złota
-$("#goldArray").on("click", function(){
-  $("#dialogPanel").fadeIn(500);
-  $("#dialogPanelDescription").text(gold[0]);
+  $("#dialogPanelDescription2").text("");
 });
 
 //przycisk zadań
-function tasks(){
-  let tasks = "<ul><li>Oddać paczkę mnichowi w przygranicznej wiosce.</li></ul>";
-  let dialog = document.querySelector("#dialogPanelDescription");
-  dialog.innerHTML = tasks;
-}
-
 $("#task").on("click", function(){
   $("#dialogPanel").fadeIn(500);
-  tasks();
+  $("#dialogPanelDescription").text("Oddać paczkę mnichowi w przygranicznej wiosce.");
+  $("#dialogPanelDescription2").text("");
 });
 
 //funkcja zamykająca dialogPanel
@@ -339,16 +333,22 @@ $("#close").on("click", function(){
     $("#dialogPanel").fadeOut(500);
 });
 
+
+
 //pierwszy paragraf
 firstP.firstP();
+$("#wardrobe").addClass("green");
+$("#chest").addClass("green");
+$("#leave").addClass("red");
+
 //przycisk rozglądania się - pierwszy tekst
 $("#lookingAround").on("click", function(){
-  main.append(" Pokój jak pokój. Stół, łóżko, szafa, skrzynia.");
+  main.append(firstP.roomText).addClass("classIndent");
 });
 
 //przycisk badania szafy i zabierania płaszcza - pierwszy tekst
 $("#wardrobe").on("click", function(){
-  main.append("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
+  main.append(firstP.wardrobeText);
 
 let btnCoat = document.createElement("button");
 btnCoat.id = "coat";
@@ -368,7 +368,7 @@ $("#coat").on("click", function (){
 
 //przycisk sprawdzenia skrzyni i zabierania złota
 $("#chest").on("click", function(){
-  main.append(" Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W śodku znajduje się 12 sztuk złotych monet.");
+  main.append(firstP.chestText);
 
   let btnGold = document.createElement("button");
     btnGold.id = "gold";
@@ -392,7 +392,7 @@ $("#takePackage").on("click", function (){
   main.append(" Paczka została zabrana.");
   heroEquip.push("paczka");
   $(this).remove();
-  $("#leave").prop("disabled", false);
+  $("#leave").removeClass("red").addClass("green").prop("disabled", false);
 });
 
 //przycisk opuszczenia pomieszczenia
@@ -400,14 +400,43 @@ $("#leave").on("click", function(){
 document.querySelector("#main").removeChild(document.querySelector("#text"));
 document.querySelector("#main").removeChild(document.querySelector("#roomList"));
 
-  //drugi paragraf
-  function secondText(){
-    let text = "<div id='main'><p>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. </p><div id='street'><button id='lookingAround'>rozejrzyj się</button><button id='market'>targ</button></div><div>";
 
-  let gameDescription = document.querySelector("#gameDescription");
-  gameDescription.innerHTML = text;
-  }
-  secondText();
+
+
+
+//drugi paragraf
+secondP.secondP();
+
+//przycisk rozglądania się - ulica
+$("#lookingAround").on("click", function(){
+  main.append(secondP.streetText);
+});
+$("#marketBtn").addClass("green");
+
+
+//przycisk targ - przejście do paragrafu trzeciego - targowiska
+$("#marketBtn").on("click", function(){
+  document.querySelector("#main").removeChild(document.querySelector("#text"));
+  document.querySelector("#main").removeChild(document.querySelector("#street"));
+
+
+
+
+  //paragraf trzeci
+  thirdP.thirdP();
+    $("#caravan").addClass("green");
+
+    //przycisk rozglądania się - targ
+   $("#lookingAround").on("click", function(){
+     main.append(thirdP.marketText).addClass("classIndent");
+   });
+
+
+});
+
+
+
+
 });
 
 });//zamknięcie zdarzenia game linia 234

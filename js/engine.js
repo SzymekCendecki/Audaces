@@ -95,7 +95,9 @@ var fourthSlide = __webpack_require__(10);
 var fifthSlide = __webpack_require__(11);
 var sixthSlide = __webpack_require__(12);
 var seventhSlide = __webpack_require__(0);
-var firstP = __webpack_require__(15);
+var firstP = __webpack_require__(13);
+var secondP = __webpack_require__(14);
+var thirdP = __webpack_require__(15);
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -330,9 +332,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function checkButtonGame(a, b, c, d, e, f, g, h, i, j, k, l, m, n) {
       if (a == "wybierz rasę" || b == "wybierz profesję" || c == "wybierz płeć" || d == "wybierz włosy" || e == "wybierz kolor oczu" || f == "wybierz wagę" || g == "wybierz wzrost" || h == "wybierz rasę, profesję i wylosuj punkty" || i == "wybierz rasę, profesję i wylosuj punkty" || j == "wybierz rasę, profesję i wylosuj punkty" || k == "wybierz rasę, profesję i wylosuj punkty" || l == "wybierz rasę, profesję i wylosuj punkty" || m == "wybierz skórę" || n == "podaj imię" || n == "") {
-        $("#game").prop("disabled", true);
+        $("#game").addClass("red").prop("disabled", true);
       } else {
-        $("#game").prop("disabled", false);
+
+        $("#game").prop("disabled", false).removeClass("red").addClass("green");
       }
     }
 
@@ -383,10 +386,10 @@ document.addEventListener("DOMContentLoaded", function () {
       //zbudowanie zawartości okna dialogowego pod przyciskiem cech
 
       function createFeaturesDialog() {
-        var allFeatures = "<div id='name'><p id='descriptionTitleName'>Imię</p><p id='descriptionName'></p></div><div id='race'><p id='descriptionTitleRace'>Rasa</p><p id='descriptionRace'></p></div><div id='occupation'><p id='descriptionTitleOccupation'>Profesja</p><p id='descriptionOccupation'></p></div><div id='sex'><p id='descriptionTitleSex'>Płeć</p><p id='descriptionSex'></p></div><div id='hair'><p id='descriptionTitleHair'>Kolor włosów</p><p id='descriptionHair'></p></div><div id='eyes'><p id='descriptionTitleEyes'>Kolor oczu</p><p id='descriptionEyes'></p></div><div id='weight'><p id='descriptionTitleWeight'>Waga</p><p id='descriptionWeight'></p></div><div id='height'><p id='descriptionTitleHeight'>Wzrost</p><p id='descriptionHeight'></p><p id='descriptionTitleSkin'>Kolor skóry</p><p id='descriptionSkin'></p></div></div><div id='force'><p id='descriptionTitleForce'>Siła</p><p id='descriptionForce'></p></div><div id='strenght'><p id='descriptionTitleStrenght'>Wytrzymałość</p><p id='descriptionStrenght'></p></div><div id='skill'><p id='descriptionTitleSkill'>Zręczność</p><p id='descriptionSkill'></p></div><div id='intellectuals'><p id='descriptionTitleIntellectuals'>Inteligencja</p><p id='descriptionIntellectuals'></p></div><div id='charisma'><p id='descriptionTitleCharisma'>Charyzma</p><p id='descriptionCharisma'></p></div>";
-
         var dialog = document.querySelector("#dialogPanelDescription");
-        dialog.innerHTML = allFeatures;
+        var dialog2 = document.querySelector("#dialogPanelDescription2");
+        dialog.innerHTML = heroCreator.features1;
+        dialog2.innerHTML = heroCreator.features2;
 
         // heroArray = [name, race, occupation, sex, hair, eyes, weight, height, skin]
         $("#descriptionName").text(heroArrayFeatures1[0]);
@@ -417,30 +420,21 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#equip").on("click", function () {
         $("#dialogPanel").fadeIn(500);
         $("#dialogPanelDescription").text(heroEquip);
+        $("#dialogPanelDescription2").text("złoto: " + gold[0]);
       });
 
       //przycisk umiejętności
       $("#skills").on("click", function () {
         $("#dialogPanel").fadeIn(500);
         $("#dialogPanelDescription").text(heroSkills);
-      });
-
-      //przycisk złota
-      $("#goldArray").on("click", function () {
-        $("#dialogPanel").fadeIn(500);
-        $("#dialogPanelDescription").text(gold[0]);
+        $("#dialogPanelDescription2").text("");
       });
 
       //przycisk zadań
-      function tasks() {
-        var tasks = "<ul><li>Oddać paczkę mnichowi w przygranicznej wiosce.</li></ul>";
-        var dialog = document.querySelector("#dialogPanelDescription");
-        dialog.innerHTML = tasks;
-      }
-
       $("#task").on("click", function () {
         $("#dialogPanel").fadeIn(500);
-        tasks();
+        $("#dialogPanelDescription").text("Oddać paczkę mnichowi w przygranicznej wiosce.");
+        $("#dialogPanelDescription2").text("");
       });
 
       //funkcja zamykająca dialogPanel
@@ -450,14 +444,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //pierwszy paragraf
       firstP.firstP();
+      $("#wardrobe").addClass("green");
+      $("#chest").addClass("green");
+      $("#leave").addClass("red");
+
       //przycisk rozglądania się - pierwszy tekst
       $("#lookingAround").on("click", function () {
-        main.append(" Pokój jak pokój. Stół, łóżko, szafa, skrzynia.");
+        main.append(firstP.roomText).addClass("classIndent");
       });
 
       //przycisk badania szafy i zabierania płaszcza - pierwszy tekst
       $("#wardrobe").on("click", function () {
-        main.append("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
+        main.append(firstP.wardrobeText);
 
         var btnCoat = document.createElement("button");
         btnCoat.id = "coat";
@@ -477,7 +475,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //przycisk sprawdzenia skrzyni i zabierania złota
       $("#chest").on("click", function () {
-        main.append(" Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W śodku znajduje się 12 sztuk złotych monet.");
+        main.append(firstP.chestText);
 
         var btnGold = document.createElement("button");
         btnGold.id = "gold";
@@ -501,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
         main.append(" Paczka została zabrana.");
         heroEquip.push("paczka");
         $(this).remove();
-        $("#leave").prop("disabled", false);
+        $("#leave").removeClass("red").addClass("green").prop("disabled", false);
       });
 
       //przycisk opuszczenia pomieszczenia
@@ -510,13 +508,28 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#main").removeChild(document.querySelector("#roomList"));
 
         //drugi paragraf
-        function secondText() {
-          var text = "<div id='main'><p>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. </p><div id='street'><button id='lookingAround'>rozejrzyj się</button><button id='market'>targ</button></div><div>";
+        secondP.secondP();
 
-          var gameDescription = document.querySelector("#gameDescription");
-          gameDescription.innerHTML = text;
-        }
-        secondText();
+        //przycisk rozglądania się - ulica
+        $("#lookingAround").on("click", function () {
+          main.append(secondP.streetText);
+        });
+        $("#marketBtn").addClass("green");
+
+        //przycisk targ - przejście do paragrafu trzeciego - targowiska
+        $("#marketBtn").on("click", function () {
+          document.querySelector("#main").removeChild(document.querySelector("#text"));
+          document.querySelector("#main").removeChild(document.querySelector("#street"));
+
+          //paragraf trzeci
+          thirdP.thirdP();
+          $("#caravan").addClass("green");
+
+          //przycisk rozglądania się - targ
+          $("#lookingAround").on("click", function () {
+            main.append(thirdP.marketText).addClass("classIndent");
+          });
+        });
       });
     }); //zamknięcie zdarzenia game linia 234
   };
@@ -649,6 +662,10 @@ module.exports.hideElements = function hideElements() {
 module.exports.showCreator = function showCreator() {
     $("#slider").delay(750).fadeIn(750);
 };
+
+module.exports.features1 = "<div id='name'><p id='descriptionTitleName'>Imię</p><p id='descriptionName'></p></div><div id='race'><p id='descriptionTitleRace'>Rasa</p><p id='descriptionRace'></p></div><div id='occupation'><p id='descriptionTitleOccupation'>Profesja</p><p id='descriptionOccupation'></p></div><div id='sex'><p id='descriptionTitleSex'>Płeć</p><p id='descriptionSex'></p></div><div id='hair'><p id='descriptionTitleHair'>Kolor włosów</p><p id='descriptionHair'></p></div><div id='eyes'><p id='descriptionTitleEyes'>Kolor oczu</p><p id='descriptionEyes'></p></div><div id='weight'><p id='descriptionTitleWeight'>Waga</p><p id='descriptionWeight'></p></div><div id='height'><p id='descriptionTitleHeight'>Wzrost</p><p id='descriptionHeight'></p></div><div id='skin'><p id='descriptionTitleSkin'>Kolor skóry</p><p id='descriptionSkin'></p></div>";
+
+module.exports.features2 = "<div id='force'><p id='descriptionTitleForce'>Siła</p><p id='descriptionForce'></p></div><div id='strenght'><p id='descriptionTitleStrenght'>Wytrzymałość</p><p id='descriptionStrenght'></p></div><div id='skill'><p id='descriptionTitleSkill'>Zręczność</p><p id='descriptionSkill'></p></div><div id='intellectuals'><p id='descriptionTitleIntellectuals'>Inteligencja</p><p id='descriptionIntellectuals'></p></div><div id='charisma'><p id='descriptionTitleCharisma'>Charyzma</p><p id='descriptionCharisma'></p></div>";
 
 /***/ }),
 /* 7 */
@@ -1157,16 +1174,13 @@ module.exports.skill = function () {
 };
 
 /***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports.firstP = function () {
-
   //pierwszy tekst w grze - początek
   function firstText() {
     var text = "<div id='main'><p id='text'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?<p><div id='roomList'><button id='lookingAround'>rozejrzyj się</button><button id='wardrobe'>zbadaj szafę</button><button id='chest'>zbadaj szkrzynię</button><button id='takePackage'>weź paczkę</button><button id='leave'>wyjdź z pomieszczenia</button></div></div>";
@@ -1178,6 +1192,55 @@ module.exports.firstP = function () {
   }
   firstText();
 };
+
+//opis pokoju
+module.exports.roomText = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
+
+//opis szafy
+module.exports.wardrobeText = "Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.";
+
+//opis skrzyni
+module.exports.chestText = "Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W śodku znajduje się 12 sztuk złotych monet.";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.secondP = function () {
+
+  //drugi teks w grze - wyjście z pomieszczenia
+  function secondText() {
+    var text = "<div id='main'><p id='text'>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. </p><div id='street'><button id='lookingAround'>rozejrzyj się</button><button id='marketBtn'>targ</button></div><div>";
+
+    var gameDescription = document.querySelector("#gameDescription");
+    gameDescription.innerHTML = text;
+  }
+  secondText();
+};
+
+module.exports.streetText = "Typowa ulica dzielnicy Najemników, miasta Erharuf. Częściowo brukowana. Pobliskie budynki są niskie i drewniane, maksymalnie jednopiętrowe. Nic specjalnego.";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.thirdP = function () {
+  function marketText() {
+    var text = "<p id='main'><p>Stoisz na środku placu targowego. Wokół widzisz stragany, na których możesz kupić potrzebne rzeczy.</p><ul id='buyItems'><button id='tent'>namiot - 5szt. zł.</button><button id='bag'>torba 1szt. zł</button><button id='blanket'>derka - 1szt. zł</button><button id='lamp'>lampa - 1szt. zł</button><button id='rope'>lina - 1szt. zł</button><button id='food'>racja żyw. - 1szt. zł</button><button id='dagger'>sztylet - 8szt. zł</button><button id='woodenStick'>pałka drewniana - 4szt. zł</button><button id='buckler'>puklerz - 12szt. zł</button></ul><ul id='market'><button id='lookingAround'>rozejrzyj się</button><button id='caravan'>karawana</button></ul></p>";
+
+    var gameDescription = document.querySelector("#gameDescription");
+    gameDescription.innerHTML = text;
+  }
+  marketText();
+};
+
+module.exports.marketText = "Niewielki targ, na którym okoliczni mieszczkańcy mogą dokonywać swoich zakupów.";
 
 /***/ })
 /******/ ]);
