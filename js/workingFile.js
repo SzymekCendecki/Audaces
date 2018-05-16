@@ -428,8 +428,51 @@ $("#marketBtn").on("click", function(){
 
     //przycisk rozglądania się - targ
    $("#lookingAround").on("click", function(){
-     main.append(thirdP.marketText).addClass("classIndent");
+     main.append(thirdP.marketText);
    });
+
+   $("#buy").on("click", function(){
+       $("#dialogPanel").fadeIn(500);
+       $("#dialogPanelDescription2").text("");
+        thirdP.buysItems();
+
+//zakup namiotu
+      $("#tent").on("click", function(){
+        console.log("działa");
+        if(gold[0] > 5){
+             heroEquip.push("namiot");
+             let newGold = (gold[0] - 5);
+             gold.splice(0, 1, newGold);
+             console.log(gold[0]);
+           }else{
+                 let infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
+                 let dialog = document.querySelector("#dialogPanelDescription2");
+                 dialog.innerHTML = infoGold;
+                 $("#redColor").addClass("red");
+           }
+     });
+
+  //zakupu torby
+      $("#bag").on("click", function(){
+        if(gold[0] >= 1){
+          heroEquip.push("torba");
+          let newGold = (gold[0] - 1);
+          gold.splice(0, 1, newGold);
+        }else{
+              let infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
+              let dialog = document.querySelector("#dialogPanelDescription2");
+              dialog.innerHTML = infoGold;
+              $("#redColor").addClass("red");
+        }
+      });
+
+
+
+  });
+
+
+
+
 
 
 });
