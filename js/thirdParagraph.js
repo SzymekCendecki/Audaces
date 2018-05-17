@@ -21,10 +21,18 @@ module.exports.buysItems = function(){
 buyItems();
 }
 
-
 module.exports.noGold = function(){
   let infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
   let dialog = document.querySelector("#dialogPanelDescription2");
   dialog.innerHTML = infoGold;
   $("#redColor").addClass("redText");
+}
+
+module.exports.sellStart = function(){
+  $("#dialogPanelDescription").text("Możesz sprzedać: ");
+  $("#dialogPanelDescription2").text("");
+
+  let sellItemsBtns = document.createElement("div");
+  sellItemsBtns.id = "sellItemsBtns";
+  $("#dialogPanelDescription").append(sellItemsBtns);
 }

@@ -12,6 +12,9 @@ let seventhSlide = require("./slides/seventhSlide.js");
 let firstP = require("./firstParagraph.js");
 let secondP = require("./secondParagraph.js");
 let thirdP = require("./thirdParagraph.js");
+let fourthP = require("./fourthParagraph.js");
+let fifthP = require("./fifthParagraph.js");
+let sixthP = require("./sixthParagraph.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -392,6 +395,7 @@ $("#takePackage").on("click", function (){
   firstP.takePackage();
   heroEquip.push("paczka");
   $("#leave").removeClass("red").addClass("green").prop("disabled", false);
+  $(this).remove();
 });
 
 //przycisk opuszczenia pomieszczenia
@@ -436,103 +440,115 @@ $("#marketBtn").on("click", function(){
        $("#dialogPanelDescription2").text("");
         thirdP.buysItems();
 
-//zakup namiotu
-      $("#tent").on("click", function(){
-        console.log("działa");
-        if(gold[0] > 5){
-             heroEquip.push("namiot");
-             let newGold = (gold[0] - 5);
+        function buyItem (item, price){
+          if(gold[0] >= price){
+             heroEquip.push(item);
+             let newGold = (gold[0] - price);
              gold.splice(0, 1, newGold);
+             $("#dialogPanelDescription2").text("kupiono: " + item);
            }else{
                thirdP.noGold();
            }
-     });
-
-  //zakupu torby
-      $("#bag").on("click", function(){
-        if(gold[0] >= 1){
-          heroEquip.push("torba");
-          let newGold = (gold[0] - 1);
-          gold.splice(0, 1, newGold);
-        }else{
-            thirdP.noGold();
         }
-      });
 
-      //zakupu lampy
-                $("#lamp").on("click", function(){
-                  if(gold[0] >= 1){
-                    heroEquip.push("lampa");
-                    let newGold = (gold[0] - 1);
-                    gold.splice(0, 1, newGold);
-                  }else{
-                      thirdP.noGold();
-                  }
-                });
+//zakup namiotu
+      $("#tent").on("click", function(){ buyItem("namiot", 5); });
 
-    //zakup liny
-                $("#rope").on("click", function(){
-                  if(gold[0] >= 1){
-                      heroEquip.push("lina");
-                      let newGold = (gold[0] - 1);
-                      gold.splice(0, 1, newGold);
-                  }else{
-                      thirdP.noGold();
-                  }
-                });
+//zakupu torby
+      $("#bag").on("click", function(){ buyItem("torba", 1); });
 
-    //zakup jedzenia
-                $("#food").on("click", function(){
-                  if(gold[0] >= 1){
-                    heroEquip.push("racja żyw.");
-                    let newGold = (gold[0] - 1);
-                    gold.splice(0, 1, newGold);
-                }else{
-                    thirdP.noGold();
-                  }
-              });
+//zakupu derki
+      $("#blanket").on("click", function(){ buyItem("derka", 1); });
 
-    //zakup sztyletu
-               $("#dagger").on("click", function(){
-                  if(gold[0] >= 1){
-                    heroEquip.push("sztylet");
-                   let newGold = (gold[0] - 8);
-                   gold.splice(0, 1, newGold);
-                }else{
-                  thirdP.noGold();
-                }
-              });
+//zakupu lampy
+      $("#lamp").on("click", function(){ buyItem("lampa", 1); });
 
-    //zakup pałki drewnianej
-              $("#woodenStick").on("click", function(){
-                  if(gold[0] >= 1){
-                      heroEquip.push("drewniana pałka");
-                      let newGold = (gold[0] - 4);
-                      gold.splice(0, 1, newGold);
-                  }else{
-                      thirdP.noGold();
-                  }
-              });
+//zakup liny
+      $("#rope").on("click", function(){ buyItem("lina", 1); });
 
-      //zakup puklerz
-               $("#buckler").on("click", function(){
-                 if(gold[0] >= 1){
-                   heroEquip.push("puklerz");
-                   let newGold = (gold[0] - 12);
-                   gold.splice(0, 1, newGold);
-                 }else{
-                    thirdP.noGold();
-                 }
-             });
+//zakup jedzenia
+      $("#food").on("click", function(){ buyItem("racja żyw.", 1); });
 
+//zakup sztyletu
+     $("#dagger").on("click", function(){ buyItem("sztylet", 8);  });
+
+//zakup pałki drewnianej
+    $("#woodenStick").on("click", function(){ buyItem("drewniana pałka", 4); });
+
+//zakup puklerz
+    $("#buckler").on("click", function(){ buyItem("puklerz", 12); });
 
   }); //zamknięcie przycisku kupowania
 
+//przycisk sprzedawania
+$("#sell").on("click", function(){
+    $("#dialogPanel").fadeIn(500);
+
+    thirdP.sellStart();
+
+      for(let i=0; i<heroEquip.length; i++){
+          let itemBtn = document.createElement("button");
+          itemBtn.id = heroEquip[i];
+          itemBtn.innerText = heroEquip[i];
+          $("#sellItemsBtns").append(itemBtn);
+          $("#paczka").addClass("red").prop("disabled", true);
+
+        document.querySelectorAll("#dialogPanelDescription button")[i].onclick = function(){
+         let newGold = (gold[0] + 0.5);
+          gold.splice(0, 1, newGold);
+
+          let thisText = $(this).text();
+          if(heroEquip.indexOf(thisText) !== -1){ heroEquip.splice(heroEquip.indexOf(thisText), 1); }
+
+          $("#dialogPanelDescription2").text("sprzedano: " + $(this).text() + " za 0,5 szt. zł/");
+          $(this).remove();
+        }
+      }
+  });//zakończenie przycisku sprzedaży
 
 
 
+//przycisk karawana - caravan pójście na plac karawany
+$("#caravan").on("click", function(){
+  document.querySelector("#main").removeChild(document.querySelector("#text"));
+  document.querySelector("#main").removeChild(document.querySelector("#buySellItems"));
+
+//paragraf czwarty
+fourthP.fourthP();
+
+//przycisk rozglądania się - postój karawan
+$("#lookingAround").on("click", function(){ fourthP.caravanText(); });
+$("#ask").addClass("green");
+
+$("#ask").on("click", function(){
+  fourthP.removeBtnAsk();
+  fourthP.creatingBtnAccept2();
+  $("#accept").addClass("green");
+  fourthP.asking();
+
+  //paragraf piąty wyruszenie w podróż
+  $("#accept").on("click", function(){
+    document.querySelector("#main").removeChild(document.querySelector("#text"));
+    document.querySelector("#main").removeChild(document.querySelector("#caravanPlace"));
+
+    //wywołanie paragrafu piątego
+    fifthP.fifthP();
+    $("#startJourney").addClass("green");
+
+    $("#lookingAround").on("click", function(){ fifthP.wagonLooking(); });
 
 
+//paragraf szósty - pierwsza walka
+    $("#startJourney").on("click", function(){
+      document.querySelector("#main").removeChild(document.querySelector("#text"));
+      document.querySelector("#main").removeChild(document.querySelector("#journeyStart"));
+        sixthP.sixthP();
+    });//zakończenie paragrafu szóstego
+
+
+  });//zakończenie przycisku accept - wyruszenie w podróż
+});//zakończenie przycisku ask - zapytaj
+});//zakończenie przycisku caravan
 });//zakończenie przycisku marketBtn
 }); //zakończenie przycisku opuszczenia pomieszczenia
 

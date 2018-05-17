@@ -445,7 +445,7 @@ div{
 
 
 //styl dla przycisków pierwszego paragrafu
-#roomList, #street, #buySellItems, #buys{
+#roomList, #street, #buySellItems, #buys, #caravanPlace, #journeyStart, #firstFight{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -462,4 +462,24 @@ div{
 #lookingAround{
   background: linear-gradient(white, blue);
   text-shadow: 2px 1px white;
+}
+
+//style dla przycisków sprzedaży
+#sellItemsBtns{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+
+  button{
+    width: 20%;
+    height: 35px;
+    font-weight: bold;
+  }
+}
+
+.marginIndent{
+  margin-top: 20px;
+  text-indent: 20px;
 }
