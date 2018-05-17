@@ -20,3 +20,9 @@ module.exports.wardrobeText = "Stara, drewniana szafa, śmierdząca kurzem, ple�
 
 //opis skrzyni
 module.exports.chestText = "Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W śodku znajduje się 12 sztuk złotych monet.";
+
+//zabieranie paczki
+module.exports.takePackage = function(){
+  main.append(" Paczka została zabrana.");
+  $(this).remove();
+}

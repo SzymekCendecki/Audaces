@@ -389,9 +389,8 @@ $("#chest").on("click", function(){
 
 //przycisk zabierania paczki
 $("#takePackage").on("click", function (){
-  main.append(" Paczka została zabrana.");
+  firstP.takePackage();
   heroEquip.push("paczka");
-  $(this).remove();
   $("#leave").removeClass("red").addClass("green").prop("disabled", false);
 });
 
@@ -431,6 +430,7 @@ $("#marketBtn").on("click", function(){
      main.append(thirdP.marketText);
    });
 
+   //przycisk kupowania
    $("#buy").on("click", function(){
        $("#dialogPanel").fadeIn(500);
        $("#dialogPanelDescription2").text("");
@@ -443,12 +443,8 @@ $("#marketBtn").on("click", function(){
              heroEquip.push("namiot");
              let newGold = (gold[0] - 5);
              gold.splice(0, 1, newGold);
-             console.log(gold[0]);
            }else{
-                 let infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
-                 let dialog = document.querySelector("#dialogPanelDescription2");
-                 dialog.innerHTML = infoGold;
-                 $("#redColor").addClass("red");
+               thirdP.noGold();
            }
      });
 
@@ -459,28 +455,86 @@ $("#marketBtn").on("click", function(){
           let newGold = (gold[0] - 1);
           gold.splice(0, 1, newGold);
         }else{
-              let infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
-              let dialog = document.querySelector("#dialogPanelDescription2");
-              dialog.innerHTML = infoGold;
-              $("#redColor").addClass("red");
+            thirdP.noGold();
         }
       });
 
+      //zakupu lampy
+                $("#lamp").on("click", function(){
+                  if(gold[0] >= 1){
+                    heroEquip.push("lampa");
+                    let newGold = (gold[0] - 1);
+                    gold.splice(0, 1, newGold);
+                  }else{
+                      thirdP.noGold();
+                  }
+                });
+
+    //zakup liny
+                $("#rope").on("click", function(){
+                  if(gold[0] >= 1){
+                      heroEquip.push("lina");
+                      let newGold = (gold[0] - 1);
+                      gold.splice(0, 1, newGold);
+                  }else{
+                      thirdP.noGold();
+                  }
+                });
+
+    //zakup jedzenia
+                $("#food").on("click", function(){
+                  if(gold[0] >= 1){
+                    heroEquip.push("racja żyw.");
+                    let newGold = (gold[0] - 1);
+                    gold.splice(0, 1, newGold);
+                }else{
+                    thirdP.noGold();
+                  }
+              });
+
+    //zakup sztyletu
+               $("#dagger").on("click", function(){
+                  if(gold[0] >= 1){
+                    heroEquip.push("sztylet");
+                   let newGold = (gold[0] - 8);
+                   gold.splice(0, 1, newGold);
+                }else{
+                  thirdP.noGold();
+                }
+              });
+
+    //zakup pałki drewnianej
+              $("#woodenStick").on("click", function(){
+                  if(gold[0] >= 1){
+                      heroEquip.push("drewniana pałka");
+                      let newGold = (gold[0] - 4);
+                      gold.splice(0, 1, newGold);
+                  }else{
+                      thirdP.noGold();
+                  }
+              });
+
+      //zakup puklerz
+               $("#buckler").on("click", function(){
+                 if(gold[0] >= 1){
+                   heroEquip.push("puklerz");
+                   let newGold = (gold[0] - 12);
+                   gold.splice(0, 1, newGold);
+                 }else{
+                    thirdP.noGold();
+                 }
+             });
 
 
-  });
+  }); //zamknięcie przycisku kupowania
 
 
 
 
 
 
-});
-
-
-
-
-});
+});//zakończenie przycisku marketBtn
+}); //zakończenie przycisku opuszczenia pomieszczenia
 
 });//zamknięcie zdarzenia game linia 234
 }

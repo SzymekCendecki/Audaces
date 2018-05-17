@@ -19,6 +19,12 @@ module.exports.buysItems = function(){
   }
 
 buyItems();
+}
 
 
+module.exports.noGold = function(){
+  let infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
+  let dialog = document.querySelector("#dialogPanelDescription2");
+  dialog.innerHTML = infoGold;
+  $("#redColor").addClass("redText");
 }

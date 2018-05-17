@@ -496,9 +496,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //przycisk zabierania paczki
       $("#takePackage").on("click", function () {
-        main.append(" Paczka została zabrana.");
+        firstP.takePackage();
         heroEquip.push("paczka");
-        $(this).remove();
         $("#leave").removeClass("red").addClass("green").prop("disabled", false);
       });
 
@@ -530,6 +529,7 @@ document.addEventListener("DOMContentLoaded", function () {
             main.append(thirdP.marketText);
           });
 
+          //przycisk kupowania
           $("#buy").on("click", function () {
             $("#dialogPanel").fadeIn(500);
             $("#dialogPanelDescription2").text("");
@@ -542,12 +542,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 heroEquip.push("namiot");
                 var newGold = gold[0] - 5;
                 gold.splice(0, 1, newGold);
-                console.log(gold[0]);
               } else {
-                var infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription2");
-                dialog.innerHTML = infoGold;
-                $("#redColor").addClass("red");
+                thirdP.noGold();
               }
             });
 
@@ -558,15 +554,79 @@ document.addEventListener("DOMContentLoaded", function () {
                 var newGold = gold[0] - 1;
                 gold.splice(0, 1, newGold);
               } else {
-                var infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
-                var dialog = document.querySelector("#dialogPanelDescription2");
-                dialog.innerHTML = infoGold;
-                $("#redColor").addClass("red");
+                thirdP.noGold();
               }
             });
-          });
-        });
-      });
+
+            //zakupu lampy
+            $("#lamp").on("click", function () {
+              if (gold[0] >= 1) {
+                heroEquip.push("lampa");
+                var newGold = gold[0] - 1;
+                gold.splice(0, 1, newGold);
+              } else {
+                thirdP.noGold();
+              }
+            });
+
+            //zakup liny
+            $("#rope").on("click", function () {
+              if (gold[0] >= 1) {
+                heroEquip.push("lina");
+                var newGold = gold[0] - 1;
+                gold.splice(0, 1, newGold);
+              } else {
+                thirdP.noGold();
+              }
+            });
+
+            //zakup jedzenia
+            $("#food").on("click", function () {
+              if (gold[0] >= 1) {
+                heroEquip.push("racja żyw.");
+                var newGold = gold[0] - 1;
+                gold.splice(0, 1, newGold);
+              } else {
+                thirdP.noGold();
+              }
+            });
+
+            //zakup sztyletu
+            $("#dagger").on("click", function () {
+              if (gold[0] >= 1) {
+                heroEquip.push("sztylet");
+                var newGold = gold[0] - 8;
+                gold.splice(0, 1, newGold);
+              } else {
+                thirdP.noGold();
+              }
+            });
+
+            //zakup pałki drewnianej
+            $("#woodenStick").on("click", function () {
+              if (gold[0] >= 1) {
+                heroEquip.push("drewniana pałka");
+                var newGold = gold[0] - 4;
+                gold.splice(0, 1, newGold);
+              } else {
+                thirdP.noGold();
+              }
+            });
+
+            //zakup puklerz
+            $("#buckler").on("click", function () {
+              if (gold[0] >= 1) {
+                heroEquip.push("puklerz");
+                var newGold = gold[0] - 12;
+                gold.splice(0, 1, newGold);
+              } else {
+                thirdP.noGold();
+              }
+            });
+          }); //zamknięcie przycisku kupowania
+
+        }); //zakończenie przycisku marketBtn
+      }); //zakończenie przycisku opuszczenia pomieszczenia
     }); //zamknięcie zdarzenia game linia 234
   };
 });
@@ -1238,6 +1298,12 @@ module.exports.wardrobeText = "Stara, drewniana szafa, śmierdząca kurzem, ple�
 //opis skrzyni
 module.exports.chestText = "Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W śodku znajduje się 12 sztuk złotych monet.";
 
+//zabieranie paczki
+module.exports.takePackage = function () {
+  main.append(" Paczka została zabrana.");
+  $(this).remove();
+};
+
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1287,6 +1353,13 @@ module.exports.buysItems = function () {
   }
 
   buyItems();
+};
+
+module.exports.noGold = function () {
+  var infoGold = "<p id='redColor'>Nie masz tyle złota</p>";
+  var dialog = document.querySelector("#dialogPanelDescription2");
+  dialog.innerHTML = infoGold;
+  $("#redColor").addClass("redText");
 };
 
 /***/ })
