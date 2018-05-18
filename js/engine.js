@@ -663,6 +663,166 @@ document.addEventListener("DOMContentLoaded", function () {
                   document.querySelector("#main").removeChild(document.querySelector("#text"));
                   document.querySelector("#main").removeChild(document.querySelector("#journeyStart"));
                   sixthP.sixthP();
+
+                  $("#fight").addClass("green");
+                  $("#further").addClass("red").prop("disabled", true);
+
+                  //przycisk pierwszej walki
+                  $("#fight").on("click", function () {
+                    $("#dialogPanel").fadeIn(500);
+
+                    var mainDiv = document.createElement("div");
+                    mainDiv.id = "mainDiv";
+
+                    //wybór ekwipunku do walki
+                    var fightEquip = document.createElement("p");
+                    fightEquip.id = "fightEquip";
+                    fightEquip.innerText = "Wybierz ekwipunek do walki - maksymalnie 3 rzeczy.";
+
+                    var fightEquipBtnsLists = document.createElement("p");
+                    fightEquipBtnsLists.id = "fightEquipBtnsLists";
+                    fightEquipBtnsLists.innerHTML = "";
+
+                    //przyciski z rzeczmi do wyboru
+                    for (var i = 0; i < heroEquip.length; i++) {
+                      var weaponBtn = document.createElement("button");
+                      weaponBtn.id = heroEquip[i];
+                      weaponBtn.innerText = heroEquip[i];
+                      fightEquipBtnsLists.append(weaponBtn);
+                    }
+
+                    //dodanie listy przycisków do wyboru ekwipunku
+                    mainDiv.append(fightEquip);
+                    mainDiv.append(fightEquipBtnsLists);
+
+                    //utworzenie paragrafów dla wartości bojowej
+                    var fightValue = heroArrayFeatures2[0] + heroArrayFeatures2[1] + heroArrayFeatures2[2] + heroArrayFeatures2[3] + heroArrayFeatures2[4];
+
+                    var valueFightP = document.createElement("p");
+                    valueFightP.id = "valueFight";
+                    valueFightP.innerText = "Twoja wartość bojowa.";
+
+                    var fightValueValue = document.createElement("p");
+                    fightValueValue.id = "fightValueValue";
+                    fightValueValue.innerText = fightValue;
+
+                    $("#dialogPanelDescription").text("");
+                    $("#dialogPanelDescription").append(mainDiv);
+                    $("#dialogPanelDescription2").text("");
+
+                    //wyłączenie wybory paczki jak o rzeczy do walki
+                    $("#fightEquipBtnsLists #paczka").addClass("red").prop("disabled", true);
+
+                    //wybór przedmiotów do walki
+                    var allBtns = document.querySelectorAll("#fightEquipBtnsLists button");
+                    var fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
+
+                    for (var _i = 0; _i < allBtns.length; _i++) {
+                      allBtns[_i].onclick = function () {
+                        if (fightWeapon.length < 3) {
+                          var item = $(this).text();
+                          fightWeapon.push(item);
+                          $(this).remove();
+                          $("#dialogPanelDescription2").text("Został wybrany " + $(this).text() + ". ");
+                          console.log(fightWeapon);
+                        } else if (fightWeapon.length >= 3) {
+                          $("#dialogPanelDescription2").text("");
+                          $("#dialogPanelDescription2").append('Nie możesz wybrać więcej rzeczy.');
+                        }
+                      };
+                    }
+                    //przycisk zakończający - zatwierdzający wybieranie
+                    var btnAccept = document.createElement("button");
+                    btnAccept.id = "chooseFinish";
+                    btnAccept.innerText = "zakończ wybieranie";
+                    $("#fightEquipBtnsLists").append(btnAccept);
+                    $("#chooseFinish").addClass("green");
+
+                    //przejście do wybierania stylu walki - ofensywny lub defensywny
+                    $("#chooseFinish").on("click", function () {
+                      $("#dialogPanelDescription").text("");
+                      $("#dialogPanelDescription2").text("");
+
+                      var mainDivAttackDefence = document.createElement("div");
+                      mainDivAttackDefence.id = "mainDivAttackDefence";
+
+                      $("#dialogPanelDescription").append(mainDivAttackDefence);
+
+                      var attackDefenceP = document.createElement("p");
+                      attackDefenceP.id = "attackDefenceP";
+                      attackDefenceP.innerText = "Wybierz styl walki.";
+                      mainDivAttackDefence.append(attackDefenceP);
+
+                      var attackDefenceBtnsList = document.createElement("p");
+                      attackDefenceBtnsList.id = "attackDefenceBtnsList";
+                      $("#mainDivAttackDefence").append(attackDefenceBtnsList);
+
+                      //przycisk stylu ofensywnego
+                      var offensiveBtn = document.createElement("button");
+                      offensiveBtn.id = "offensiveBtn";
+                      offensiveBtn.innerText = "ofensywny";
+                      attackDefenceBtnsList.append(offensiveBtn);
+
+                      //przycisk stylu defensywnego
+                      var defensiveBtn = document.createElement("button");
+                      defensiveBtn.id = "defensiveBtn";
+                      defensiveBtn.innerText = "defensywny";
+                      attackDefenceBtnsList.append(defensiveBtn);
+
+                      //zdarzenie przycisku ofensywnego
+                      $("#offensiveBtn").on("click", function () {
+                        mainDivAttackDefence.append("Wykorzystując swój ekwipunek i umiejętności zaciekle atakujesz przeciwnika. Zdecydowanie górujesz nim. Po kilku minutach przeciwnik pada martwy. Odnosisz swoje pierwsze zwycięstwo. Twoje cechy podniosły się.");
+
+                        $("#offensiveBtn").remove();
+                        $("#defensiveBtn").remove();
+                        $("#attackDefenceP").remove();
+                        $("#fight").remove();
+                        $(this).remove();
+                        $("#further").addClass("green").prop("disabled", false);
+
+                        console.log(heroArrayFeatures2);
+                        heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
+                        heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
+                        heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
+                        heroArrayFeatures2.splice(1, 1, heroArrayFeatures2[1]);
+                        heroArrayFeatures2[2] = heroArrayFeatures2[2] + 5;
+                        heroArrayFeatures2.splice(2, 1, heroArrayFeatures2[2]);
+                        heroArrayFeatures2[3] = heroArrayFeatures2[3] + 5;
+                        heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
+                        heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
+                        heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
+                        console.log(heroArrayFeatures2);
+                      }); //zakończenie zdarzenia przycisku stylu walki ofensywnego
+
+
+                      //zdarzenie przycisku defensywnego
+                      $("#defensiveBtn").on("click", function () {
+                        mainDivAttackDefence.append("Wykorzystując swój ekwipunek i umiejętności z zaciętością bronisz się przed atakami przeciwnika. W pewnym momencie wykorzystujesz moment i zadajesz cios. Przeciwnik pada martwy. Odnosisz swoje pierwsze zwycięstwo. Twoje cechy podniosły się.");
+
+                        $("#offensiveBtn").remove();
+                        $("#defensiveBtn").remove();
+                        $("#attackDefenceP").remove();
+                        $("#fight").remove();
+                        $(this).remove();
+                        $("#further").addClass("green").prop("disabled", false);
+
+                        console.log(heroArrayFeatures2);
+                        heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
+                        heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
+                        heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
+                        heroArrayFeatures2.splice(1, 1, heroArrayFeatures2[1]);
+                        heroArrayFeatures2[2] = heroArrayFeatures2[2] + 5;
+                        heroArrayFeatures2.splice(2, 1, heroArrayFeatures2[2]);
+                        heroArrayFeatures2[3] = heroArrayFeatures2[3] + 5;
+                        heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
+                        heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
+                        heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
+                        console.log(heroArrayFeatures2);
+                      }); //zakończenie zdarzenia przyciksu defensywnego
+                    }); //zakończenie wybierania stylu walki
+
+                  }); //zakończenie przycisku pierwszej walki
+
                 }); //zakończenie paragrafu szóstego
 
               }); //zakończenie przycisku accept - wyruszenie w podróż
@@ -1497,7 +1657,7 @@ module.exports.wagonLooking = function () {
 
 module.exports.sixthP = function () {
   function voyage() {
-    var voyage = "<div id='main'><p id='text'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!.</p><div id='firstFight'><button id='fight'>walka</button><button id='further'>dalej</button></div></div>";
+    var voyage = "<div id='main'><p id='text'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem.</p><div id='firstFight'><button id='fight'>Przygotuj się do walki</button><button id='further'>dalej</button></div></div>";
 
     var gameDescription = document.querySelector("#gameDescription");
     gameDescription.innerHTML = voyage;

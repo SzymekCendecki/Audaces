@@ -285,7 +285,7 @@ html,body{
   display: flex;
   justify-content: space-around;
 
-  #forcePoints, #strenghtPoints, #skillPoints, #intellectualsPoints, #charismaPoints {
+  #forcePoints, #strenghtPoints, #skillPoints, #intellectualsPoints, #charismaPoints{
     font-weight: bold;
   }
 }
@@ -445,7 +445,7 @@ div{
 
 
 //styl dla przycisków pierwszego paragrafu
-#roomList, #street, #buySellItems, #buys, #caravanPlace, #journeyStart, #firstFight{
+#roomList, #street, #buySellItems, #buys, #caravanPlace, #journeyStart, #firstFight, #fightEquipBtnsLists, #attackDefenceBtnsList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -472,7 +472,7 @@ div{
   width: 90%;
   margin: 0 auto;
 
-  button{
+  button {
     width: 20%;
     height: 35px;
     font-weight: bold;
@@ -482,4 +482,23 @@ div{
 .marginIndent{
   margin-top: 20px;
   text-indent: 20px;
+}
+
+//poprawiona długość przycisków dla listy rzeczy wybieranych do walki
+#fightEquipBtnsLists{
+  button{
+    width: 30%;
+    height: 35px;
+    font-weight: bold;
+  }
+}
+
+
+//poprawka szeokości stylu dla przycisków wyboru stylu walki ofensywnej i defensywnej
+ #attackDefenceBtnsList{
+   button{
+     width: 50%;
+     height: 35px;
+     font-weight: bold;
+   }
 }

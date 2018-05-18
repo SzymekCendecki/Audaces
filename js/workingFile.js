@@ -543,6 +543,174 @@ $("#ask").on("click", function(){
       document.querySelector("#main").removeChild(document.querySelector("#text"));
       document.querySelector("#main").removeChild(document.querySelector("#journeyStart"));
         sixthP.sixthP();
+
+        $("#fight").addClass("green");
+        $("#further").addClass("red").prop("disabled", true);
+
+//przycisk pierwszej walki
+        $("#fight").on("click", function(){
+            $("#dialogPanel").fadeIn(500);
+
+            let mainDiv = document.createElement("div");
+            mainDiv.id = "mainDiv";
+
+    //wybór ekwipunku do walki
+      let fightEquip = document.createElement("p");
+      fightEquip.id = "fightEquip";
+      fightEquip.innerText = "Wybierz ekwipunek do walki - maksymalnie 3 rzeczy.";
+
+      let fightEquipBtnsLists = document.createElement("p");
+      fightEquipBtnsLists.id = "fightEquipBtnsLists";
+      fightEquipBtnsLists.innerHTML = "";
+
+    //przyciski z rzeczmi do wyboru
+      for(let i=0; i<heroEquip.length; i++){
+          let weaponBtn = document.createElement("button");
+          weaponBtn.id = heroEquip[i];
+          weaponBtn.innerText = heroEquip[i];
+          fightEquipBtnsLists.append(weaponBtn);
+     }
+
+//dodanie listy przycisków do wyboru ekwipunku
+      mainDiv.append(fightEquip);
+      mainDiv.append(fightEquipBtnsLists);
+
+//utworzenie paragrafów dla wartości bojowej
+  let fightValue = heroArrayFeatures2[0] + heroArrayFeatures2[1] + heroArrayFeatures2[2] +  heroArrayFeatures2[3] + heroArrayFeatures2[4];
+
+  let valueFightP = document.createElement("p");
+    valueFightP.id = "valueFight";
+    valueFightP.innerText = "Twoja wartość bojowa.";
+
+  let  fightValueValue = document.createElement("p");
+    fightValueValue.id = "fightValueValue";
+    fightValueValue.innerText = fightValue;
+
+            $("#dialogPanelDescription").text("");
+            $("#dialogPanelDescription").append(mainDiv);
+            $("#dialogPanelDescription2").text("");
+
+
+            //wyłączenie wybory paczki jak o rzeczy do walki
+            $("#fightEquipBtnsLists #paczka").addClass("red").prop("disabled", true);
+
+//wybór przedmiotów do walki
+    let allBtns = document.querySelectorAll("#fightEquipBtnsLists button");
+    let fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
+
+           for (let i=0; i<allBtns.length; i++) {
+                 allBtns[i].onclick = function () {
+                   if(fightWeapon.length < 3 ){
+                     let item = $(this).text();
+                     fightWeapon.push(item);
+                     $(this).remove();
+                     $("#dialogPanelDescription2").text("Został wybrany " + $(this).text() + ". ");
+                     console.log(fightWeapon);
+                   }else if(fightWeapon.length >= 3){
+                     $("#dialogPanelDescription2").text("");
+                     $("#dialogPanelDescription2").append('Nie możesz wybrać więcej rzeczy.');
+                     }
+                   }
+                 }
+                 //przycisk zakończający - zatwierdzający wybieranie
+                 let btnAccept = document.createElement("button");
+                 btnAccept.id = "chooseFinish";
+                 btnAccept.innerText = "zakończ wybieranie";
+                 $("#fightEquipBtnsLists").append(btnAccept);
+                 $("#chooseFinish").addClass("green");
+
+//przejście do wybierania stylu walki - ofensywny lub defensywny
+                 $("#chooseFinish").on("click", function (){
+                 $("#dialogPanelDescription").text("");
+                 $("#dialogPanelDescription2").text("");
+
+                 let mainDivAttackDefence  = document.createElement("div");
+                 mainDivAttackDefence.id = "mainDivAttackDefence";
+
+                 $("#dialogPanelDescription").append(mainDivAttackDefence);
+
+                  let attackDefenceP = document.createElement("p");
+                   attackDefenceP.id = "attackDefenceP";
+                    attackDefenceP.innerText = "Wybierz styl walki.";
+                    mainDivAttackDefence.append(attackDefenceP);
+
+                  let attackDefenceBtnsList = document.createElement("p");
+                  attackDefenceBtnsList.id = "attackDefenceBtnsList";
+                  $("#mainDivAttackDefence").append(attackDefenceBtnsList);
+
+                  //przycisk stylu ofensywnego
+                  let offensiveBtn = document.createElement("button");
+                  offensiveBtn.id = "offensiveBtn";
+                  offensiveBtn.innerText = "ofensywny";
+                  attackDefenceBtnsList.append(offensiveBtn);
+
+                //przycisk stylu defensywnego
+                  let defensiveBtn = document.createElement("button");
+                  defensiveBtn.id = "defensiveBtn";
+                  defensiveBtn.innerText = "defensywny";
+                  attackDefenceBtnsList.append(defensiveBtn);
+
+
+//zdarzenie przycisku ofensywnego
+                  $("#offensiveBtn").on("click", function(){
+                      mainDivAttackDefence.append("Wykorzystując swój ekwipunek i umiejętności zaciekle atakujesz przeciwnika. Zdecydowanie górujesz nim. Po kilku minutach przeciwnik pada martwy. Odnosisz swoje pierwsze zwycięstwo. Twoje cechy podniosły się.");
+
+                 $("#offensiveBtn").remove();
+                 $("#defensiveBtn").remove();
+                 $("#attackDefenceP").remove();
+                 $("#fight").remove();
+                 $(this).remove();
+                 $("#further").addClass("green").prop("disabled", false);
+
+                 console.log(heroArrayFeatures2);
+                 heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
+                   heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
+                 heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
+                   heroArrayFeatures2.splice(1, 1, heroArrayFeatures2[1]);
+                 heroArrayFeatures2[2] = heroArrayFeatures2[2] + 5;
+                   heroArrayFeatures2.splice(2, 1, heroArrayFeatures2[2]);
+                 heroArrayFeatures2[3] = heroArrayFeatures2[3] + 5;
+                   heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
+                 heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
+                   heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
+                 console.log(heroArrayFeatures2);
+           });//zakończenie zdarzenia przycisku stylu walki ofensywnego
+
+
+//zdarzenie przycisku defensywnego
+             $("#defensiveBtn").on("click", function(){
+              mainDivAttackDefence.append("Wykorzystując swój ekwipunek i umiejętności z zaciętością bronisz się przed atakami przeciwnika. W pewnym momencie wykorzystujesz moment i zadajesz cios. Przeciwnik pada martwy. Odnosisz swoje pierwsze zwycięstwo. Twoje cechy podniosły się.");
+
+              $("#offensiveBtn").remove();
+              $("#defensiveBtn").remove();
+              $("#attackDefenceP").remove();
+              $("#fight").remove();
+              $(this).remove();
+              $("#further").addClass("green").prop("disabled", false);
+
+              console.log(heroArrayFeatures2);
+              heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
+                heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
+              heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
+                heroArrayFeatures2.splice(1, 1, heroArrayFeatures2[1]);
+              heroArrayFeatures2[2] = heroArrayFeatures2[2] + 5;
+                heroArrayFeatures2.splice(2, 1, heroArrayFeatures2[2]);
+              heroArrayFeatures2[3] = heroArrayFeatures2[3] + 5;
+                heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
+              heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
+                heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
+              console.log(heroArrayFeatures2);
+            }); //zakończenie zdarzenia przyciksu defensywnego
+
+    });//zakończenie wybierania stylu walki
+
+
+
+
+
+        });//zakończenie przycisku pierwszej walki
+
+
     });//zakończenie paragrafu szóstego
 
 
