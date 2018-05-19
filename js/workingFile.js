@@ -15,6 +15,8 @@ let thirdP = require("./thirdParagraph.js");
 let fourthP = require("./fourthParagraph.js");
 let fifthP = require("./fifthParagraph.js");
 let sixthP = require("./sixthParagraph.js");
+let seventhP = require("./seventhParagraph.js");
+let eightP = require("./eightParagraph.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -252,6 +254,10 @@ $("#game").on("click",  () =>{
   //tablica ze złotem -stan początkowy
   let gold = [0];
 
+  // tablica z zadaniami
+
+  let tasks = ["Oddać paczkę mnichowi w przygranicznej wiosce."];
+
 heroArrayFeatures1.push(textName);
 heroArrayFeatures1.push(textRace);
 heroArrayFeatures1.push(textOccupation);
@@ -327,7 +333,7 @@ $("#skills").on("click", function(){
 //przycisk zadań
 $("#task").on("click", function(){
   $("#dialogPanel").fadeIn(500);
-  $("#dialogPanelDescription").text("Oddać paczkę mnichowi w przygranicznej wiosce.");
+  $("#dialogPanelDescription").text(tasks[0]);
   $("#dialogPanelDescription2").text("");
 });
 
@@ -346,7 +352,7 @@ $("#leave").addClass("red");
 
 //przycisk rozglądania się - pierwszy tekst
 $("#lookingAround").on("click", function(){
-  main.append(firstP.roomText).addClass("classIndent");
+  main.append(firstP.roomText);
 });
 
 //przycisk badania szafy i zabierania płaszcza - pierwszy tekst
@@ -605,8 +611,7 @@ $("#ask").on("click", function(){
                      fightWeapon.push(item);
                      $(this).remove();
                      $("#dialogPanelDescription2").text("Został wybrany " + $(this).text() + ". ");
-                     console.log(fightWeapon);
-                   }else if(fightWeapon.length >= 3){
+                 }else if(fightWeapon.length >= 3){
                      $("#dialogPanelDescription2").text("");
                      $("#dialogPanelDescription2").append('Nie możesz wybrać więcej rzeczy.');
                      }
@@ -662,7 +667,6 @@ $("#ask").on("click", function(){
                  $(this).remove();
                  $("#further").addClass("green").prop("disabled", false);
 
-                 console.log(heroArrayFeatures2);
                  heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
                    heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
                  heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
@@ -673,8 +677,7 @@ $("#ask").on("click", function(){
                    heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
                  heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
                    heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
-                 console.log(heroArrayFeatures2);
-           });//zakończenie zdarzenia przycisku stylu walki ofensywnego
+             });//zakończenie zdarzenia przycisku stylu walki ofensywnego
 
 
 //zdarzenie przycisku defensywnego
@@ -688,7 +691,6 @@ $("#ask").on("click", function(){
               $(this).remove();
               $("#further").addClass("green").prop("disabled", false);
 
-              console.log(heroArrayFeatures2);
               heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
                 heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
               heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
@@ -699,19 +701,125 @@ $("#ask").on("click", function(){
                 heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
               heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
                 heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
-              console.log(heroArrayFeatures2);
-            }); //zakończenie zdarzenia przyciksu defensywnego
+              }); //zakończenie zdarzenia przyciksu defensywnego
 
     });//zakończenie wybierania stylu walki
+  });//zakończenie przycisku pierwszej walki
+
+
+//przycisk dalej - #further - przejście do paragrafu siódmego
+$("#further").on("click", function (){
+  document.querySelector("#main").removeChild(document.querySelector("#text"));
+  document.querySelector("#main").removeChild(document.querySelector("#firstFight"));
+
+//paragraf siódmy
+seventhP.seventhP();
+$("#further").addClass("green");
+
+//losowanie przedmiotów, które są dodawane do ekwipunku
+let item1 = Math.round(Math.random()*arrays.equipment.length -1);
+heroEquip.push(arrays.equipment[item1]);
+
+let item2 = Math.round(Math.random()*arrays.equipment.length -1);
+heroEquip.push(arrays.equipment[item2]);
+
+let item3 = Math.round(Math.random()*arrays.equipment.length -1);
+heroEquip.push(arrays.equipment[item3]);
+
+let item4 = Math.round(Math.random()*arrays.equipment.length -1);
+heroEquip.push(arrays.equipment[item4]);
+
+let item5 = Math.round(Math.random()*arrays.equipment.length -1);
+heroEquip.push(arrays.equipment[item5]);
+
+let pickedItems = document.createElement("p");
+pickedItems.id = "pickedItems";
+pickedItems.innerText = "";
+main.append(pickedItems);
+
+$("#pickedItems").addClass("marginIndent");
+$("#pickedItems").append(seventhP.addItems + arrays.equipment[item1] + ", "  + arrays.equipment[item2] + ", " + arrays.equipment[item3] + ", " + arrays.equipment[item4] + ", " + arrays.equipment[item5]);
+
+
+//paragraf ósmy
+$("#village").on("click", function(){
+  document.querySelector("#main").removeChild(document.querySelector("#text"));
+  document.querySelector("#main").removeChild(document.querySelector("#afterFight"));
+
+  eightP.eightP();
+
+  $("#monk").addClass("green");
+
+let villageP = document.createElement("p");
+villageP.id = "villageP";
+villageP.innerText = "";
+main.append(villageP);
+
+$("#villageP").append(eightP.lookVillage);
+
+
+$("#monk").on("click", function(){
+
+  let givePackageMonk = document.createElement("p");
+  givePackageMonk.id = "givePackageMonk";
+  givePackageMonk.innerText = "";
+
+  main.append(givePackageMonk);
+
+$("#givePackageMonk").append(eightP.givePackage);
+$("#givePackageMonk").addClass("marginIndent");
+
+
+tasks.splice(0,1);
+
+
+function taskValidation(){
+ if(tasks.length == 0){
+   tasks.push("Aktualnie nie masz zadań");
+ }else{
+   if (tasks.indexOf("Aktualnie nie masz zadań") !== -1) {
+     tasks.splice(tasks.indexOf("Aktualnie nie masz zadań"), 1);
+   }
+ }
+
+}
+
+taskValidation();
+$("#lookingAround").remove();
+$(this).remove();
+
+function addGameOver(){
+  let gameOver = document.createElement("p");
+  gameOver.id = "gameOver";
+  gameOver.innerText = "GAME OVER";
+  main.append(gameOver);
+
+let newGameFinish = document.createElement("button");
+newGameFinish.id = "newGameFinish";
+newGameFinish.innerHTML = "Nowa Gra";
+main.append(newGameFinish);
+
+}
+
+setTimeout(addGameOver(), 5000);
+
+$("#newGameFinish").on("click", function(){
+  location.reload();
+});
+
+
+});
 
 
 
+});//zakończenie paragrafu ósmego
 
 
-        });//zakończenie przycisku pierwszej walki
+
+}); //zakończenie przycisku dalej - odblokowanego po walce
 
 
-    });//zakończenie paragrafu szóstego
+});//zakończenie paragrafu szóstego
 
 
   });//zakończenie przycisku accept - wyruszenie w podróż

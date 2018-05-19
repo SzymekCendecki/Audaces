@@ -445,7 +445,7 @@ div{
 
 
 //styl dla przycisków pierwszego paragrafu
-#roomList, #street, #buySellItems, #buys, #caravanPlace, #journeyStart, #firstFight, #fightEquipBtnsLists, #attackDefenceBtnsList {
+#roomList, #street, #buySellItems, #buys, #caravanPlace, #journeyStart, #firstFight, #fightEquipBtnsLists, #attackDefenceBtnsList, #afterFight, #inVillage{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -501,4 +501,17 @@ div{
      height: 35px;
      font-weight: bold;
    }
+}
+
+#gameOver{
+  text-align: center;
+}
+
+#newGameFinish{
+  margin-left: 450px;
+  background-color: green;
+  color: white;
+  width: 20%;
+  height: 35px;
+  
 }

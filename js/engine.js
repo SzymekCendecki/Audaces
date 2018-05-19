@@ -101,6 +101,8 @@ var thirdP = __webpack_require__(15);
 var fourthP = __webpack_require__(16);
 var fifthP = __webpack_require__(17);
 var sixthP = __webpack_require__(18);
+var seventhP = __webpack_require__(19);
+var eightP = __webpack_require__(20);
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -361,6 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
       //tablica ze złotem -stan początkowy
       var gold = [0];
 
+      // tablica z zadaniami
+
+      var tasks = ["Oddać paczkę mnichowi w przygranicznej wiosce."];
+
       heroArrayFeatures1.push(textName);
       heroArrayFeatures1.push(textRace);
       heroArrayFeatures1.push(textOccupation);
@@ -436,7 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
       //przycisk zadań
       $("#task").on("click", function () {
         $("#dialogPanel").fadeIn(500);
-        $("#dialogPanelDescription").text("Oddać paczkę mnichowi w przygranicznej wiosce.");
+        $("#dialogPanelDescription").text(tasks[0]);
         $("#dialogPanelDescription2").text("");
       });
 
@@ -453,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //przycisk rozglądania się - pierwszy tekst
       $("#lookingAround").on("click", function () {
-        main.append(firstP.roomText).addClass("classIndent");
+        main.append(firstP.roomText);
       });
 
       //przycisk badania szafy i zabierania płaszcza - pierwszy tekst
@@ -724,7 +730,6 @@ document.addEventListener("DOMContentLoaded", function () {
                           fightWeapon.push(item);
                           $(this).remove();
                           $("#dialogPanelDescription2").text("Został wybrany " + $(this).text() + ". ");
-                          console.log(fightWeapon);
                         } else if (fightWeapon.length >= 3) {
                           $("#dialogPanelDescription2").text("");
                           $("#dialogPanelDescription2").append('Nie możesz wybrać więcej rzeczy.');
@@ -780,7 +785,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         $(this).remove();
                         $("#further").addClass("green").prop("disabled", false);
 
-                        console.log(heroArrayFeatures2);
                         heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
                         heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
                         heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
@@ -791,7 +795,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
                         heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
                         heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
-                        console.log(heroArrayFeatures2);
                       }); //zakończenie zdarzenia przycisku stylu walki ofensywnego
 
 
@@ -806,7 +809,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         $(this).remove();
                         $("#further").addClass("green").prop("disabled", false);
 
-                        console.log(heroArrayFeatures2);
                         heroArrayFeatures2[0] = heroArrayFeatures2[0] + 5;
                         heroArrayFeatures2.splice(0, 1, heroArrayFeatures2[0]);
                         heroArrayFeatures2[1] = heroArrayFeatures2[1] + 5;
@@ -817,11 +819,108 @@ document.addEventListener("DOMContentLoaded", function () {
                         heroArrayFeatures2.splice(3, 1, heroArrayFeatures2[3]);
                         heroArrayFeatures2[4] = heroArrayFeatures2[4] + 5;
                         heroArrayFeatures2.splice(4, 1, heroArrayFeatures2[4]);
-                        console.log(heroArrayFeatures2);
                       }); //zakończenie zdarzenia przyciksu defensywnego
                     }); //zakończenie wybierania stylu walki
-
                   }); //zakończenie przycisku pierwszej walki
+
+
+                  //przycisk dalej - #further - przejście do paragrafu siódmego
+                  $("#further").on("click", function () {
+                    document.querySelector("#main").removeChild(document.querySelector("#text"));
+                    document.querySelector("#main").removeChild(document.querySelector("#firstFight"));
+
+                    //paragraf siódmy
+                    seventhP.seventhP();
+                    $("#further").addClass("green");
+
+                    //losowanie przedmiotów, które są dodawane do ekwipunku
+                    var item1 = Math.round(Math.random() * arrays.equipment.length - 1);
+                    heroEquip.push(arrays.equipment[item1]);
+
+                    var item2 = Math.round(Math.random() * arrays.equipment.length - 1);
+                    heroEquip.push(arrays.equipment[item2]);
+
+                    var item3 = Math.round(Math.random() * arrays.equipment.length - 1);
+                    heroEquip.push(arrays.equipment[item3]);
+
+                    var item4 = Math.round(Math.random() * arrays.equipment.length - 1);
+                    heroEquip.push(arrays.equipment[item4]);
+
+                    var item5 = Math.round(Math.random() * arrays.equipment.length - 1);
+                    heroEquip.push(arrays.equipment[item5]);
+
+                    var pickedItems = document.createElement("p");
+                    pickedItems.id = "pickedItems";
+                    pickedItems.innerText = "";
+                    main.append(pickedItems);
+
+                    $("#pickedItems").addClass("marginIndent");
+                    $("#pickedItems").append(seventhP.addItems + arrays.equipment[item1] + ", " + arrays.equipment[item2] + ", " + arrays.equipment[item3] + ", " + arrays.equipment[item4] + ", " + arrays.equipment[item5]);
+
+                    //paragraf ósmy
+                    $("#village").on("click", function () {
+                      document.querySelector("#main").removeChild(document.querySelector("#text"));
+                      document.querySelector("#main").removeChild(document.querySelector("#afterFight"));
+
+                      eightP.eightP();
+
+                      $("#monk").addClass("green");
+
+                      var villageP = document.createElement("p");
+                      villageP.id = "villageP";
+                      villageP.innerText = "";
+                      main.append(villageP);
+
+                      $("#villageP").append(eightP.lookVillage);
+
+                      $("#monk").on("click", function () {
+
+                        var givePackageMonk = document.createElement("p");
+                        givePackageMonk.id = "givePackageMonk";
+                        givePackageMonk.innerText = "";
+
+                        main.append(givePackageMonk);
+
+                        $("#givePackageMonk").append(eightP.givePackage);
+                        $("#givePackageMonk").addClass("marginIndent");
+
+                        tasks.splice(0, 1);
+
+                        function taskValidation() {
+                          if (tasks.length == 0) {
+                            tasks.push("Aktualnie nie masz zadań");
+                          } else {
+                            if (tasks.indexOf("Aktualnie nie masz zadań") !== -1) {
+                              tasks.splice(tasks.indexOf("Aktualnie nie masz zadań"), 1);
+                            }
+                          }
+                        }
+
+                        taskValidation();
+                        $("#lookingAround").remove();
+                        $(this).remove();
+
+                        function addGameOver() {
+                          var gameOver = document.createElement("p");
+                          gameOver.id = "gameOver";
+                          gameOver.innerText = "GAME OVER";
+                          main.append(gameOver);
+
+                          var newGameFinish = document.createElement("button");
+                          newGameFinish.id = "newGameFinish";
+                          newGameFinish.innerHTML = "Nowa Gra";
+                          main.append(newGameFinish);
+                        }
+
+                        setTimeout(addGameOver(), 5000);
+
+                        $("#newGameFinish").on("click", function () {
+                          location.reload();
+                        });
+                      });
+                    }); //zakończenie paragrafu ósmego
+
+                  }); //zakończenie przycisku dalej - odblokowanego po walce
 
                 }); //zakończenie paragrafu szóstego
 
@@ -910,7 +1009,7 @@ var shieldsArray = ["puklerz", "mała drewniana", "mała metalowa", "duża drewn
 
 //equipment and skills
 //equipment = 19
-var equipment = ["hubka i krzesiwo", "mieszek", "pas skórzany", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergaminy 5szt.", "zwykłe ubranie", "płaszcz", "fikuśny kapelusz", "łapcie z łyka", "kosz wiklinowy", "plecak", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m"];
+module.exports.equipment = ["hubka i krzesiwo", "mieszek", "pas skórzany", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergaminy 5szt.", "zwykłe ubranie", "płaszcz", "fikuśny kapelusz", "łapcie z łyka", "kosz wiklinowy", "plecak", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m"];
 
 //skills 10
 var skillsWarrior = ["sztuka przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
@@ -1664,6 +1763,46 @@ module.exports.sixthP = function () {
   }
   voyage();
 };
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.seventhP = function () {
+  function afterBattle() {
+    var afterBattle = "<div id='main'><p id='text'>To była ciężka bitwa. Kilkoro uczestników karawany poległo. Pochowaliście ich w przydrożnej, zbiorowej mogile, razem z pokonanymi. Pozbieraliście porozrzucany ekwipunek i ruszyliście dalej.</p><div id='afterFight'><button id='village'>dalej</button></div></div>";
+
+    var gameDescription = document.querySelector("#gameDescription");
+    gameDescription.innerHTML = afterBattle;
+  }
+  afterBattle();
+};
+
+module.exports.addItems = "Do Twojego ekwipunku zostało dodane: ";
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.eightP = function () {
+  function village() {
+    var village = "<div id='main'><p id='text'>Po trzech dniach, dotarliście już bez przeszkód do Przygranicznej wioski. Rozbiliście obozowisko, przy starym młynie. Zaciekawieni mieszkańcy wyszli ze swych chałup i obleźli karawanę.</p><div id='inVillage'><button id='lookingAround'>rozejrzyj się</button><button id='monk'>oddaj paczkę</button></div></div>";
+
+    var gameDescription = document.querySelector("#gameDescription");
+    gameDescription.innerHTML = village;
+  }
+  village();
+};
+
+module.exports.lookVillage = "Wioska jest dość duża, składa się z prawie 40 chałup. Otoczona jest wałem ziemnym, z wbitymi w niego, zaostrzonymi palikami. To typowe umocnienie w tym rejonie. Przy rzece stoi stary młyn. Wokół wioski, jak okiem sięgnąć rozciągają się pola. ";
+
+module.exports.givePackage = "Odnalazłeś mnicha. Po wymianie uprzejmości i pozdrowień od współnych znajomych oddałeś mu paczkę. Teraz stoisz na środku wioski i świat stoi przed Tobą otworem... ale to już zupełnie inna historia :)";
 
 /***/ })
 /******/ ]);
