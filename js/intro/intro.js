@@ -1,5 +1,9 @@
-module.exports.studioTitle = "NIEWIERNE PSY";
-module.exports.sentence = "NEMO EST DOMINUS MEUS";
+//intro -inscription and title
+module.exports.hideInscription = function hideInscription() {
+  $("#inscriptions").fadeOut(2000);}
 
-module.exports.gameTitle = "AUDACES";
-module.exports.subGameTitle = "serce ze stali";
+module.exports.showTitle = function showTitle() {
+  $("#title").fadeIn(2000);}
+
+module.exports.hideTitle = function hideTitle(){
+  $("#title").fadeOut(2000);}

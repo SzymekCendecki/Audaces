@@ -1,5 +1,5 @@
 module.exports = {
-	entry: ["./js/intro/intro.js", "./js/menus/firstMenu.js", "./js/menus/secondMenu"],
+	entry: ["./js/workingFile.js"],
     output: {
         filename: "./js/engine.js"
     },
