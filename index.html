@@ -3,448 +3,60 @@
 <head>
 	<meta name="viewport" content="initial-scale=1">
 	<meta charset="utf-8" />
-	<title>Audaces - Serce ze stali</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+	<title>Audaces - serce ze stali</title>
+	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/engine.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Fredoka+One|MedievalSharp|Titan+One" rel="stylesheet">
 	<link rel="Stylesheet" type="text/css" href="css/main.css" />
 </head>
 <body>
 
-	<div class="grid-container">
-			<!--header-->
-			<section>
-				<div class="col-12">
-				</div>
-			</section>
-
-			<!--navigation -->
-			<section>
-				<div class="col-12">
-
-				</div>
-			</section>
-
-			<!--main container -->
-			<section>
-				<div class="col-12">
-					<!-- inscription "NIEWIERNE PSY" -->
-					<div id="inscriptions">
-						<h1 class="unfaithfulDogs">NIEWIERNE PSY</h1>
-						<h5 class="sentence">NEMO EST DOMINUS MEUS</h5>
-					</div>
-					<div id="title">
-						<h2>AUDACES</h2>
-						<h6>serce ze stali</h6>
-					</div>
-
-					<!--Start of game - option choice-->
-					<div id="hello">
-						<p>Witaj w grze "Audaces - serce z żelaza", pierwszej grze tekstowej Niewiernych Psów. 	Poniżej znajdują się cztery przyciski, dzięki którym poznasz podsatwowe informacje o Niewiernych Psach, licencji gry,jak korystać z interfejsu gru oraz rozpoczniesz grę AUDACES - serce z żelaza. Także tego. Studio Niewiernych Psów, życzy miłej zabawy.
-						</p>
-					</div>
-					<div id="startOptionsGame">
-						<button class="btnInfo">Info</button>
-						<button class="btnLicence">Licencja</button>
-						<button class="btnTutorial">Tutorial</button>
-						<button class="btnNewGame">Nowa Gra</button>
-					</div>
-					<div id="descriptionMenu"></div>
-
-					<!--Creator of hero-->
-					<div id="slider">
-						<div id="sliderBtn">
-							<button class="control_prev">poprzedni</button>
-							<button class="control_next">następny</button>
-						</div>
-							<ul>
-								<li>
-									<div>
-											<p class="style1slider">Wybór imienia.</p>
-											<input type='text' id="giveName"/>
-											<button id="nameAccept">Zatwierdź</button>
-											<p class="nameDescription">Wpisz w pole wyżej swoje imię. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę.</p>
-											<p id="choosenName"></p>
-									</div>
-								</li>
-
-								<!--first slide choose race -->
-								<li>
-									<p class="style1slider">Wybór rasy</p>
-									<form id="chooseRace">
-											<div>
-												<input type="radio" value="człowiek" name="race" id="human">
-												<label for="human">człowiek</label>
-											</div>
-
-											<div>
-												<input type="radio" value="elf" name="race" id="elv">
-												<label for="elv">elf</label>
-											</div>
-
-											<div>
-												<input type="radio" value="krasnolud" name="race" id="dwarf">
-												<label for="dwarf">krasnolud</label>
-											</div>
-
-											<div>
-												<input type="radio" value="ork" name="race" id="orc">
-												<label for="orc">ork</label>
-											</div>
-											<div id="chooseRaceDescription">
-												<p id="raceDecriptionTitle">Opis rasy</p>
-												<p id="raceDecription"></p>
-											</div>
-										</form>
-									</li>
-
-								<!-- second slide choose occupation -->
-								<li>
-									<p class="style1slider">Wybór profesji</p>
-									<form id="chooseOccupation">
-											<div>
-												<input type="radio" value="wojownik" name="occupation" id="warrior">
-												<label for="warrior">wojownik</label>
-											</div>
-
-											<div>
-												<input type="radio" value="złoczyńca" name="occupation" id="bandit">
-												<label for="bandit">złoczyńca</label>
-											</div>
-
-											<div>
-												<input type="radio" value="czarodziej" name="occupation" id="wizard">
-												<label for="wizard">czarodziej</label>
-											</div>
-
-											<div id="chooseOccupationDescription">
-												<p id="occupationDecriptionTitle">Opis profesji</p>
-												<p id="occupationDecription"></p>
-											</div>
-										</form>
-								</li>
-
-								<!-- third slide choose features part 1-->
-								<li>
-									<p class="style1slider">Wybór cech</p>
-									<div>
-										<p id="randomPointsTitle">Wylosuj ilość punktów cech</p>
-									</div>
-
-									<div id="features">
-											<button id="force">Siła</button>
-											<button id="strenght">Wytrzymałość</button>
-											<button id="skill">Zręczność</button>
-											<button id="intellectuals">Inteligencja</button>
-											<button id="charisma">Charyzma</button>
-									</div>
-
-									<div id="show">
-											<div>siła<div id="forcePoints"></div></div>
-											<div>wytrzymałość<div id="strenghtPoints"></div></div>
-											<div>zręczność<div id="skillPoints"></div></div>
-											<div>inteligencja<div id="intellectualsPoints"></div></div>
-											<div>charyzma<div id="charismaPoints"></div></div>
-									</div>
-
-									<div id="featuresDescription"></div>
-									</li>
-
-
-								<!-- fourth slide choose features part 2-->
-								<li>
-									<p class="style1slider">Wybór cech cz. 2</p>
-									<form>
-										<fieldset class="main">
-											<p class="features2">Płeć</p>
-											<label><input type="radio" value="kobieta" name="sex">kobieta</label>
-											<label><input type="radio" value="mężczyzna" name="sex">mężczyzna</label>
-											<label><input type="radio" value="inna" name="sex">inna</label>
-
-											<p class="features2">Kolor włosów</p>
-											<label><input type="radio" value="blond" name="hairColor">blond</label>
-											<label><input type="radio" value="rude" name="hairColor">rude</label>
-											<label><input type="radio" value="czarne" name="hairColor">czarne</label>
-											<label><input type="radio" value="farbowane" name="hairColor">farbowane</label>
-
-											<p class="features2">Kolor oczu</p>
-											<label><input type="radio" value="piwne" name="eyesColor">piwne</label>
-											<label><input type="radio" value="szare" name="eyesColor">szare</label>
-											<label><input type="radio" value="brązowe" name="eyesColor">brązowe</label>
-											<label><input type="radio" value="niebieskie" name="eyesColor">niebieskie</label>
-
-											<p class="features2">Waga</p>
-											<label><input type="radio" value="niedowaga" name="weight">niedowaga</label>
-											<label><input type="radio" value="normalna" name="weight">normalna</label>
-											<label><input type="radio" value="nadwaga" name="weight">nadwaga</label>
-
-											<p class="features2">Wzrost</p>
-											<label><input type="radio" value="niski" name="height">niski</label>
-											<label><input type="radio" value="średni" name="height">średni</label>
-											<label><input type="radio" value="wysoki" name="height">wysoki</label>
-
-											<p class="features2">Kolor skóry</p>
-											<label><input type="radio" value="biała" name="skin">biała</label>
-											<label><input type="radio" value="brązowa" name="skin">brązowa</label>
-											<label><input type="radio" value="czarna" name="skin">czarna</label>
-											<label><input type="radio" value="czerwona" name="skin">czerwona</label>
-											<label><input type="radio" value="żółta" name="skin">żółta</label>
-											<label><input type="radio" value="zielona" name="skin">zielona</label>
-											<label><input type="radio" value="brunatna" name="skin">brunatna</label>
-											<label><input type="radio" value="błękitna" name="skin">błękitna</label>
-										</fieldset>
-									</form>
-								</li>
-
-								<!-- fifth slide equipment -->
-								<li>
-									<p class="style1slider">Wybór ekwipunku</p>
-									<form id="chooseEquipment">
-										<fieldset>
-											<p class="features2">broń</p>
-											<input type="checkbox" name="item" value="sztylet">sztylet
-											<input type="checkbox" name="item" value="drewniana pałka">drewniana pałka
-											<input type="checkbox" name="item" value="krótki miecz">krótki miecz
-											<input type="checkbox" name="item" value="szabla">szabla
-											<input type="checkbox" name="item" value="włócznia">włócznia
-											<input type="checkbox" name="item" value="proca">proca
-											<input type="checkbox" name="item" value="łuk">łuk
-
-											<p class="features2">zbroja</p>
-											<input type="checkbox" name="item" value="przeszywanica">przeszywanica
-											<input type="checkbox" name="item" value="zbroja skórzana">skórzana
-											<input type="checkbox" name="item" value="zbroja ćwiekowana">ćwiekowana
-
-											<p class="features2">tarcza</p>
-											<input type="checkbox" name="item" value="puklerz">puklerz
-											<input type="checkbox" name="item" value="tarcza mała drewniana">mała drewniana
-											<input type="checkbox" name="item" value="tarcza mała metalowa">mała metalowa
-
-											<p class="features2">inne</p>
-											<input type="checkbox" name="item" value="hubka i krzeiwo">hubka i krzesiwo
-											<input type="checkbox" name="item" value="mieszek">mieszek
-										  <input type="checkbox" name="item" value="pas skórzany">pas skórzany
-											<input type="checkbox" name="item" value="igły i nici">igły i nici
-											<input type="checkbox" name="item" value="tuba na pergaminy">tuba na pergaminy
-
-											<input type="checkbox" name="item" value="pęk piór do pisania">pęk piór do pisania
-											<input type="checkbox" name="item" value="pergaminy 5szt.">pergaminy 5szt.
-											<input type="checkbox" name="item" value="zwykłe ubranie">zwykłe ubranie
-											<input type="checkbox" name="item" value="płaszcz">płaszcz
-											<input type="checkbox" name="item" value="fikuśny kapelusz">fikuśny kapelusz
-
-											<input type="checkbox" name="item" value="torba podróżna">torba podróżna
-											<input type="checkbox" name="item" value="sakwa">sakwa
-											<input type="checkbox" name="item" value="koc">koc
-											<input type="checkbox" name="item" value="namiot">namiot
-											<input type="checkbox" name="item" value="drewniana miska">drewniana miska
-
-											<input type="checkbox" name="item" value="drewniana łyżka">drewniana łyżka
-											<input type="checkbox" name="item" value="pochodnia">pochodnia
-											<input type="checkbox" name="item" value="lampa oliwna">lampa oliwna
-											<input type="checkbox" name="item" value="kaganek">kaganek
-											<input type="checkbox" name="item" value="lina 5m">lina 5m
-										</fieldset>
-										<p id="alertEquipment"></p>
-									</form>
-								</li>
-
-								<!-- sixth -->
-								<li>
-									<div class="style1slider">Wybór umiejętności</div>
-									<form id="chooseSkill">
-										<p class="features2">Umiejętości wojownika</p>
-
-										<fieldset>
-											<input type="checkbox" name="skill" value="sztuka przetrwania">sztuka przetrwania
-											<input type="checkbox" name="skill" value="dyscyplina">dyscyplina
-											<input type="checkbox" name="skill" value="dowodzenie">dowodzenie
-											<input type="checkbox" name="skill" value="uderzenie tarczą">uderzenie tarczą
-											<input type="checkbox" name="skill" value="jeździectwo">jeździectwo
-											<input type="checkbox" name="skill" value="sztylet">sztylet
-											<input type="checkbox" name="skill" value="krótki miecz">krótki miecz
-											<input type="checkbox" name="skill" value="szabla">szabla
-											<input type="checkbox" name="skill" value="włócznia">włócznia
-											<input type="checkbox" name="skill" value="łuk">łuk
-											<input type="checkbox" name="skill" value="puklerz">puklerz
-											<input type="checkbox" name="skill" value="mała tarcza drewniana">mała tarcza drewniana
-											<input type="checkbox" name="skill" value="mała tarcza metalowa">mała tarcza metalowa
-										</fieldset>
-
-											<p class="features2">Umiejętości złoczyńczy</p>
-
-											<fieldset>
-											<input type="checkbox" name="skill" value="przygotowanie trucizn">przygotowanie trucizn
-											<input type="checkbox" name="skill" value="wspinaczka">wspinaczka
-										  <input type="checkbox" name="skill" value="aktorstwo">aktorstwo
-											<input type="checkbox" name="skill" value="akrobatyka">akrobatyka
-											<input type="checkbox" name="skill" value="tworzenie pułapek">tworzenie pułapek
-											<input type="checkbox" name="skill" value="skradanie się">skardanie się
-											<input type="checkbox" name="skill" value="kradzież kieszonkowa">kradzież kieszkonowa
-											<input type="checkbox" name="skill" value="uniki">uniki
-											<input type="checkbox" name="skill" value="drewniana pałka">drewniana pałka
-											<input type="checkbox" name="skill" value="sztylet">sztylet
-											<input type="checkbox" name="skill" value="krótki miecz">krótki miecz
-											<input type="checkbox" name="skill" value="blefowanie">blefowanie
-										</fieldset>
-
-											<p class="features2">Umiejętości czarodzieja</p>
-
-											<fieldset>
-											<input type="checkbox" name="skill" value="pisanie i czytanie">pisanie i czytanie
-										  <input type="checkbox" name="skill" value="przywołanie/odpędzenie demona">przywołanie/odpędzenie demona
-											<input type="checkbox" name="skill" value="wróżbiarstwo">wróżbiarstwo
-											<input type="checkbox" name="skill" value="leczenie ran">lecznie ran
-											<input type="checkbox" name="skill" value="rzucanie czarów">rzucane czarów
-											<input type="checkbox" name="skill" value="tworzenie eliksirów">tworzenie eliksirów
-											<input type="checkbox" name="skill" value="tworzenie mag.przedmiotów">tworzenie mag. przedmiotów
-											<input type="checkbox" name="skill" value="tworzenie maści">tworzenie maści
-										  <input type="checkbox" name="skill" value="astrologia">astrologia
-											<input type="checkbox" name="skill" value="tworzenie runów">tworzenie runów
-											<input type="checkbox" name="skill" value="zielarstwo">zielarstwo
-										</fieldset>
-
-										</form>
-										<p id="alertSkill"></p>
-									</li>
-
-					<!-- seventh slide -->
-								<li>
-									<div id="mainInfo">
-										<h2 class="infoDescription">Informacja zbiorcza</h2>
-
-										<div><!-- imię, rasa, profesja-->
-
-											<div>
-												<p>imię</p>
-												<p id="nameFromFile"></p>
-											</div>
-
-												<div>
-													<p>rasa</p>
-													<p id="raceFromFile"></p>
-												</div>
-
-												<div>
-													<p>profesja</p>
-													<p id="occupationFromFile"></p>
-												</div>
-											</div>
-
-									<div><!--siła, wytrzymałość, zręczność, inteligencja, charyzma -->
-											<div>
-												<p>siła</p>
-												<p id="forceFromFile"></p>
-											</div>
-
-											<div>
-												<p>wytrzymałość</p>
-												<p id="strenghtFromFile"></p>
-											</div>
-
-											<div>
-												<p>zręczność</p>
-												<p id="skillFromFile"></p>
-											</div>
-
-											<div>
-												<p>inteligencja</p>
-												<p id="intelectualsFromFile"></p>
-											</div>
-
-											<div>
-												<p>charyzma</p>
-												<p id="charismaFromFile"></p>
-											</div>
-										</div>
-
-										<div><!-- płeć, włosy, oczy, waga, wzrost, skóra-->
-											<div>
-												<p>płeć</p>
-												<p id="sexFromFile"></p>
-											</div>
-
-											<div>
-												<p>włosy</p>
-												<p id="hairFromFile"></p>
-											</div>
-
-											<div>
-												<p>oczy</p>
-												<p id="eyesFromFile"></p>
-											</div>
-
-											<div>
-												<p>waga</p>
-												<p id="weightFromFile"></p>
-											</div>
-
-											<div>
-												<p>wzrost</p>
-												<p id="heightFromFile"></p>
-											</div>
-
-											<div>
-												<p>skóra</p>
-												<p id="skinFromFile"></p>
-											</div>
-										</div>
-
-									<div class="equipmentStyle"><!-- sprzęt-->
-											<p>sprzęt</p>
-											<p id="equipmentFromFile"></p>
-										</div>
-
-										<div class="skillsStyles"><!-- umiejętności -->
-											<p>umiejętności</p>
-											<p id="skillsFromFile"></p>
-										</div>
-
-									</div>
-									<button id="game" class="red">GRAJ</button>
-								</li>
-							</ul>
-					</div>
-
-					<div id="gameIntro">
-							<p>Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.</p>
-							<p>Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.</p>
-							<p>Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach. </p>
-							<p>Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.<p>
-							<p>Większość nie wraca...</p>
-
-							<p>Twoja historia zaczyna się w mieście Erharuf.</p>
-							<p>W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.</p>
-							<p>Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego  w niewielkiej  wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.</p>
-
-							<button id="newGame">rozpocznij grę</button>
-					</div>
-
-					<div id="mainPanel">
-							<div id="btnsPanel">
-									<button id="features2">cechy</button>
-									<button id="equip">ekwipunek</button>
-									<button id="skills">umiejętności</button>
-									<button id="task">zadania</button>
-							</div>
-
-							<div id="gameDescription">
-							</div>
-					</div>
-
-					<div id="dialogPanel">
-						<div id="close">X</div>
-						<div id="dialogPanelDescription" class='styleFeatures'></div>
-						<div id="dialogPanelDescription2" class='styleFeatures'></div>
-					</div>
-
-				</section>
-
-			<!--footer-->
-			<section>
-
-			</section>
+<!-- główny kontener  -->
+<div class="grid-display">
+
+	<!-- nagłówek -->
+	<header class="col-12">
+	</header>
+	<!-- koniec nagłówka -->
+
+	<!-- nawigacja -->
+	<nav class="col-2">
+		<!--div dla przycisków cechy, ekwipunek, umiejętności, zadania -->
+		<div id="heroBtns" class="flexForBtns">
+		</div>
+
+		<!--div dla przycisków "głównych" - przyciski pierwszego menu oraz przechodzenie pomiędzy paragrafami-->
+		<div id="mainBtns" class="flexForBtns">
+		</div>
+
+		<!--div dla przycisków interakcji w danym paragrafie -->
+		<div id="interactionsBtns" class="flexForBtns">
+		</div>
+	</nav>
+		<!-- koniec nawigacji -->
+
+	<!-- część główna -->
+	<div id="mainPart" class="col-7">
+		<div id="studioTitle">
+			<h2>NIEWIERNE PSY</h2>
+			<h3>nemo est dominus meus</h3>
+		</div>
 	</div>
+	<!-- koniec części głównej-->
+
+	<!-- komunikaty/alerty -->
+	<div id="alerts" class="col-2">
+	</div>
+	<!-- koniec komunikatów/alertów -->
+
+<!-- początek stopki-->
+	<footer class="col-12">
+		<div id="version">ver 0.6.53</div>
+	</footer>
+<!-- koniec stopki -->
+
+</div>
+<!-- koniec głównego kontenera -->
 
 </body>
 </html>

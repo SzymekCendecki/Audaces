@@ -1,517 +1,91 @@
+// importy z pliów zewnętrznych
+@import "introFirstMenu";
+
 //reset
-*{
-  margin: 0;
-  padding: 0;
+*{ margin: 0; padding: 0; }
+
+html, body { width: 100%; height: 100%; }
+
+//grid
+.row:before, .row:after{ content: ""; display: table; clear: both; }
+[class*='col-']{ float: left; min-height: 1px; width: 100%/12; padding: 12px; }
+@for $i from 1 through 12 { .col-#{$i} { width: (100%/12)*$i; } }
+
+//wysokość nagłówka i stopki
+header, footer{ height: 5vh; }
+
+//wysokość nawigacji, części głównej i alertowej
+nav, #mainPart, #alerts{ height: 78vh; }
+
+//style dla głównego kontenera zawierającego header, nav, mainPart, alert i footer
+.grid-display{
+  width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap;
 }
 
-html,body{
-  height: 100%;
-  background-color: lightgray;
+//style dla nawigacji i nagłówka
+.flexForBtns{
+  display: flex; flex-wrap: wrap; justify-content: space-around; align-content: flex-start;
 }
 
-//grid-container
-.grid-container{
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+//podstawowy styl dla przycisku
+.basicBtn{
+  width: 40%; height: 7%; font-weight: bold; font-size: 1.05em; text-shadow: 1px 1px white;
 }
 
-.row:before, .row:after{
-    content: "";
-    display: table;
-    clear: both;
+//tekst średniowieczny
+.medievalText{ font-family: 'MedievalSharp', cursive; }
+
+//podstawowy styl dla tekstu paragrafu
+.basicText{
+  text-indent: 3%; font-weight: bold; margin-top: 2%; font-size: 1.3em; text-shadow: 1px 1px white;
 }
 
-[class*='col-']{
-  float: left;
-  min-height: 1px;
-  width: 100%/12;
-  padding: 12px;
-}
-
-@for $i from 1 through 12 {
-  .col-#{$i} { width: (100%/12)*$i; }
-}
-
-//styles for intro
-@mixin inscriptions{
-    font-weight: bold;
-    font-family: 'Shrikhand', cursive;
-    text-align: center;
-    text-shadow: 2px 1px white;
-    z-index: -100;
-}
-
-.unfaithfulDogs{
-  @include inscriptions();
-  color: navy;
-  font-size: 400%;
-  padding-top: 15%;
-}
-
-.sentence{
-  @include inscriptions();
-  color: black;
-  font-size: 150%;
-}
-
-#title{
-  @include inscriptions();
-  color: 	lightseagreen;
-
-  h2{ font-size: 450%; padding-top: 15%; }
-  h6{ font-size: 200%; }
-}
-
-//styles for Start of game - option choice
-#startOptionsGame{ display: flex; justify-content: space-between; }
-
-#hello{
-  font-size: 150%;
-  font-weight: bold;
-  text-shadow: 2px 1px white;
-  border-bottom: 1px solid black;
-  text-indent: 3%;
-  padding-bottom: 2%;
-}
-#startOptionsGame{ padding: 15px 0 25px 0; border-bottom: 1px solid black; }
-
-//main mixin for menu buttons
-@mixin btnsMenu{
-  width: 20%;
-  height: 5%;
-  font-weight: bold;
-  font-size: 150%;
-  padding: 1% 0 1% 0;
-  border-radius: 15%;
-}
-
-//styles for menu buttons
-.btnInfo{ @include btnsMenu(); background: linear-gradient(#FFF, #FF8C00);}
-.btnLicence{@include btnsMenu(); background: linear-gradient(#FFF, #8A2BE2);}
-.btnTutorial{@include btnsMenu(); background: linear-gradient(#FFF, #BDB76B);}
-.btnNewGame{@include btnsMenu(); background: linear-gradient(#FFF, green);}
-
-.btnInfo:hover, .btnLicence:hover, .btnTutorial:hover, .btnNewGame:hover{
-  color: #8B4513; }
-
-.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active{
-    animation-name: changeBorder; animation-duration: 0.2s; }
-
-//anim for menu buttons
-@keyframes changeBorder { 0%   {border-radius: 15%;} 100% {border-radius: 25px;} }
-
-//styles for description Menu
-.descriptionMenu{
-  text-indent: 3%;
-  padding-top: 2%;
-  text-shadow: 2px 1px white;
-  font-size: 120%;
-}
-
-//styles for choosen buttons
-#chooseBtns{ display: flex; justify-content: space-around; }
-#randomHero{
-  @include btnsMenu();
-  box-shadow: 0 9px #2F4F4F;
-  background: linear-gradient(#8FBC8F, black);
-  color: white;
-  margin-top: 5%;
-}
-
-.randomHeroDescription{
-  z-index: 2;
-  margin-left: 11%;
-  position: absolute;
-}
-
-.createHeroDescription{
-  z-index: 2;
-  margin-left: 11%;
-  position: absolute;
-}
-
-#createHero{
-  @include btnsMenu();
-  box-shadow: 0 9px #4B0082;
-  background: linear-gradient(white, #4B0082);
-  color: white;
-  margin-top: 5%;
- }
-#randomHero:hover, #createHero:hover{ animation-name: biggerBtn; animation-duration: 1.75s; }
-
-@keyframes biggerBtn{ 0%{} 100%{width: 25%;}}
-
-//styles fo creator
-#slider {
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto;
-  margin-top: -35px;
-
- ul {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    height: 200px;
-    list-style: none;
-    margin-top: 20px;
-
-    li {
-       position: relative;
-       display: block;
-       float: left;
-       padding: 0;
-       width: 1100px;
-       height: 575px;
-     }
-  }
-}
-
-#sliderBtn{
-  display: flex;
-  justify-content: space-between;
-
-  button.control_prev {
-    width:15%;
-    height: 30px;
-    background: tomato;
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 20px;
-  }
-
-   button.control_next{
-     width:15%;
-     height: 30px;
-     background: slateblue;
-     color: #fff;
-     font-weight: bold;
-     font-size: 20px;
-     border-radius: 20px;
-   }
-}
-
-//styles for slider
-.style1slider{
-  text-decoration: underline;
-  text-decoration-color: gold;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-//first slides
-#nameAccept{
-  background-color: green;
-  border-radius: 20px;
-  margin-left: 2%;
-  color: white;
-  font-weight: bold;
-  width: 10%;
-  height: 30px;
-}
-
-.nameDescription{
-  margin-top: 15px;
-  font-weight: bold;
-  text-shadow: 2px 1px white;
-}
-
-#choosenName{
-  margin-top: 20px;
-  font-weight: bold;
-  text-shadow: 2px 1px white;
-  font-size: 150%;
-}
-
-//slide drugi i trzeci
-#chooseRace, #chooseOccupation{
-  width: 100%;
-  font-size: 18px;
-  color: black;
-  font-weight: bold;
-  padding-top: 10px;
-  text-shadow: 2px 1px white;
-
-  div{
-    width: 25%;
-    float: left;
-  }
-
-  #chooseRaceDescription, #chooseOccupationDescription{
-	width: 100%;
-
-	p:nth-child(1){
-		color: black;
-		text-decoration: underline;
-		text-decoration-color: gold;
-		padding: 15px;
-		text-indent: 17px;
-	}
-
-	p:nth-child(2){
-	width: 95%;
-		text-indent: 50px;
-		margin: 0 auto;
-	}
-}
-}
-
-//slide fourth slide part 1
-#randomPointsTitle{
-    font-weight: bold;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-#features{
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-
-  button{
-    width: 10%;
-    height: 40px;
-    font-weight:bold;
-    text-shadow: 2px 1px white;
-    border-radius: 25px;
-    background: lightgreen;
-  }
-}
-
-#show{
-  font-weight: bold;
-  margin-top: 25px;
-  display: flex;
-  justify-content: space-around;
-
-  #forcePoints, #strenghtPoints, #skillPoints, #intellectualsPoints, #charismaPoints{
-    font-weight: bold;
-  }
-}
-
-#featuresDescription{
-    margin-top: 30px;
-    font-weight: bold;
-    text-shadow: 2px 1px white;
-}
-
-
-//styles fourth slide choose features part 2
-.features2{
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 100%;
-  text-shadow: 2px 1px white;
-  text-decoration: underline;
-  text-decoration-color: gold;
-}
-
-//style for seventh slide
-#mainInfo{
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  h2{
-    width: 100%;
-    text-align: center;
-  }
-
-div{
-  width: 33%;
-    text-align: center;
-    margin-top: 10px;
-
-    div{
-      width: 100%;
-      color: black;
-      font-weight: bold;
-      font-size: 110%;
-      text-shadow: 2px 1px white;
-      p{
-          width: 100%;
-      }
-
-      p:nth-child(2){
-        color: red;
-        font-weight: bold;
-      }
-    }
-  }
-
-.equipmentStyle, .skillsStyles{
-  p{
-      width: 100%;
-      color: black;
-      font-weight: bold;
-      font-size: 110%;
-      text-shadow: 2px 1px white;
-      margin-top: 20px;
-  }
-
-  p:nth-child(2){
-    color: red;
-    font-weight: bold;
-  }
-}
-}
-
-#game{
-  width:20%;
-  height: 40px;
-  margin: 20px 0 0 40%;
-  font-weight: bold;
-  color: white;
-}
-
-#gameIntro{
-  text-align: center;
-  text-shadow: 2px 1px white;
-  font-weight: bold;
-
-  p{
-    padding-top: 5px;
-    font-size: 125%;
-  }
-}
-#newGame{
-  background: green;
-  width: 20%;
-  height: 40px;
-  font-weight: bold;
-  color: white;
-  margin-top: 25px;
-}
-
-#btnsPanel{
-  display: flex;
-  justify-content: space-around;
-
-  button{
-    width: 15%;
-    height: 35px;
-    color: black;
-    font-weight: bold;
-    font-size: 1.25em;
-    text-shadow: 2px 1px white;
-    background: linear-gradient(white, darkgrey);
-    }
-}
-
-//styles for dialog window
-//main
-#dialogPanel{
-  width: 1100px;
-  z-index: 20;
-  background-color: lightseagreen;
-  margin: 0 auto;
-  margin-top: -50px;
-  position: absolute;
-
-  #close{
-    width: 35px;
-    height: 35px;
-    color: red;
-    text-align: center;
-    position: absolute;
-    font-size: 110%;
-    margin-top: 10px;
-  }
-  .styleFeatures{
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: space-around;
-    font-weight: bold;
-  }
-}
-
-//style dla gameDescription
-#gameDescription{
-  margin-top: 30px;
-  text-indent: 20px;
-  font-weight: bold;
-  font-size: 1.5em;
-  text-shadow: 2px 1px white;
-
-}
-
-.red{ background-color: red; }
-
-.green{ background-color: green; }
-
-.redText{ color: red; font-size: 1.25em;}
-
-
-//styl dla przycisków pierwszego paragrafu
-#roomList, #street, #buySellItems, #buys, #caravanPlace, #journeyStart, #firstFight, #fightEquipBtnsLists, #attackDefenceBtnsList, #afterFight, #inVillage{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 25px;
-
-  button{
-    width: 15%;
-    height: 35px;
-    font-weight: bold;
-  }
-}
-
-//styl dla przycisku rozglądania się
-#lookingAround{
-  background: linear-gradient(white, blue);
-  text-shadow: 2px 1px white;
-}
-
-//style dla przycisków sprzedaży
-#sellItemsBtns{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
-
-  button {
-    width: 20%;
-    height: 35px;
-    font-weight: bold;
-  }
-}
-
-.marginIndent{
-  margin-top: 20px;
-  text-indent: 20px;
-}
-
-//poprawiona długość przycisków dla listy rzeczy wybieranych do walki
-#fightEquipBtnsLists{
-  button{
-    width: 30%;
-    height: 35px;
-    font-weight: bold;
-  }
-}
-
-
-//poprawka szeokości stylu dla przycisków wyboru stylu walki ofensywnej i defensywnej
- #attackDefenceBtnsList{
-   button{
-     width: 50%;
-     height: 35px;
-     font-weight: bold;
-   }
-}
-
-#gameOver{
-  text-align: center;
-}
-
-#newGameFinish{
-  margin-left: 450px;
-  background-color: green;
-  color: white;
-  width: 20%;
-  height: 35px;
-  
-}
+//wyśrodkowanie tekstu
+.center{ text-align: center; }
+
+//szerokości w procentach
+.width20{ width: 20%; }
+.width24{ width: 24%; }
+.width33{ width: 33%; }
+.width49{ width: 49%; }
+.width100{ width: 100%; }
+
+//kolory tekstu
+.redText{ color: red;}
+.blueText{ color: blue; }
+.greenText{ color: green; }
+
+//tekst pogrubiony
+.boldText{ font-weight: bold; }
+
+//wielkość liter w em' ach
+.fontSize08em{ font-size: 0.8em; } .fontSize09em{ font-size: 0.9em; }
+.fontSize1em{ font-size: 1em; } .fontSize11em{ font-size: 1.1em; }
+.fontSize12em{ font-size: 1.2em; } .fontSize13em{ font-size: 1.3em; }
+
+//złote podkreślenie
+.textUnderlineGold{ text-decoration: underline; text-decoration-color: gold; }
+
+//odsunięcie elementu od lewej strony w procentach
+.marginLeft3{ margin-left: 3%; }
+.marginLeft4{ margin-left: 4%; }
+.marginLeft5{ margin-left: 5%; }
+.marginLeft10{ margin-left: 10%; }
+.marginLeft15{ margin-left: 15%; }
+.marginLeft25{ margin-left: 25%; }
+
+//odsunięcie elementu od góry w procentach
+.marginTop1{ margin-top: 1%; }
+.marginTop2{ margin-top: 2%; }
+.marginTop3{ margin-top: 3%; }
+.marginTop4{ margin-top: 4%; }
+.marginTop5{ margin-top: 5%; }
+
+//odsunięcie elementu od góry w vh
+.marginTop4vh{ margin-top: 4vh; }
+
+//paddingi w procentach od góry i od dołu
+.paddingUpDown1{ padding: 1% 0 1% 0; }
+
+//kolor tła
+.bckgGreen{ background-color: green; }
